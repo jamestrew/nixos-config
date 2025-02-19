@@ -73,7 +73,7 @@
     stylua
     nil # nix language server
     nixfmt-rfc-style
-    stable.basedpyright # https://github.com/NixOS/nixpkgs/issues/380079
+    basedpyright
     gopls
     libclang
     deno

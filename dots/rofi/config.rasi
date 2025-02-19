@@ -1,0 +1,11 @@
+@theme "Arc-Dark"
+
+window {
+  width: 800px;
+}
+
+configuration {
+  kb-element-next: "";
+  kb-element-previous: "";
+  kb-row-select: "Tab";
+}

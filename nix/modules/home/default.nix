@@ -1,0 +1,6 @@
+{ inputs, ... }:
+{
+  imports = [
+    ./sh.nix
+  ];
+}

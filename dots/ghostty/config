@@ -1,0 +1,7 @@
+theme = OneHalfDark
+font-family = JetBrains Mono
+font-size = 11
+window-inherit-font-size = false
+window-decoration = false
+
+mouse-scroll-multiplier = 0.4

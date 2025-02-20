@@ -42,7 +42,6 @@ in
         alias ll="ls -lah"
 
         eval "$(atuin init zsh --disable-up-arrow)"
-        eval "$(starship init zsh)"
 
         source ~/.secrets
         ta
@@ -102,6 +101,7 @@ in
         };
       };
     };
+
   };
 
 }

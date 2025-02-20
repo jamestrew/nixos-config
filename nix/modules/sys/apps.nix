@@ -4,6 +4,7 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     nix-index
+    nix-prefetch
     curl
     firefox
     google-chrome # sometimes firefox is doodoo
@@ -44,18 +45,12 @@
     fzf
     yazi
     vlc
-    htop
     ghostty
     kitty
-    zathura
-    xclip
-    xsel
     nodePackages.npm
     nodePackages.nodejs
     yarn
     openssh
-    stow
-    vial
     unzip
 
     gimp
@@ -65,8 +60,6 @@
     delta
     starship
     docker
-    screenkey
-    peek
 
     lua-language-server
     bash-language-server

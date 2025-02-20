@@ -145,6 +145,15 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    screenkey
+    peek
+    htop
+    zathura
+    xclip
+    xsel
+  ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

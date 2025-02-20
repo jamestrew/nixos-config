@@ -10,16 +10,9 @@
   ];
 
   nixpkgs = {
-    overlays = [
-      inputs.fenix.overlays.default
-
-      (final: _: {
-        stable = import inputs.nixpkgs-stable {
-          inherit (final.stdenv.hostPlatform) system;
-          inherit (final) config;
-        };
-      })
-    ];
+    overlays = import ../../overlays {
+      inherit inputs;
+    };
     config.allowUnfree = true;
   };
 

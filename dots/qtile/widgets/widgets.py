@@ -65,8 +65,7 @@ main_screen_widgets: list[Widget] = [
     *audio,
     line_sep,
     Clock(foreground=c.base0C, format="%a %b %d  %H:%M:%S"),
-    StatusNotifier(icon_size=22, padding=4),
-    # Systray(icon_size=22, padding=4),
+    StatusNotifier(icon_size=22, padding=4, icon_theme="Adwaita"),
     basic_sep,
 ]
 

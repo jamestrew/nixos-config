@@ -85,7 +85,10 @@ in
   gtk = {
     enable = true;
     cursorTheme = cursor;
-    # iconTheme = pkgs.adwaita-icon-theme;
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
   };
 
   home.pointerCursor = {

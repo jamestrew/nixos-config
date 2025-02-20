@@ -1,0 +1,42 @@
+diff --git a/Screenkey/screenkey.py b/Screenkey/screenkey.py
+index 7a2040d..5010510 100644
+--- a/Screenkey/screenkey.py
++++ b/Screenkey/screenkey.py
+@@ -996,13 +996,13 @@ class Screenkey(Gtk.Window):
+             APP_NAME, 'indicator-messages', AppIndicator.IndicatorCategory.APPLICATION_STATUS)
+         self.systray.set_status(AppIndicator.IndicatorStatus.ACTIVE)
+         self.systray.set_attention_icon("indicator-messages-new")
+-        self.systray.set_icon("preferences-desktop-keyboard-shortcuts")
++        self.systray.set_icon("preferences-desktop-keyboard-shortcuts-symbolic")
+         self.systray.set_menu(self.menu)
+         self.logger.debug("Using AppIndicator.")
+ 
+     def make_systray(self):
+         self.systray = Gtk.StatusIcon()
+-        self.systray.set_from_icon_name("preferences-desktop-keyboard-shortcuts")
++        self.systray.set_from_icon_name("preferences-desktop-keyboard-shortcuts-symbolic")
+         self.systray.connect("popup-menu", self.on_statusicon_popup, self.menu)
+         self.logger.debug("Using StatusIcon.")
+ 
+@@ -1021,8 +1021,8 @@ class Screenkey(Gtk.Window):
+             ["José María Quiroga <pepelandia@gmail.com>"]
+         )
+         about.set_website(APP_URL)
+-        about.set_icon_name('preferences-desktop-keyboard-shortcuts')
+-        about.set_logo_icon_name('preferences-desktop-keyboard-shortcuts')
++        about.set_icon_name('preferences-desktop-keyboard-shortcuts-symbolic')
++        about.set_logo_icon_name('preferences-desktop-keyboard-shortcuts-symbolic')
+         about.connect("response", lambda *_: about.hide_on_delete())
+         about.connect("delete-event", lambda *_: about.hide_on_delete())
+ 
+diff --git a/data/screenkey.desktop b/data/screenkey.desktop
+index 53155f0..db2704a 100644
+--- a/data/screenkey.desktop
++++ b/data/screenkey.desktop
+@@ -4,5 +4,5 @@ Type=Application
+ Name=Screenkey
+ Comment=Screencast your keys
+ Exec=screenkey
+-Icon=preferences-desktop-keyboard-shortcuts
++Icon=preferences-desktop-keyboard-shortcuts-symbolic
+ Categories=Utility;

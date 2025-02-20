@@ -24,6 +24,10 @@ in
     ".local/bin/ta".source = link "${dots}/tmux/ta";
   };
 
+  home.sessionVariables = {
+    KEYTIMEOUT = 1;
+  };
+
   programs = {
     zsh = {
       enable = true;
@@ -46,7 +50,6 @@ in
         source ~/.secrets
         ta
       '';
-      defaultKeymap = "emacs";
     };
 
     # using a custom build of atuin

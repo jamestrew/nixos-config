@@ -7,6 +7,7 @@
     ./qtile.nix
     ./gaming.nix
     ./sops.nix
+    ./sh.nix
   ];
 
   nixpkgs = {

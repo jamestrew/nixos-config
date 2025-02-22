@@ -1,12 +1,16 @@
 {
   inputs,
   config,
+  osConfig,
   pkgs,
   ...
 }:
 let
   link = config.lib.file.mkOutOfStoreSymlink;
   dots = "${config.home.homeDirectory}/nixos-config/dots";
+  user = config.home.username;
+
+  atuinargs = "--disable-up-arrow";
 in
 {
 
@@ -28,6 +32,12 @@ in
     KEYTIMEOUT = 1;
   };
 
+  home.sessionPath = [
+    "/home/${user}/.cargo/bin"
+    "/home/${user}/go/bin"
+    "/home/${user}/apps/neovim/bin"
+  ];
+
   programs = {
     zsh = {
       enable = true;
@@ -38,16 +48,29 @@ in
       syntaxHighlighting.enable = true;
 
       initExtra = ''
-        export PATH=$HOME/.cargo/bin:$HOME/go/bin:$HOME/apps/neovim/bin:$PATH
         export CDPATH=$HOME/.local/share/nvim/:$CDPATH
-        export EDITOR='nvim'
 
         alias cat="bat"
         alias ll="ls -lah"
 
-        eval "$(atuin init zsh --disable-up-arrow)"
+        eval "$(atuin init zsh ${atuinargs})"
 
         source ~/.secrets
+        ta
+      '';
+    };
+
+    fish = {
+      enable = true;
+      shellAbbrs = {
+        ll = "ls -lah";
+        cat = "bat";
+      };
+      interactiveShellInit = ''
+        set fish_greeting
+
+        atuin init fish ${atuinargs} | source
+
         ta
       '';
     };

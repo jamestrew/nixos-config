@@ -8,7 +8,9 @@
   inputs,
   ...
 }:
-
+let
+  defaultShell = pkgs.fish;
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -18,6 +20,7 @@
   # my modules
   qtile.enable = true;
   gaming.enable = true;
+  defaultShell = defaultShell;
 
   # Bootloader.
   boot.loader.grub = {
@@ -101,7 +104,7 @@
       "docker"
     ];
     packages = [ ];
-    shell = pkgs.zsh;
+    shell = defaultShell;
   };
 
   environment.variables =
@@ -164,6 +167,7 @@
 
   programs = {
     zsh.enable = true;
+    fish.enable = true;
     dconf.enable = true;
     direnv.enable = true;
   };

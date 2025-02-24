@@ -18,18 +18,24 @@ in
   # and I don't like managing everything via hm configs, makes making small
   # frequent changes a pita
   home.file = {
-    ".config/atuin".source = link "${dots}/atuin";
-    ".config/starship.toml".source = link "${dots}/starship.toml";
-    ".config/tmux".source = link "${dots}/tmux";
-    ".config/yazi".source = link "${dots}/yazi";
-    ".config/ghostty".source = link "${dots}/ghostty";
     ".config/nvim".source = link "${dots}/nvim";
-    ".vimrc".source = link "${dots}/.vimrc";
-    ".local/bin/ta".source = link "${dots}/tmux/ta";
+    ".config/tmux".source = link "${dots}/tmux";
+    ".config/atuin".source = ../../../dots/atuin;
+    ".config/starship.toml".source = ../../../dots/starship.toml;
+    ".config/yazi".source = ../../../dots/yazi;
+    ".config/ghostty".source = ../../../dots/ghostty;
+    ".vimrc".source = ../../../dots/.vimrc;
+    ".local/bin/ta".source = ../../../dots/tmux/ta;
   };
 
   home.sessionVariables = {
-    KEYTIMEOUT = 1;
+    CDPATH = "${config.home.homeDirectory}/.local/share/nvim/:$CDPATH";
+  };
+
+  home.shellAliases = {
+    ll = "eza -la";
+    ls = "eza";
+    cat = "bat";
   };
 
   home.sessionPath = [
@@ -48,29 +54,17 @@ in
       syntaxHighlighting.enable = true;
 
       initExtra = ''
-        export CDPATH=$HOME/.local/share/nvim/:$CDPATH
-
-        alias cat="bat"
-        alias ll="ls -lah"
-
         eval "$(atuin init zsh ${atuinargs})"
-
-        source ~/.secrets
         ta
       '';
     };
 
     fish = {
       enable = true;
-      shellAbbrs = {
-        ll = "ls -lah";
-        cat = "bat";
-      };
       interactiveShellInit = ''
         set fish_greeting
 
         atuin init fish ${atuinargs} | source
-
         ta
       '';
     };
@@ -92,6 +86,10 @@ in
     ghostty.enable = true;
     yazi.enable = true;
     htop.enable = true;
+    eza = {
+      enable = true;
+      icons = "auto";
+    };
 
     git = {
       enable = true;

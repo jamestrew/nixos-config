@@ -64,11 +64,11 @@ in
     #   org.gradle.daemon.idletimeout=3600000
     # '';
 
-    ".config/qtile".source = link "${dots}/qtile";
-    ".config/picom".source = link "${dots}/picom";
-    ".config/rofi".source = link "${dots}/rofi";
-    ".config/zathura".source = link "${dots}/zathura";
-    ".config/discord/settings.json".source = link "${dots}/discord/settings.json";
+    ".config/qtile".source = ../../../dots/qtile;
+    ".config/picom".source = ../../../dots/picom;
+    ".config/rofi".source = ../../../dots/rofi;
+    ".config/zathura".source = ../../../dots/zathura;
+    ".config/discord/settings.json".source = ../../../dots/discord/settings.json;
   };
 
   services.redshift = {

@@ -105,24 +105,40 @@ in
         };
       };
       extraConfig = {
-        core = {
-          editor = "nvim";
-        };
-        merge = {
-          conflictStyle = "diff3";
-        };
+        core.editor = "nvim";
+        merge.conflictStyle = "zdiff3";
         diff = {
-          colorMoved = "default";
+          colorMoved = "plain";
+          algorithm = "histogram";
+          renames = true;
+          mnemonicPrefix = true;
         };
-        color = {
-          ui = true;
+        color.ui = true;
+        push = {
+          default = "simple";
+          autoSetupRemote = true;
+          followTags = true;
         };
-        pull = {
-          rebase = true;
+        fetch = {
+          prune = true;
+          pruneTags = true;
+          all = true;
         };
+        commit.verbose = true;
+        pull.enabled = true;
         rerere = {
           enabled = true;
+          autoupdate = true;
         };
+        rebase = {
+          autoSquash = true;
+          autoStash = true;
+          updateRefs = true;
+        };
+        branch.sort = "-committerdate";
+        tag.sort = "version:refname";
+        init.defaultBranch = "master";
+        help.autocorrect = "prompt";
       };
     };
 

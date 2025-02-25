@@ -27,6 +27,7 @@
     tldr
     jq
     sops
+    qalculate-gtk
 
     (fenix.complete.withComponents [
       "cargo"
@@ -57,6 +58,7 @@
     yarn
     openssh
     unzip
+    zip
 
     gimp
     go

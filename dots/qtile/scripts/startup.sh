@@ -13,6 +13,6 @@ discord &
 youtube-music &
 # obsidian &
 ghostty &
-firefox &
+zen-browser &
 fcitx5 &
 

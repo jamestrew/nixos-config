@@ -4,10 +4,10 @@
   imports = [
     ./apps.nix
     ./env.nix
-    ./qtile.nix
     ./gaming.nix
-    ./sops.nix
+    ./qtile.nix
     ./sh.nix
+    ./sops.nix
     ./zen-browser.nix
   ];
 

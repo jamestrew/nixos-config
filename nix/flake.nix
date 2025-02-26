@@ -34,7 +34,6 @@
       nixosConfigurations.nixos =
         let
           system = "x86_64-linux";
-          pkgs = nixpkgs.legacyPackages.${system};
         in
         nixpkgs.lib.nixosSystem {
           inherit system;
@@ -43,8 +42,6 @@
           };
           modules = [
             ./hosts/main/configuration.nix
-            ./modules/sys
-
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -56,7 +53,6 @@
                     ./modules/home
                   ];
                 };
-                extraSpecialArgs = { inherit pkgs; };
                 sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
                 backupFileExtension = "backup";
               };

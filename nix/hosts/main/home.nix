@@ -4,9 +4,6 @@
   ...
 }:
 let
-  link = config.lib.file.mkOutOfStoreSymlink;
-  dots = "${config.home.homeDirectory}/nixos-config/dots";
-
   cursor = {
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
@@ -14,6 +11,7 @@ let
   };
 in
 {
+  obsidian.enable = true;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

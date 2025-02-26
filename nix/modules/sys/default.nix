@@ -8,6 +8,7 @@
     ./gaming.nix
     ./sops.nix
     ./sh.nix
+    ./zen-browser.nix
   ];
 
   nixpkgs = {

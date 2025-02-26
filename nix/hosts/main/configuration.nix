@@ -21,6 +21,7 @@ in
   qtile.enable = true;
   gaming.enable = true;
   defaultShell = defaultShell;
+  zen-browser.enable = true;
 
   # Bootloader.
   boot.loader.grub = {
@@ -59,6 +60,7 @@ in
   };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.tmp.cleanOnBoot = true;
+  # boot.kernelModules = [ "fuse "];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

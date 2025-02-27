@@ -12,7 +12,7 @@ TAB = "Tab"
 SPACE = "space"
 
 TERMINAL: str = guess_terminal("ghostty")  # pyright: ignore[reportAssignmentType]
-BROWSER: str = "zen-browser"
+BROWSER: str = "firefox"
 
 
 @lazy.function

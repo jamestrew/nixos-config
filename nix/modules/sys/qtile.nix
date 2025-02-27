@@ -11,7 +11,7 @@
   };
 
   config = lib.mkIf config.qtile.enable {
-    zen-browser.enable = lib.mkForce true;
+    zen-browser.enable = lib.mkForce false;
 
     services.xserver.windowManager.qtile = {
       enable = true;

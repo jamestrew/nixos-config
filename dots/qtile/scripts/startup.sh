@@ -11,7 +11,7 @@ picom --experimental-backends &
 # nitrogen --restore &
 discord &
 youtube-music &
-# obsidian &
+obsidian &
 ghostty &
 zen-browser &
 fcitx5 &

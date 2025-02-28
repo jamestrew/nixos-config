@@ -12,4 +12,5 @@ picom --experimental-backends &
 
 fcitx5 &
 dropbox start &
-
+firefox &
+ghostty &

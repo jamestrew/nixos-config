@@ -16,7 +16,7 @@ from libqtile.widget.pulse_volume import PulseVolume
 from libqtile.widget.sep import Sep
 from qtile_extras.widget.mixins import ExtendedPopupMixin
 
-from colors import OneDark as c
+from constants import OneDark as c
 
 __all__ = [
     "audio",

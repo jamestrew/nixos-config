@@ -1,3 +1,6 @@
+from libqtile.utils import guess_terminal
+
+
 class OneDark:
     white = "#abb2bf"
     darker_black = "#1b1f27"
@@ -45,3 +48,7 @@ class OneDark:
     base0D = "#61afef"
     base0E = "#c678dd"
     base0F = "#be5046"
+
+
+TERMINAL: str = guess_terminal("ghostty")  # pyright: ignore[reportAssignmentType]
+BROWSER: str = "firefox"

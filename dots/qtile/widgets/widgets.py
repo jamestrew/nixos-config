@@ -8,7 +8,7 @@ from libqtile.widget.pomodoro import Pomodoro
 from libqtile.widget.windowname import WindowName
 from qtile_extras.widget.statusnotifier import StatusNotifier
 
-from colors import OneDark as c
+from constants import OneDark as c
 from widgets.custom_widgets import (
     audio,
     basic_sep,

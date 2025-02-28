@@ -1,9 +1,9 @@
 from libqtile.config import EzKey, Key, KeyChord
 from libqtile.core.manager import Qtile
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
 
 import groups
+from constants import BROWSER, TERMINAL
 
 MOD = "mod4"
 SHIFT = "shift"
@@ -11,8 +11,6 @@ CTRL = "control"
 TAB = "Tab"
 SPACE = "space"
 
-TERMINAL: str = guess_terminal("ghostty")  # pyright: ignore[reportAssignmentType]
-BROWSER: str = "firefox"
 
 
 @lazy.function

@@ -4,7 +4,7 @@ from libqtile.layout.floating import Floating
 from libqtile.layout.max import Max
 from libqtile.layout.xmonad import MonadWide
 
-from colors import OneDark as c
+from constants import OneDark as c
 
 _layout_theme = {
     "border_width": 4,

@@ -1,7 +1,5 @@
 {
-  inputs,
   config,
-  osConfig,
   pkgs,
   ...
 }:
@@ -9,8 +7,6 @@ let
   link = config.lib.file.mkOutOfStoreSymlink;
   dots = "${config.home.homeDirectory}/nixos-config/dots";
   user = config.home.username;
-
-  atuinargs = "--disable-up-arrow";
 in
 {
 
@@ -54,7 +50,6 @@ in
       syntaxHighlighting.enable = true;
 
       initExtra = ''
-        eval "$(atuin init zsh ${atuinargs})"
         ta
       '';
     };
@@ -64,23 +59,21 @@ in
       interactiveShellInit = ''
         set fish_greeting
 
-        atuin init fish ${atuinargs} | source
         ta
       '';
     };
 
-    # using a custom build of atuin
-    # atuin = {
-    #   enable = true;
-    #   package = pkgs.atuin;
-    #   flags = [
-    #     "--disable-up-arrow"
-    #   ];
-    #   settings = {
-    #     search_mode = "fuzzy";
-    #     style = "compact";
-    #   };
-    # };
+    atuin = {
+      enable = true;
+      package = pkgs.atuin;
+      flags = [
+        "--disable-up-arrow"
+      ];
+      settings = {
+        search_mode = "fuzzy";
+        style = "compact";
+      };
+    };
 
     starship.enable = true;
     ghostty.enable = true;

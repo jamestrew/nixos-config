@@ -12,7 +12,10 @@ groups = [
     Group(
         "coms",
         layout="cols",
-        spawn=["discord", "youtube-music"],
+        matches=[
+            Match(wm_class="discord"),
+            Match(wm_class="com.github.th_ch.youtube_music"),
+        ],
     ),
     Group("doc", layout="cols"),
     Group(

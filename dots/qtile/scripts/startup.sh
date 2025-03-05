@@ -12,5 +12,12 @@ picom --experimental-backends &
 
 fcitx5 &
 dropbox start &
-firefox &
-ghostty &
+discord &
+youtube-music &
+flameshot &
+
+# firefox &
+# ghostty &
+
+# systemctl restart --user flameshot
+# systemctl restart --user redshift

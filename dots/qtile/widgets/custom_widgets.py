@@ -1,4 +1,5 @@
 import subprocess
+import html
 
 from libqtile import bar, qtile
 from libqtile.log_utils import logger
@@ -186,7 +187,7 @@ class MusicPlayer(InLoopPollText):
                 .strip()
                 .decode("utf-8")[:60]
             )
-            return f"{artist} · {song}"
+            return html.escape(f"{artist} · {song}")
         except subprocess.CalledProcessError:
             return ""
 

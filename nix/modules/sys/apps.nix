@@ -46,6 +46,7 @@
     ninja
     ccache
 
+    flameshot
     discord
     youtube-music
     fzf
@@ -77,6 +78,7 @@
     gopls
     libclang
     deno
+    bun
     emmet-language-server
     markdownlint-cli
     taplo

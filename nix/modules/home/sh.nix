@@ -114,7 +114,7 @@ in
         };
         fetch = {
           prune = true;
-          pruneTags = true;
+          # pruneTags = true;
           all = true;
         };
         commit.verbose = true;

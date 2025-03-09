@@ -78,7 +78,7 @@ in
     settings.redshift.brightness-night = "0.85";
     tray = true;
   };
-  services.flameshot.enable = true;
+  # services.flameshot.enable = true;
 
   gtk = {
     enable = true;

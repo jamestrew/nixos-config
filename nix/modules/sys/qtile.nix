@@ -23,6 +23,7 @@
           pyxdg
         ];
     };
+    services.displayManager.defaultSession = lib.mkForce "qtile";
 
     environment.systemPackages = with pkgs; [
       picom

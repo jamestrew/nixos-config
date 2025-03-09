@@ -25,6 +25,7 @@
     inputs.nh.packages.${system}.nh
     tldr
     jq
+    tokei
     sops
     qalculate-gtk
 

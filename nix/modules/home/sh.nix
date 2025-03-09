@@ -61,6 +61,20 @@ in
 
         ta
       '';
+      functions = {
+        gitignore = "curl -sL https://www.gitignore.io/api/$argv";
+        ns = {
+          description = "Nix shell with multiple packages";
+          body = ''
+            if test (count $argv) -eq 0
+                echo "Usage: ns <package1> <package2> ..."
+                return 1
+            end
+            set -l prefixed (printf "nixpkgs#%s " $argv)
+            eval nix shell $prefixed
+          '';
+        };
+      };
     };
 
     atuin = {

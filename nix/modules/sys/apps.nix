@@ -11,8 +11,7 @@
     nix-index
     nix-prefetch
     curl
-    firefox
-    google-chrome # sometimes firefox is doodoo
+    brave
     git
     github-cli
     tmux

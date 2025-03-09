@@ -51,4 +51,4 @@ class OneDark:
 
 
 TERMINAL: str = guess_terminal("ghostty")  # pyright: ignore[reportAssignmentType]
-BROWSER: str = "firefox"
+BROWSER: str = "brave"

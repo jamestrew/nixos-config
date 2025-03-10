@@ -28,6 +28,7 @@
     tokei
     sops
     qalculate-gtk
+    qbittorrent
 
     (fenix.complete.withComponents [
       "cargo"
@@ -70,8 +71,9 @@
     docker
 
     lua-language-server
-    bash-language-server
     stylua
+    luajitPackages.luacheck
+    bash-language-server
     nil # nix language server
     nixfmt-rfc-style
     basedpyright

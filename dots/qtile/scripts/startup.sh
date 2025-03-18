@@ -7,7 +7,6 @@ xrandr \
   --output DP-3 --off
 
 picom --experimental-backends &
-# clipmenud &
 # nitrogen --restore &
 
 fcitx5 &
@@ -16,8 +15,6 @@ discord &
 youtube-music &
 flameshot &
 
-# firefox &
+firefox &
 # ghostty &
 
-# systemctl restart --user flameshot
-# systemctl restart --user redshift

@@ -79,6 +79,7 @@
     basedpyright
     gopls
     libclang
+    typescript
     deno
     bun
     emmet-language-server

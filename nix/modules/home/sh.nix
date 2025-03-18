@@ -109,6 +109,7 @@ in
           navigate = true;
           light = false;
           lineNumbers = true;
+          side-by-side = true;
         };
       };
       extraConfig = {

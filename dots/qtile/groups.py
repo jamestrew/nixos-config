@@ -4,11 +4,11 @@ from libqtile.config import Group, Match
 group_bindings = [1, 2, 3, 4, 5, 6, 7]
 
 groups = [
-    Group("gtd", layout="cols", spawn="obsidian", matches=[Match(wm_class="obsidian")]),
     Group(
         "www",
         layout="cols",
     ),
+    Group("gtd", layout="cols", spawn="obsidian", matches=[Match(wm_class="obsidian")]),
     Group(
         "coms",
         layout="cols",

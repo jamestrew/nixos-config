@@ -57,6 +57,7 @@ keys: list[Key | KeyChord] = [
     ),
     EzKey("M-n", lazy.layout.normalize(), desc="Reset all window sizes"),
     EzKey("M-<space>", lazy.window.toggle_fullscreen(), desc="fullscreen"),
+    EzKey("M-f", lazy.window.disable_floating(), desc="disable floating"),
     EzKey("M-<Tab>", lazy.next_layout(), desc="Toggle between layouts"),
     EzKey("M-c", lazy.window.kill(), desc="Kill focused window"),
     EzKey("M-S-c", kill_all, desc="Kill all windows in group"),

@@ -15,6 +15,6 @@ discord &
 youtube-music &
 flameshot &
 
-firefox &
+brave &
 # ghostty &
 

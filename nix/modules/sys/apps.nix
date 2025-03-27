@@ -87,5 +87,6 @@
     taplo
     biome
     vscode-langservers-extracted
+    copilot-language-server
   ];
 }

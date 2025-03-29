@@ -106,6 +106,7 @@ in
       "networkmanager"
       "wheel"
       "docker"
+      "dialout"
     ];
     packages = [ ];
     shell = defaultShell;

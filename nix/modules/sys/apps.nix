@@ -57,6 +57,7 @@
     kitty
     nodePackages.npm
     nodePackages.nodejs
+    vite
     yarn
     openssh
     unzip

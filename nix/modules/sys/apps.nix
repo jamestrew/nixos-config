@@ -57,7 +57,6 @@
     kitty
     nodePackages.npm
     nodePackages.nodejs
-    vite
     yarn
     openssh
     unzip
@@ -83,6 +82,7 @@
     typescript
     deno
     bun
+    typescript-language-server
     emmet-language-server
     markdownlint-cli
     taplo

@@ -44,7 +44,7 @@ main_screen_widgets: list[Widget] = [
         max_chars=75,
     ),
     Pomodoro(
-        length_pomodori=1,
+        length_pomodori=25,
         color_inactive=c.base02,
         color_active=c.base0D,
         color_break=c.base0B,

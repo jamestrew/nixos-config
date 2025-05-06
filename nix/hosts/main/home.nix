@@ -73,8 +73,7 @@ in
   services.redshift = {
     enable = true;
     temperature.night = 3000;
-    latitude = 43.66;
-    longitude = -79.38;
+    provider = "geoclue2";
     settings.redshift.brightness-day = "1";
     settings.redshift.brightness-night = "0.85";
     tray = true;

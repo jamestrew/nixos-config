@@ -185,6 +185,7 @@ in
     gvfs.enable = true;
     udisks2.enable = true;
     input-remapper.enable = true; # mapping mouse buttons
+    geoclue2.enable = true; # geolocation
   };
 
   fileSystems = {

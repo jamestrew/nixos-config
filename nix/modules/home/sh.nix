@@ -49,7 +49,7 @@ in
       };
       syntaxHighlighting.enable = true;
 
-      initExtra = ''
+      initContent = ''
         ta
       '';
     };

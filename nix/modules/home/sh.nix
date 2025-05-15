@@ -15,7 +15,7 @@ in
   # frequent changes a pita
   home.file = {
     ".config/nvim".source = link "${dots}/nvim";
-    ".config/tmux".source = ../../../dots/tmux;
+    ".config/tmux".source = link "${dots}/tmux";
     ".config/atuin".source = ../../../dots/atuin;
     ".config/starship.toml".source = ../../../dots/starship.toml;
     ".config/yazi".source = ../../../dots/yazi;

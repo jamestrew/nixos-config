@@ -58,6 +58,7 @@ in
       enable = true;
       interactiveShellInit = ''
         set fish_greeting
+        set -g ANTHROPIC_API_KEY (cat ${config.sops.secrets.ANTHROPIC_API_KEY.path})
 
         ta
       '';

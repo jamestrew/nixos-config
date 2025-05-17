@@ -69,6 +69,7 @@
     delta
     starship
     docker
+    claude-code
 
     lua-language-server
     stylua

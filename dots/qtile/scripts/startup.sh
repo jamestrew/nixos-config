@@ -14,6 +14,7 @@ dropbox start &
 discord &
 youtube-music &
 flameshot &
+udiskie --tray &
 
 brave &
 # ghostty &

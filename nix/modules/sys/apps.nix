@@ -29,6 +29,7 @@
     sops
     qalculate-gtk
     qbittorrent
+    udiskie
 
     (fenix.complete.withComponents [
       "cargo"
@@ -61,6 +62,7 @@
     openssh
     unzip
     zip
+    tree-sitter
 
     gimp
     go

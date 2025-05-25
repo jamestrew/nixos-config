@@ -26,6 +26,7 @@ in
 
   home.sessionVariables = {
     CDPATH = "${config.home.homeDirectory}/.local/share/nvim/:$CDPATH";
+    MANPAGER = "nvim +MAN!";
   };
 
   home.shellAliases = {

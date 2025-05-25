@@ -186,6 +186,7 @@ in
     udisks2.enable = true;
     input-remapper.enable = true; # mapping mouse buttons
     geoclue2.enable = true; # geolocation
+    flatpak.enable = true;
   };
 
   fileSystems = {
@@ -193,6 +194,28 @@ in
       device = "/dev/disk/by-uuid/F8A8E424A8E3DEDE";
       fsType = "ntfs";
       options = [ "defaults" ];
+    };
+  };
+
+  systemd.services.flatpak-repo = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    config = {
+      common = {
+        default = [
+          "gtk"
+        ];
+      };
     };
   };
 

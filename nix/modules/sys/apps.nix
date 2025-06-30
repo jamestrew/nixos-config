@@ -30,6 +30,7 @@
     qalculate-gtk
     qbittorrent
     udiskie
+    dust # A more intuitive du replacement
 
     (fenix.complete.withComponents [
       "cargo"
@@ -72,6 +73,7 @@
     starship
     docker
     claude-code
+    gemini-cli
 
     lua-language-server
     stylua
@@ -83,8 +85,8 @@
     gopls
     libclang
     typescript
-    deno
     bun
+    pnpm
     typescript-language-server
     emmet-language-server
     markdownlint-cli

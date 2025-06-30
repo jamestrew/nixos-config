@@ -1,2 +1,2 @@
-[manager]
+[mgr]
 prepend_keymap = [{ on = "<Enter>", run = "enter", desc = "Enter" }]

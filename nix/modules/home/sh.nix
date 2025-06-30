@@ -29,7 +29,7 @@ in
   };
 
   home.shellAliases = {
-    ll = "eza -la";
+    ll = "eza -lah --git --group-directories-first";
     ls = "eza";
     cat = "bat";
   };

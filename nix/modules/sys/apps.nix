@@ -31,6 +31,8 @@
     qbittorrent
     udiskie
     dust # A more intuitive du replacement
+    gparted
+    inetutils # telnet, etc
 
     (fenix.complete.withComponents [
       "cargo"

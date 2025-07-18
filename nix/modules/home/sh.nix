@@ -75,6 +75,18 @@ in
             eval nix shell $prefixed
           '';
         };
+        newproj = {
+          description = "Create a new project with a default structure";
+          body = ''
+            if test (count $argv) -ne 1
+                echo "Usage: newproj <project-name>"
+                return 1
+            end
+            set -l proj_name $argv[1]
+            mkdir -p ~/projects/$proj_name
+            echo "Project ~/projects/$proj_name created..."
+          '';
+        };
       };
     };
 

@@ -8,7 +8,6 @@
     ./qtile.nix
     ./sh.nix
     ./sops.nix
-    ./zen-browser.nix
   ];
 
   nixpkgs = {

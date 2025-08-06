@@ -24,7 +24,6 @@ in
   qtile.enable = true;
   gaming.enable = true;
   defaultShell = defaultShell;
-  zen-browser.enable = false;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = lib.mkForce false;  # replaced by lanzaboote

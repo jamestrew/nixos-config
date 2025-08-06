@@ -22,12 +22,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # get signed bootloader for secure boot
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+
+      # Optional but recommended to limit the size of your system closure.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
   outputs =
     {
       self,
       nixpkgs,
       home-manager,
+      lanzaboote,
       ...
     }@inputs:
     {
@@ -41,6 +50,7 @@
             inherit inputs system;
           };
           modules = [
+            lanzaboote.nixosModules.lanzaboote
             ./hosts/main/configuration.nix
             home-manager.nixosModules.home-manager
             {

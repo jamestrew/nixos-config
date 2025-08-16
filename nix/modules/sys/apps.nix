@@ -33,6 +33,8 @@
     dust # A more intuitive du replacement
     gparted
     inetutils # telnet, etc
+    gnome-disk-utility
+    exfatprogs
 
     (fenix.complete.withComponents [
       "cargo"

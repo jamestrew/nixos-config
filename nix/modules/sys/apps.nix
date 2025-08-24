@@ -78,6 +78,7 @@
     docker
     claude-code
     gemini-cli
+    opencode
 
     lua-language-server
     stylua

@@ -22,6 +22,17 @@ in
     ".config/ghostty".source = ../../../dots/ghostty;
     ".vimrc".source = ../../../dots/.vimrc;
     ".local/bin/ta".source = ../../../dots/tmux/ta;
+
+    ".config/opencode/opencode.json".text = builtins.toJSON {
+      "$schema" = "https://opencode.ai/config.json";
+      permission = {
+        edit = "ask";
+        bash = "ask";
+        webfetch = "ask";
+      };
+      autoupdate = false;
+      share = "manual";
+    };
   };
 
   home.sessionVariables = {

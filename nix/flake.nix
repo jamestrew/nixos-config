@@ -16,17 +16,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nh fork that supports nix-darwin
-    nh = {
-      url = "github:ToyVo/nh";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # get signed bootloader for secure boot
+    # get signed bootloader for secure boot (mostly for win11 dual boot secure boot)
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
-
-      # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -22,7 +22,7 @@
     fd
     tree
     sqlite
-    inputs.nh.packages.${system}.nh
+    nh
     tldr
     jq
     tokei

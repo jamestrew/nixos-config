@@ -141,26 +141,6 @@
         "type": "github"
       }
     },
-    "nh": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1746970529,
-        "narHash": "sha256-wGvgdmfouiM3jdIdnRRgA8qySJra0DLcenwk2geM2Xc=",
-        "owner": "ToyVo",
-        "repo": "nh",
-        "rev": "bf935c422a372edcd51e9c9e3dca9474dd1c6f97",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ToyVo",
-        "repo": "nh",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1756542300,
@@ -239,7 +219,6 @@
         "fenix": "fenix",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
-        "nh": "nh",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "sops-nix": "sops-nix"

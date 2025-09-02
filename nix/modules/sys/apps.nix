@@ -26,6 +26,7 @@
     tldr
     jq
     tokei
+    devenv
     sops
     qalculate-gtk
     qbittorrent

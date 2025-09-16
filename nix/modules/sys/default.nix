@@ -6,6 +6,7 @@
     ./env.nix
     ./gaming.nix
     ./qtile.nix
+    ./hyprland.nix
     ./sh.nix
     ./sops.nix
   ];

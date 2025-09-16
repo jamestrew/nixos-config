@@ -36,6 +36,7 @@
     inetutils # telnet, etc
     gnome-disk-utility
     exfatprogs
+    bottles
 
     (fenix.complete.withComponents [
       "cargo"

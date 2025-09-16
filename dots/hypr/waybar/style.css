@@ -1,0 +1,233 @@
+/* Waybar OneDark Theme - matching qtile colors */
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Source Code Pro", monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #1e222a;
+    border-bottom: 2px solid #be5046;
+    color: #abb2bf;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces {
+    margin: 0 4px;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #565c64;
+    border-bottom: 2px solid transparent;
+}
+
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 -2px #abb2bf;
+}
+
+#workspaces button.active {
+    background-color: #353b45;
+    color: #abb2bf;
+    border-bottom: 2px solid #be5046;
+}
+
+#workspaces button.urgent {
+    background-color: #d47d85;
+    color: #1e222a;
+}
+
+#mode {
+    background-color: #64727D;
+    border-bottom: 3px solid #abb2bf;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#mpd,
+#custom-notification {
+    padding: 0 10px;
+    color: #abb2bf;
+}
+
+#window {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+    color: #61afef;
+}
+
+#battery {
+    color: #98c379;
+}
+
+#battery.charging, #battery.plugged {
+    color: #98c379;
+    background-color: #98c379;
+    color: #1e222a;
+}
+
+@keyframes blink {
+    to {
+        background-color: #d47d85;
+        color: #1e222a;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: #d47d85;
+    color: #1e222a;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#cpu {
+    color: #e7c787;
+}
+
+#memory {
+    color: #c678dd;
+}
+
+#disk {
+    color: #56b6c2;
+}
+
+#network {
+    color: #61afef;
+}
+
+#network.disconnected {
+    color: #d47d85;
+}
+
+#pulseaudio {
+    color: #e5c07b;
+}
+
+#pulseaudio.muted {
+    color: #565c64;
+}
+
+#custom-media {
+    color: #66cc99;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    color: #66cc99;
+}
+
+#custom-media.custom-vlc {
+    color: #ffa000;
+}
+
+#temperature {
+    color: #e06c75;
+}
+
+#temperature.critical {
+    color: #d47d85;
+}
+
+#tray {
+    color: #abb2bf;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #d47d85;
+}
+
+#idle_inhibitor {
+    color: #abb2bf;
+}
+
+#idle_inhibitor.activated {
+    color: #e5c07b;
+    background-color: #e5c07b;
+    color: #1e222a;
+}
+
+#mpd {
+    color: #66cc99;
+}
+
+#mpd.disconnected {
+    color: #d47d85;
+}
+
+#mpd.stopped {
+    color: #90b1b1;
+}
+
+#mpd.paused {
+    color: #51a37a;
+}
+
+#language {
+    color: #00b093;
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state {
+    color: #97e1ad;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}

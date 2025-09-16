@@ -9,6 +9,9 @@ let
     package = pkgs.bibata-cursors;
     size = 22;
   };
+
+  link = config.lib.file.mkOutOfStoreSymlink;
+  dots = "${config.home.homeDirectory}/nixos-config/dots";
 in
 {
   obsidian.enable = true;
@@ -64,6 +67,9 @@ in
     # '';
 
     ".config/qtile".source = ../../../dots/qtile;
+    ".config/hypr".source = link "${dots}/hypr";
+    ".config/waybar".source = link "${dots}/hypr/waybar";
+    ".config/wofi".source = link "${dots}/hypr/wofi";
     ".config/picom".source = ../../../dots/picom;
     ".config/rofi".source = ../../../dots/rofi;
     ".config/zathura".source = ../../../dots/zathura;

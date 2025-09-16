@@ -22,6 +22,7 @@ in
 
   # my modules
   qtile.enable = true;
+  hyprland.enable = true;
   gaming.enable = true;
   defaultShell = defaultShell;
 

@@ -81,6 +81,7 @@
     claude-code
     gemini-cli
     opencode
+    codex
 
     lua-language-server
     stylua

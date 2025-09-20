@@ -56,7 +56,7 @@
     ccache
 
     flameshot
-    discord
+    legcord
     youtube-music
     fzf
     yazi

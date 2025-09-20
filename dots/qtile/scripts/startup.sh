@@ -11,7 +11,7 @@ picom --experimental-backends &
 
 fcitx5 &
 dropbox start &
-discord &
+legcord &
 youtube-music &
 flameshot &
 udiskie --tray &

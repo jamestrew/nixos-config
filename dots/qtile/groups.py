@@ -13,7 +13,7 @@ groups = [
         "coms",
         layout="cols",
         matches=[
-            Match(wm_class="discord"),
+            Match(wm_class="legcord"),
             Match(wm_class="com.github.th_ch.youtube_music"),
         ],
     ),

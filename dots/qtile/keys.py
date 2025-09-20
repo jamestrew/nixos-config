@@ -81,7 +81,6 @@ keys: list[Key | KeyChord] = [
             Key([], "t", lazy.spawn(TERMINAL), desc="Open terminal"),
             Key([], "r", lazy.spawn(TERMINAL + " -e yazi"), desc="Open yazi"),
             Key([], "b", lazy.spawn(BROWSER), desc="Open browser"),
-            Key([], "d", lazy.spawn("discord"), desc="Open discord"),
             Key([], "o", lazy.spawn("obsidian"), desc="Open obsidian"),
         ],
     ),

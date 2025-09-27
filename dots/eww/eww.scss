@@ -124,6 +124,60 @@ $base0F: #be5046;
   color: $base05;
 }
 
+.cpu-widget {
+  background-color: transparent;
+  color: $base05;
+  padding: 0 8px;
+}
+
+.cpu-icon {
+  color: $base08;
+  margin-right: 4px;
+}
+
+.cpu-usage {
+  color: $base08;
+  font-weight: normal;
+}
+
+.ram-widget {
+  background-color: transparent;
+  color: $base05;
+  padding: 0 8px;
+}
+
+.ram-icon {
+  color: $base0B;
+  margin-right: 4px;
+}
+
+.ram-usage {
+  color: $base0B;
+  font-weight: normal;
+}
+
+.audio-widget {
+  background-color: transparent;
+  color: $base05;
+  padding: 0 8px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.audio-widget:hover {
+  background-color: $base01;
+}
+
+.audio-icon {
+  color: $base0D;
+  margin-right: 4px;
+}
+
+.audio-level {
+  color: $base0D;
+  font-weight: normal;
+}
+
 .system-tray {
   background-color: transparent;
   padding: 0 8px;

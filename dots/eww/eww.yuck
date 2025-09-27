@@ -43,6 +43,43 @@
           :timeout "1s"
     (label :text {formattime(EWW_TIME, "%a %b %d %H:%M:%S")})))
 
+(defwidget cpu-widget []
+  (box :class "cpu-widget"
+       :orientation "horizontal"
+       :space-evenly false
+       :spacing 4
+    (label :class "cpu-icon" :text "󰍛")
+    (label :class "cpu-usage" :text "${round(EWW_CPU.avg, 1)}%")))
+
+(defwidget ram-widget []
+  (box :class "ram-widget"
+       :orientation "horizontal"
+       :space-evenly false
+       :spacing 4
+    (label :class "ram-icon" :text "󰉉")
+    (label :class "ram-usage" :text "${round(EWW_RAM.used_mem_perc, 1)}%")))
+
+(defpoll volume-info :interval "200ms"
+  "amixer get Master | grep -o '[0-9]*%' | head -1 | tr -d '%'")
+
+(defpoll volume-muted :interval "200ms"
+  "amixer get Master | grep -o '\\[on\\]\\|\\[off\\]' | head -1")
+
+(defwidget audio-widget []
+  (eventbox :class "audio-widget"
+            :onclick "amixer set Master toggle"
+            :onrightclick "pavucontrol &"
+            :onscroll "if [ '{}' = 'up' ]; then amixer set Master 1%+ unmute; else amixer set Master 1%- unmute; fi"
+            :timeout "500ms"
+            :tooltip "Left-click: toggle mute • Right-click: volume control • Scroll: volume"
+    (box :orientation "horizontal"
+         :space-evenly false
+         :spacing 4
+      (label :class "audio-icon"
+             :text "${volume-muted == '[off]' ? '󰖁' : '󰕾'}")
+      (label :class "audio-level"
+             :text "${volume-muted == '[off]' ? 'Muted' : '${volume-info}%'}"))))
+
 (defwidget system-tray []
   (systray :class "system-tray"
            :orientation "horizontal"
@@ -57,8 +94,13 @@
   (box :orientation "horizontal"
        :space-evenly false
        :halign "end"
-    (clock)
+    (cpu-widget)
     (sep)
+    (ram-widget)
+    (sep)
+    (audio-widget)
+    (sep)
+    (clock)
     (system-tray)
     (sep)
     (control-center-toggle)))

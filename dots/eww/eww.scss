@@ -109,3 +109,56 @@ $base0F: #be5046;
 .layout {
   color: $base05; // normal text color
 }
+
+.control-center-toggle {
+  background-color: transparent;
+  color: $base05;
+  padding: 0 8px;
+  border: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.control-center-toggle:hover {
+  background-color: $base01;
+  color: $base0D;
+}
+
+.control-center {
+  background-color: $base00;
+  border: 1px solid $base02;
+  border-radius: 8px;
+  padding: 16px;
+  color: $base05;
+}
+
+.control-center-header {
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid $base02;
+}
+
+.control-center-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.control-center-close {
+  background-color: transparent;
+  color: $base08;
+  border: none;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.control-center-close:hover {
+  background-color: $base08;
+  color: $base00;
+}
+
+.control-center-placeholder {
+  color: $base04;
+  padding: 20px;
+}

@@ -9,26 +9,67 @@
   :reserve (struts :distance "24px" :side "top")
   :windowtype "dock"
   :wm-ignore false
-  (bar-left))
-
-
-(defwidget bar-left []
   (box :class "bar"
        :orientation "horizontal"
        :space-evenly false
-       :halign "start"
-    (workspaces) (sep) (layout)))
+    (bar-left)
+    (bar-right)))
 
-
-(deflisten workspace-widgets :initial "" "scripts/workspace-widget.sh 0")
-(deflisten layout-widget :initial "" "scripts/layout-widget.sh 0")
 
 (defwidget sep []
   (box :class "module-2" :vexpand "false" :hexpand "false"
     (label :class "separator" :text "|")))
 
-(defwidget workspaces []
-  (literal :content workspace-widgets))
+(defwidget bar-left []
+  (box :orientation "horizontal"
+       :space-evenly false
+       :halign "start"
+       :hexpand true
+    (workspaces) (sep) (layout)))
 
-(defwidget layout []
-  (literal :content layout-widget))
+(defwidget bar-right []
+  (box :orientation "horizontal"
+       :space-evenly false
+       :halign "end"
+    (control-center-toggle)))
+
+
+(deflisten workspace-widgets :initial "" "scripts/workspace-widget.sh 0")
+(deflisten layout-widget :initial "" "scripts/layout-widget.sh 0")
+
+(defwidget workspaces [] (literal :content workspace-widgets))
+
+(defwidget layout [] (literal :content layout-widget))
+
+(defwidget control-center-toggle []
+  (button :class "control-center-toggle"
+          :onclick "eww open control-center"
+          :tooltip "Open Control Center"
+    "🚀"))
+
+(defwidget control-center-layout []
+  (box :class "control-center"
+       :orientation "vertical"
+       :space-evenly false
+    (box :class "control-center-header"
+         :orientation "horizontal"
+         :space-evenly false
+      (label :class "control-center-title"
+             :text "🚀 Control Center"
+             :halign "start"
+             :hexpand true)
+      (button :class "control-center-close"
+              :onclick "eww close control-center"
+              :halign "end"
+        "✕"))
+    (label :text "Control center content coming soon..."
+           :class "control-center-placeholder")))
+
+(defwindow control-center
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore true
+  :geometry (geometry :x -20 :y -30 :width "28%" :height "85%" :anchor "right center")
+  (control-center-layout))
+
+

@@ -21,7 +21,7 @@ generate_workspace_widgets() {
     fi
 
     workspaces=("www" "gtd" "coms" "doc" "dev" "dev2" "fun")
-    widget="(box :class \"workspaces\" :orientation \"horizontal\" :spacing 2"
+    widget="(box :orientation \"horizontal\" :spacing 2"
 
     for ws in "${workspaces[@]}"; do
         has_windows=$(echo "$groups_with_windows" | grep -q "^$ws$" && echo "true" || echo "false")

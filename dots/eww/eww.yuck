@@ -1,29 +1,34 @@
 (defwindow bar
   :monitor 0
-  :geometry (geometry :x "0%")
-  :y "0%"
-  :width "100%"
-  :height "24px"
-  :anchor "top center")
+  :geometry (geometry :x "0%"
+             :y "0%"
+             :width "100%"
+             :height "24px"
+             :anchor "top center")
   :stacking "fg"
   :reserve (struts :distance "24px" :side "top")
   :windowtype "dock"
   :wm-ignore false
-  (bar-content)
+  (bar-left))
 
-(defwidget bar-content []
+
+(defwidget bar-left []
   (box :class "bar"
        :orientation "horizontal"
-    (box :halign "start"
-         :hexpand false
-      (workspaces))))
+       :space-evenly false
+       :halign "start"
+    (workspaces) (sep) (layout)))
 
 
-(deflisten workspace-widgets :initial ""
-  "scripts/workspace-widget.sh 0")
+(deflisten workspace-widgets :initial "" "scripts/workspace-widget.sh 0")
+(deflisten layout-widget :initial "" "scripts/layout-widget.sh 0")
 
 (defwidget sep []
-  (label :class "separator" :text "|"))
+  (box :class "module-2" :vexpand "false" :hexpand "false"
+    (label :class "separator" :text "|")))
 
 (defwidget workspaces []
   (literal :content workspace-widgets))
+
+(defwidget layout []
+  (literal :content layout-widget))

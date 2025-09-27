@@ -50,6 +50,7 @@ $base0F: #be5046;
 * {
   all: unset;
   font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
 }
 
 .bar {
@@ -62,12 +63,19 @@ $base0F: #be5046;
   padding: 0 8px;
 }
 
+.separator {
+  color: $base04; // dimmed separator
+  margin: 0;
+  padding: 0;
+  min-width: unset;
+}
+
+
 .workspace {
   min-width: 30px;
   color: $base0D; // inactive text
   transition: all 0.3s ease;
   border-bottom: 2px solid transparent;
-  font-size: 15px;
 }
 
 .workspace:hover {
@@ -101,4 +109,14 @@ $base0F: #be5046;
 
 .workspace.secondary.occupied {
   color: $base0B; // green text when secondary has windows
+}
+
+.separator {
+  color: $base04; // dimmed separator
+  margin: 0;
+  padding: 0;
+}
+
+.layout {
+  color: $base05; // normal text color
 }

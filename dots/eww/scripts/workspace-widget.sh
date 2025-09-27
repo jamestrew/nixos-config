@@ -6,7 +6,8 @@
 
 generate_workspace_widgets() {
     local layout_data="$1"
-    
+    local monitor_id="$2"
+
     if [ -n "$layout_data" ]; then
         screen0_workspace=$(echo "$layout_data" | jq -r '.screens[] | select(.screen == 0) | .group' 2>/dev/null || echo "www")
         screen1_workspace=$(echo "$layout_data" | jq -r '.screens[] | select(.screen == 1) | .group' 2>/dev/null || echo "dev")
@@ -19,25 +20,18 @@ generate_workspace_widgets() {
         groups_with_windows=""
     fi
 
-    # Define workspace names
     workspaces=("www" "gtd" "coms" "doc" "dev" "dev2" "fun")
-
-    # Start building the widget string
-    widget="(box :class \"workspaces\" :orientation \"horizontal\" :spacing 5"
+    widget="(box :class \"workspaces\" :orientation \"horizontal\" :spacing 2"
 
     for ws in "${workspaces[@]}"; do
-        # Check if workspace has windows
         has_windows=$(echo "$groups_with_windows" | grep -q "^$ws$" && echo "true" || echo "false")
 
-        # Determine the class based on workspace state
         class="workspace"
-        if [ "$active_screen" = "0" ] && [ "$screen0_workspace" = "$ws" ]; then
+        if [ "$active_screen" = "$monitor_id" ] && [ "$screen0_workspace" = "$ws" ] && [ "$monitor_id" = "0" ]; then
             class="$class active"
-        elif [ "$active_screen" = "1" ] && [ "$screen1_workspace" = "$ws" ]; then
+        elif [ "$active_screen" = "$monitor_id" ] && [ "$screen1_workspace" = "$ws" ] && [ "$monitor_id" = "1" ]; then
             class="$class active"
-        elif [ "$active_screen" = "1" ] && [ "$screen0_workspace" = "$ws" ]; then
-            class="$class secondary"
-        elif [ "$active_screen" = "0" ] && [ "$screen1_workspace" = "$ws" ]; then
+        elif [ "$screen0_workspace" = "$ws" ] || [ "$screen1_workspace" = "$ws" ]; then
             class="$class secondary"
         fi
 
@@ -45,23 +39,21 @@ generate_workspace_widgets() {
             class="$class occupied"
         fi
 
-        # Add the button to the widget string
         widget="$widget (button :class \"$class\" :onclick \"qtile cmd-obj -o group '$ws' -f toscreen\" \"$ws\")"
     done
 
-    widget="$widget)"
-    echo "$widget"
+    echo "$widget)"
 }
 
-# Generate initial output with current file state
+monitor_id="${1:-0}"
+
 if [ -f /tmp/qtile-layouts.ndjson ]; then
     initial_data=$(tail -n1 /tmp/qtile-layouts.ndjson 2>/dev/null)
-    generate_workspace_widgets "$initial_data"
+    generate_workspace_widgets "$initial_data" "$monitor_id"
 else
-    generate_workspace_widgets ""
+    generate_workspace_widgets "" "$monitor_id"
 fi
 
-# Watch for changes and regenerate when the file updates
 tail -n0 -F /tmp/qtile-layouts.ndjson 2>/dev/null | while read -r line; do
-    generate_workspace_widgets "$line"
+    generate_workspace_widgets "$line" "$monitor_id"
 done

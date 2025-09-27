@@ -56,10 +56,10 @@ def append_layout_file(data):
         os.fsync(f.fileno())
 
 
-# @hook.subscribe.layout_change
-# def on_layout_change(layout, group):
-#     data = snapshot_all_screens()
-#     append_layout_file(data)
+@hook.subscribe.layout_change
+def on_layout_change(layout, group):
+    data = snapshot_all_screens()
+    append_layout_file(data)
 
 
 # @hook.subscribe.group_window_add

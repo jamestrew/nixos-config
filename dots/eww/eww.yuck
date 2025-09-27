@@ -1,10 +1,10 @@
 (defwindow bar
   :monitor 0
   :geometry (geometry :x "0%"
-  :y "0%"
-  :width "100%"
-  :height "24px"
-  :anchor "top center")
+             :y "0%"
+             :width "100%"
+             :height "24px"
+             :anchor "top center")
   :stacking "fg"
   :reserve (struts :distance "24px" :side "top")
   :windowtype "dock"
@@ -25,27 +25,50 @@
        :space-evenly false
        :halign "start"
        :hexpand true
-    (workspaces) (sep) (layout)))
-
-(defwidget bar-right []
-  (box :orientation "horizontal"
-       :space-evenly false
-       :halign "end"
-    (control-center-toggle)))
-
+    (workspaces)
+    (sep)
+    (layout)))
 
 (deflisten workspace-widgets :initial "" "scripts/workspace-widget.sh 0")
 (deflisten layout-widget :initial "" "scripts/layout-widget.sh 0")
 
 (defwidget workspaces [] (literal :content workspace-widgets))
-
 (defwidget layout [] (literal :content layout-widget))
+
+(defwidget clock []
+  (button :class "clock"
+          :onclick "scripts/calendar-toggle.sh"
+          :onrightclick "xdg-open https://calendar.google.com"
+          :tooltip "Click for calendar • Right-click for Google Calendar"
+          :timeout "1s"
+    (label :text {formattime(EWW_TIME, "%a %b %d %H:%M:%S")})))
+
+(defwidget system-tray []
+  (systray :class "system-tray"
+           :orientation "horizontal"
+           :space-evenly false
+           :spacing 4
+           :icon-size 20))
+
+
+
+
+(defwidget bar-right []
+  (box :orientation "horizontal"
+       :space-evenly false
+       :halign "end"
+    (clock)
+    (sep)
+    (system-tray)
+    (sep)
+    (control-center-toggle)))
+
 
 (defwidget control-center-toggle []
   (button :class "control-center-toggle"
           :onclick "scripts/control-center-toggle.sh"
           :tooltip "Toggle Control Center"
-    "🚀"))
+    ""))
 
 (defwidget control-center-layout []
   (box :class "control-center"
@@ -55,15 +78,42 @@
          :orientation "horizontal"
          :space-evenly false
       (label :class "control-center-title"
-             :text "🚀 Control Center"
+             :text "Control Center"
              :halign "start"
              :hexpand true)
       (button :class "control-center-close"
               :onclick "eww close control-center"
-              :halign "end"
-        "✕"))
+              :halign "end" "✕"))
     (label :text "Control center content coming soon..."
            :class "control-center-placeholder")))
+
+(defwidget calendar-layout []
+  (box :class "calendar"
+       :orientation "vertical"
+       :space-evenly false
+    (box :class "calendar-header"
+         :orientation "horizontal"
+         :space-evenly false
+      (label :class "calendar-title"
+             :text {formattime(EWW_TIME, "%B %Y")}
+             :halign "start"
+             :hexpand true)
+      (button :class "calendar-close"
+              :onclick "eww close calendar"
+              :halign "end" "✕"))
+    (calendar :class "calendar-widget"
+              :show-heading true
+              :show-day-names true
+              :show-details true
+              :show-week-numbers false)))
+
+
+(defwindow calendar
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore true
+  :geometry (geometry :x -20 :y 30 :width "300px" :height "250px" :anchor "top right")
+  (calendar-layout))
 
 (defwindow control-center
   :stacking "fg"

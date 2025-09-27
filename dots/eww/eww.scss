@@ -110,6 +110,26 @@ $base0F: #be5046;
   color: $base05; // normal text color
 }
 
+.clock {
+  background-color: transparent;
+  color: $base0D;
+  padding: 0 8px;
+  border: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.clock:hover {
+  background-color: $base01;
+  color: $base05;
+}
+
+.system-tray {
+  background-color: transparent;
+  padding: 0 8px;
+}
+
+
 .control-center-toggle {
   background-color: transparent;
   color: $base05;
@@ -161,4 +181,83 @@ $base0F: #be5046;
 .control-center-placeholder {
   color: $base04;
   padding: 20px;
+}
+
+.calendar {
+  background-color: $base00;
+  border: 1px solid $base02;
+  border-radius: 8px;
+  padding: 16px;
+  color: $base05;
+}
+
+.calendar-header {
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid $base02;
+}
+
+.calendar-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.calendar-close {
+  background-color: transparent;
+  color: $base08;
+  border: none;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.calendar-close:hover {
+  background-color: $base08;
+  color: $base00;
+}
+
+.calendar-widget {
+  color: $base05;
+}
+
+calendar {
+  background-color: $base00;
+  color: $base05;
+}
+
+calendar:selected {
+  background-color: $base0D;
+  color: $base00;
+  font-weight: bold;
+}
+
+calendar.highlight {
+  background-color: $base0B;
+  color: $base00;
+  font-weight: bold;
+}
+
+calendar button {
+  background-color: transparent;
+  color: $base05;
+  border: none;
+  min-width: 28px;
+  min-height: 28px;
+}
+
+calendar button:hover {
+  background-color: $base01;
+}
+
+calendar button.today {
+  background-color: $base0B;
+  color: $base00;
+  font-weight: bold;
+}
+
+calendar button:selected {
+  background-color: $base0D;
+  color: $base00;
+  font-weight: bold;
 }

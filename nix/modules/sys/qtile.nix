@@ -27,7 +27,7 @@
           ];
       };
     };
-    
+
     # Disable other display managers when using qtile
     services.displayManager.sddm.enable = lib.mkForce false;
     services.displayManager.defaultSession = lib.mkForce "qtile";
@@ -41,6 +41,8 @@
       # Audio/media tools shared between WMs could be moved to a common module
       pavucontrol
       alsa-utils
+
+      eww  # experimenting with widgets
     ];
 
     environment.variables = {

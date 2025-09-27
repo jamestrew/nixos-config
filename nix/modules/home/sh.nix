@@ -16,6 +16,7 @@ in
   home.file = {
     ".config/nvim".source = link "${dots}/nvim";
     ".config/tmux".source = link "${dots}/tmux";
+    ".config/eww".source = link "${dots}/eww";
     ".config/atuin".source = ../../../dots/atuin;
     ".config/starship.toml".source = ../../../dots/starship.toml;
     ".config/yazi".source = ../../../dots/yazi;

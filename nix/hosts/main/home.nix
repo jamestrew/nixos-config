@@ -66,7 +66,7 @@ in
     #   org.gradle.daemon.idletimeout=3600000
     # '';
 
-    ".config/qtile".source = ../../../dots/qtile;
+    ".config/qtile".source = link "${dots}/qtile";
     ".config/hypr".source = link "${dots}/hypr";
     ".config/waybar".source = link "${dots}/hypr/waybar";
     ".config/wofi".source = link "${dots}/hypr/wofi";

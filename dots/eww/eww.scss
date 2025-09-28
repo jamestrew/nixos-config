@@ -216,6 +216,29 @@ $base0F: #be5046;
   color: $base0B;
 }
 
+.music-widget {
+  background-color: transparent;
+  color: $base05;
+  padding: 0 8px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.music-widget:hover {
+  background-color: $base01;
+}
+
+.music-icon {
+  color: $base08;
+  margin-right: 4px;
+  font-size: 14px;
+}
+
+.music-text {
+  color: $base08;
+  font-weight: normal;
+}
+
 
 .control-center-toggle {
   background-color: transparent;

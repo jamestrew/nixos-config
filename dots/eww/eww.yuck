@@ -30,7 +30,9 @@
        :hexpand true
     (workspaces)
     (sep)
-    (layout)))
+    (layout)
+    (sep)))
+
 
 (deflisten workspace-widgets :initial "" "scripts/workspace-widget.sh 0")
 (deflisten layout-widget :initial "" "scripts/layout-widget.sh 0")
@@ -46,18 +48,36 @@
   (box :orientation "horizontal"
        :space-evenly false
        :halign "end"
-    (weather-widget)
-    (sep)
-    (cpu-widget)
-    (sep)
-    (ram-widget)
-    (sep)
-    (audio-widget)
-    (sep)
-    (clock)
-    (system-tray)
-    (sep)
-    (control-center-toggle)))
+   (music-widget)
+   (sep)
+   (weather-widget)
+   (sep)
+   (cpu-widget)
+   (sep)
+   (ram-widget)
+   (sep)
+   (audio-widget)
+   (sep)
+   (clock)
+   (system-tray)
+   (sep)
+   (control-center-toggle)))
+
+(defpoll music-data :interval "3s" :initial "{\"icon\": \"󰝚\", \"text\": \"\", \"playing\": false, \"available\": false}"
+  "scripts/music.sh")
+
+(defwidget music-widget []
+  (eventbox :class "music-widget"
+            :onclick "scripts/music.sh play-pause"
+            :onrightclick "scripts/music.sh next"
+            :tooltip "${music-data.available ?  'Click: pause • Right-click: next' : 'No music player active'}"
+            :visible "${music-data.available && music-data.text != ''}"
+    (box :orientation "horizontal"
+         :space-evenly false
+         :spacing 4
+      (label :class "music-icon" :text "${music-data.icon}")
+      (label :class "music-text" :text "${music-data.text}"))))
+
 
 (defpoll weather-data :interval "10m" :initial "{\"icon\": \"\", \"temp\": \"--\", \"humidity\": \"--\", \"wind\": \"--\", \"error\": true}"
   "scripts/weather.sh")

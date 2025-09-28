@@ -183,6 +183,39 @@ $base0F: #be5046;
   padding: 0 8px;
 }
 
+.weather-widget {
+  background-color: transparent;
+  color: $base05;
+  padding: 0 8px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.weather-widget:hover {
+  background-color: $base01;
+}
+
+.weather-icon {
+  color: $base0A;
+  margin-right: 4px;
+  font-size: 14px;
+}
+
+.weather-temp {
+  color: $base0D;
+  font-weight: normal;
+  margin-right: 4px;
+}
+
+.weather-humidity {
+  color: $base0C;
+  margin-right: 4px;
+}
+
+.weather-wind {
+  color: $base0B;
+}
+
 
 .control-center-toggle {
   background-color: transparent;

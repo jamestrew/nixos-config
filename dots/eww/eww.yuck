@@ -59,8 +59,27 @@
     (label :class "ram-icon" :text "󰉉")
     (label :class "ram-usage" :text "${round(EWW_RAM.used_mem_perc, 1)}%")))
 
+(defwidget weather-widget []
+  (eventbox :class "weather-widget"
+            :onclick "scripts/weather.sh refresh"
+            :tooltip "${weather-data.error ? 'Weather error: ${weather-data.condition} • Click to retry' : '${weather-data.condition} • Click to refresh'}"
+    (box :orientation "horizontal"
+         :space-evenly false
+         :spacing 4
+      (label :class "weather-icon" 
+             :text "${weather-data.error ? '' : weather-data.icon}")
+      (label :class "weather-temp" 
+             :text "${weather-data.temp}°")
+      (label :class "weather-humidity" 
+             :text "󰖌${weather-data.humidity}%")
+      (label :class "weather-wind" 
+             :text " ${weather-data.wind}"))))
+
 (deflisten audio-info :initial "{\"volume\": 50, \"muted\": false}"
   "scripts/audio.sh")
+
+(defpoll weather-data :interval "10m" :initial "{\"icon\": \"\", \"temp\": \"--\", \"humidity\": \"--\", \"wind\": \"--\", \"error\": true}"
+  "scripts/weather.sh")
 
 (defwidget audio-widget []
   (eventbox :class "audio-widget"
@@ -91,6 +110,8 @@
   (box :orientation "horizontal"
        :space-evenly false
        :halign "end"
+    (weather-widget)
+    (sep)
     (cpu-widget)
     (sep)
     (ram-widget)
@@ -98,7 +119,6 @@
     (audio-widget)
     (sep)
     (clock)
-    (sep)
     (system-tray)
     (sep)
     (control-center-toggle)))

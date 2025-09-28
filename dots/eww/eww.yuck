@@ -59,26 +59,23 @@
     (label :class "ram-icon" :text "󰉉")
     (label :class "ram-usage" :text "${round(EWW_RAM.used_mem_perc, 1)}%")))
 
-(defpoll volume-info :interval "200ms"
-  "amixer get Master | grep -o '[0-9]*%' | head -1 | tr -d '%'")
-
-(defpoll volume-muted :interval "200ms"
-  "amixer get Master | grep -o '\\[on\\]\\|\\[off\\]' | head -1")
+(deflisten audio-info :initial "{\"volume\": 50, \"muted\": false}"
+  "scripts/audio.sh")
 
 (defwidget audio-widget []
   (eventbox :class "audio-widget"
-            :onclick "amixer set Master toggle"
+            :onclick "scripts/audio.sh toggle_mute"
             :onrightclick "pavucontrol &"
-            :onscroll "if [ '{}' = 'up' ]; then amixer set Master 1%+ unmute; else amixer set Master 1%- unmute; fi"
+            :onscroll "scripts/audio.sh {}"
             :timeout "500ms"
             :tooltip "Left-click: toggle mute • Right-click: volume control • Scroll: volume"
     (box :orientation "horizontal"
          :space-evenly false
          :spacing 4
       (label :class "audio-icon"
-             :text "${volume-muted == '[off]' ? '󰖁' : '󰕾'}")
+             :text "${audio-info.muted ? '󰖁' : '󰕾'}")
       (label :class "audio-level"
-             :text "${volume-muted == '[off]' ? 'Muted' : '${volume-info}%'}"))))
+             :text "${audio-info.muted ? 'Muted' : '${audio-info.volume}%'}"))))
 
 (defwidget system-tray []
   (systray :class "system-tray"
@@ -101,6 +98,7 @@
     (audio-widget)
     (sep)
     (clock)
+    (sep)
     (system-tray)
     (sep)
     (control-center-toggle)))

@@ -1,0 +1,58 @@
+;; Control Center widgets
+
+(defwidget control-center-toggle []
+  (button :class "control-center-toggle"
+          :onclick "scripts/control-center-toggle.sh"
+          :tooltip "Toggle Control Center"
+    ""))
+
+(defwidget control-center-layout []
+  (box :class "control-center"
+       :orientation "vertical"
+       :space-evenly false
+    (box :class "control-center-header"
+         :orientation "horizontal"
+         :space-evenly false
+      (label :class "control-center-title"
+             :text "Control Center"
+             :halign "start"
+             :hexpand true)
+      (button :class "control-center-close"
+              :onclick "eww close control-center"
+              :halign "end" "✕"))
+    (label :text "Control center content coming soon..."
+           :class "control-center-placeholder")))
+
+(defwindow control-center
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore true
+  :geometry (geometry :x -20 :y -30 :width "28%" :height "85%" :anchor "right center")
+  (control-center-layout))
+
+(defwidget calendar-layout []
+  (box :class "calendar"
+       :orientation "vertical"
+       :space-evenly false
+    (box :class "calendar-header"
+         :orientation "horizontal"
+         :space-evenly false
+      (label :class "calendar-title"
+             :text {formattime(EWW_TIME, "%B %Y")}
+             :halign "start"
+             :hexpand true)
+      (button :class "calendar-close"
+              :onclick "eww close calendar"
+              :halign "end" "✕"))
+    (calendar :class "calendar-widget"
+              :show-heading true
+              :show-day-names true
+              :show-details true
+              :show-week-numbers false)))
+
+(defwindow calendar
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore true
+  :geometry (geometry :x -20 :y 30 :width "300px" :height "250px" :anchor "top right")
+  (calendar-layout))

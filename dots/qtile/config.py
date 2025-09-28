@@ -12,7 +12,7 @@ groups = Groups.groups
 layouts = Layouts.layouts
 floating_layout = Layouts.floating_layout
 widget_defaults = Widgets.widget_defaults
-screens = [Screen(top=Widgets.main_bar), Screen(top=Widgets.sec_bar)]
+screens = [Screen(), Screen()]
 mouse = Mouse.mouse
 dgroups_key_binder = None
 dgroups_app_rules = []

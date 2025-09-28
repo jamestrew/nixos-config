@@ -16,6 +16,10 @@ youtube-music &
 flameshot &
 udiskie --tray &
 
+eww daemon &
+eww open bar0 &
+eww open bar1 &
+
 brave &
 # ghostty &
 

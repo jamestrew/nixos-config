@@ -1,4 +1,12 @@
-(defwindow bar
+;; Include modular widget files
+(include "widgets/bar-left.yuck")
+(include "widgets/bar-right.yuck") 
+(include "widgets/control-center.yuck")
+
+;; Multi-monitor support - use with arguments
+;; eww open bar0 (for monitor 0)
+;; eww open bar1 (for monitor 1)
+(defwindow bar0
   :monitor 0
   :geometry (geometry :x "0%"
              :y "0%"
@@ -9,212 +17,31 @@
   :reserve (struts :distance "24px" :side "top")
   :windowtype "dock"
   :wm-ignore false
+  :exclusive true
   (box :class "bar"
        :orientation "horizontal"
        :space-evenly false
-    (bar-left)
+    (bar-left :monitor 0)
     (bar-right)))
 
-
-(defwidget sep []
-  (box :class "module-2" :vexpand "false" :hexpand "false"
-    (label :class "separator" :text "|")))
-
-
-
-;; Left side widgets
-(defwidget bar-left []
-  (box :orientation "horizontal"
-       :space-evenly false
-       :halign "start"
-       :hexpand true
-    (workspaces)
-    (sep)
-    (layout)
-    (sep)))
-
-
-(deflisten workspace-widgets :initial "" "scripts/workspace-widget.sh 0")
-(deflisten layout-widget :initial "" "scripts/layout-widget.sh 0")
-
-(defwidget workspaces [] (literal :content workspace-widgets))
-(defwidget layout [] (literal :content layout-widget))
-
-
-
-
-;; Right side widgets
-(defwidget bar-right []
-  (box :orientation "horizontal"
-       :space-evenly false
-       :halign "end"
-   (music-widget)
-   (sep)
-   (weather-widget)
-   (sep)
-   (cpu-widget)
-   (sep)
-   (ram-widget)
-   (sep)
-   (audio-widget)
-   (sep)
-   (clock)
-   (system-tray)
-   (sep)
-   (control-center-toggle)))
-
-(defpoll music-data :interval "3s" :initial "{\"icon\": \"󰝚\", \"text\": \"\", \"playing\": false, \"available\": false}"
-  "scripts/music.sh")
-
-(defwidget music-widget []
-  (eventbox :class "music-widget"
-            :onclick "scripts/music.sh play-pause"
-            :onrightclick "scripts/music.sh next"
-            :tooltip "${music-data.available ?  'Click: pause • Right-click: next' : 'No music player active'}"
-            :visible "${music-data.available && music-data.text != ''}"
-    (box :orientation "horizontal"
-         :space-evenly false
-         :spacing 4
-      (label :class "music-icon" :text "${music-data.icon}")
-      (label :class "music-text" :text "${music-data.text}"))))
-
-
-(defpoll weather-data :interval "10m" :initial "{\"icon\": \"\", \"temp\": \"--\", \"humidity\": \"--\", \"wind\": \"--\", \"error\": true}"
-  "scripts/weather.sh")
-
-(defwidget weather-widget []
-  (eventbox :class "weather-widget"
-            :onclick "scripts/weather.sh refresh"
-            :tooltip "${weather-data.error ? 'Weather error: ${weather-data.condition} • Click to retry' : '${weather-data.condition} • Click to refresh'}"
-    (box :orientation "horizontal"
-         :space-evenly false
-         :spacing 4
-      (label :class "weather-icon"
-             :text "${weather-data.error ? '' : weather-data.icon}")
-      (label :class "weather-temp"
-             :text "${weather-data.temp}°")
-      (label :class "weather-humidity"
-             :text "󰖌${weather-data.humidity}%")
-      (label :class "weather-wind"
-             :text " ${weather-data.wind}"))))
-
-
-(defwidget cpu-widget []
-  (box :class "cpu-widget"
+(defwindow bar1
+  :monitor 1
+  :geometry (geometry :x "0%"
+             :y "0%"
+             :width "100%"
+             :height "24px"
+             :anchor "top center")
+  :stacking "fg"
+  :reserve (struts :distance "24px" :side "top")
+  :windowtype "dock"
+  :wm-ignore false
+  :exclusive true
+  (box :class "bar"
        :orientation "horizontal"
        :space-evenly false
-       :spacing 4
-    (label :class "cpu-icon" :text "󰍛")
-    (label :class "cpu-usage" :text "${round(EWW_CPU.avg, 1)}%")))
-
-(defwidget ram-widget []
-  (box :class "ram-widget"
-       :orientation "horizontal"
-       :space-evenly false
-       :spacing 4
-    (label :class "ram-icon" :text "󰉉")
-    (label :class "ram-usage" :text "${round(EWW_RAM.used_mem_perc, 1)}%")))
+    (bar-left :monitor 1)
+    (bar-right-slim)))
 
 
-
-(deflisten audio-info :initial "{\"volume\": 50, \"muted\": false}"
-  "scripts/audio.sh")
-
-
-(defwidget audio-widget []
-  (eventbox :class "audio-widget"
-            :onclick "scripts/audio.sh toggle_mute"
-            :onrightclick "pavucontrol &"
-            :onscroll "scripts/audio.sh {}"
-            :timeout "500ms"
-            :tooltip "Left-click: toggle mute • Right-click: volume control • Scroll: volume"
-    (box :orientation "horizontal"
-         :space-evenly false
-         :spacing 4
-      (label :class "audio-icon"
-             :text "${audio-info.muted ? '󰖁' : '󰕾'}")
-      (label :class "audio-level"
-             :text "${audio-info.muted ? 'Muted' : '${audio-info.volume}%'}"))))
-
-
-(defwidget clock []
-  (button :class "clock"
-          :onclick "scripts/calendar-toggle.sh"
-          :onrightclick "xdg-open https://calendar.google.com"
-          :tooltip "Click for calendar • Right-click for Google Calendar"
-          :timeout "1s"
-    (label :text {formattime(EWW_TIME, "%a %b %d %H:%M:%S")})))
-
-
-(defwidget calendar-layout []
-  (box :class "calendar"
-       :orientation "vertical"
-       :space-evenly false
-    (box :class "calendar-header"
-         :orientation "horizontal"
-         :space-evenly false
-      (label :class "calendar-title"
-             :text {formattime(EWW_TIME, "%B %Y")}
-             :halign "start"
-             :hexpand true)
-      (button :class "calendar-close"
-              :onclick "eww close calendar"
-              :halign "end" "✕"))
-    (calendar :class "calendar-widget"
-              :show-heading true
-              :show-day-names true
-              :show-details true
-              :show-week-numbers false)))
-
-
-(defwindow calendar
-  :stacking "fg"
-  :windowtype "dock"
-  :wm-ignore true
-  :geometry (geometry :x -20 :y 30 :width "300px" :height "250px" :anchor "top right")
-  (calendar-layout))
-
-
-(defwidget system-tray []
-  (systray :class "system-tray"
-           :orientation "horizontal"
-           :space-evenly false
-           :spacing 4
-           :icon-size 20))
-
-
-
-
-
-(defwidget control-center-toggle []
-  (button :class "control-center-toggle"
-          :onclick "scripts/control-center-toggle.sh"
-          :tooltip "Toggle Control Center"
-    ""))
-
-(defwidget control-center-layout []
-  (box :class "control-center"
-       :orientation "vertical"
-       :space-evenly false
-    (box :class "control-center-header"
-         :orientation "horizontal"
-         :space-evenly false
-      (label :class "control-center-title"
-             :text "Control Center"
-             :halign "start"
-             :hexpand true)
-      (button :class "control-center-close"
-              :onclick "eww close control-center"
-              :halign "end" "✕"))
-    (label :text "Control center content coming soon..."
-           :class "control-center-placeholder")))
-
-
-(defwindow control-center
-  :stacking "fg"
-  :windowtype "dock"
-  :wm-ignore true
-  :geometry (geometry :x -20 :y -30 :width "28%" :height "85%" :anchor "right center")
-  (control-center-layout))
 
 

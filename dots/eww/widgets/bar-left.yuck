@@ -1,0 +1,24 @@
+;; Left side widgets
+(defwidget bar-left [monitor]
+  (box :orientation "horizontal"
+       :space-evenly false
+       :halign "start"
+       :hexpand true
+    (workspaces :monitor monitor)
+    (sep)
+    (layout :monitor monitor)
+    (sep)))
+
+(deflisten workspace-widgets-0 :initial "" "scripts/workspace-widget.sh 0")
+(deflisten workspace-widgets-1 :initial "" "scripts/workspace-widget.sh 1")
+(deflisten layout-widget-0 :initial "" "scripts/layout-widget.sh 0")
+(deflisten layout-widget-1 :initial "" "scripts/layout-widget.sh 1")
+
+(defwidget workspaces [monitor] 
+  (literal :content {monitor == 0 ? workspace-widgets-0 : workspace-widgets-1}))
+(defwidget layout [monitor] 
+  (literal :content {monitor == 0 ? layout-widget-0 : layout-widget-1}))
+
+(defwidget sep []
+  (box :class "module-2" :vexpand "false" :hexpand "false"
+    (label :class "separator" :text "|")))

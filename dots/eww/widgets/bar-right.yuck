@@ -1,0 +1,111 @@
+;; Right side widgets - full version for primary monitor
+(defwidget bar-right []
+  (box :orientation "horizontal"
+       :space-evenly false
+       :halign "end"
+   (music-widget)
+   (sep)
+   (weather-widget)
+   (sep)
+   (cpu-widget)
+   (sep)
+   (ram-widget)
+   (sep)
+   (audio-widget)
+   (sep)
+   (clock)
+   (system-tray)
+   (sep)
+   (control-center-toggle)))
+
+;; Simplified right side for secondary monitor - just audio and time
+(defwidget bar-right-slim []
+  (box :orientation "horizontal"
+       :space-evenly false
+       :halign "end"
+   (audio-widget)
+   (sep)
+   (clock)))
+
+(defpoll music-data :interval "3s" :initial "{\"icon\": \"󰝚\", \"text\": \"\", \"playing\": false, \"available\": false}"
+  "scripts/music.sh")
+
+(defwidget music-widget []
+  (eventbox :class "music-widget"
+            :onclick "scripts/music.sh play-pause"
+            :onrightclick "scripts/music.sh next"
+            :tooltip "${music-data.available ?  'Click: pause • Right-click: next' : 'No music player active'}"
+            :visible "${music-data.available && music-data.text != ''}"
+    (box :orientation "horizontal"
+         :space-evenly false
+         :spacing 4
+      (label :class "music-icon" :text "${music-data.icon}")
+      (label :class "music-text" :text "${music-data.text}"))))
+
+(defpoll weather-data :interval "10m" :initial "{\"icon\": \"\", \"temp\": \"--\", \"humidity\": \"--\", \"wind\": \"--\", \"error\": true}"
+  "scripts/weather.sh")
+
+(defwidget weather-widget []
+  (eventbox :class "weather-widget"
+            :onclick "scripts/weather.sh refresh"
+            :tooltip "${weather-data.error ? 'Weather error: ${weather-data.condition} • Click to retry' : '${weather-data.condition} • Click to refresh'}"
+    (box :orientation "horizontal"
+         :space-evenly false
+         :spacing 4
+      (label :class "weather-icon"
+             :text "${weather-data.error ? '' : weather-data.icon}")
+      (label :class "weather-temp"
+             :text "${weather-data.temp}°")
+      (label :class "weather-humidity"
+             :text "󰖌${weather-data.humidity}%")
+      (label :class "weather-wind"
+             :text " ${weather-data.wind}"))))
+
+(defwidget cpu-widget []
+  (box :class "cpu-widget"
+       :orientation "horizontal"
+       :space-evenly false
+       :spacing 4
+    (label :class "cpu-icon" :text "󰍛")
+    (label :class "cpu-usage" :text "${round(EWW_CPU.avg, 1)}%")))
+
+(defwidget ram-widget []
+  (box :class "ram-widget"
+       :orientation "horizontal"
+       :space-evenly false
+       :spacing 4
+    (label :class "ram-icon" :text "󰉉")
+    (label :class "ram-usage" :text "${round(EWW_RAM.used_mem_perc, 1)}%")))
+
+(deflisten audio-info :initial "{\"volume\": 50, \"muted\": false}"
+  "scripts/audio.sh")
+
+(defwidget audio-widget []
+  (eventbox :class "audio-widget"
+            :onclick "scripts/audio.sh toggle_mute"
+            :onrightclick "pavucontrol &"
+            :onscroll "scripts/audio.sh {}"
+            :timeout "500ms"
+            :tooltip "Left-click: toggle mute • Right-click: volume control • Scroll: volume"
+    (box :orientation "horizontal"
+         :space-evenly false
+         :spacing 4
+      (label :class "audio-icon"
+             :text "${audio-info.muted ? '󰖁' : '󰕾'}")
+      (label :class "audio-level"
+             :text "${audio-info.muted ? 'Muted' : '${audio-info.volume}%'}"))))
+
+(defwidget clock []
+  (button :class "clock"
+          :onclick "scripts/calendar-toggle.sh"
+          :onrightclick "xdg-open https://calendar.google.com"
+          :tooltip "Click for calendar • Right-click for Google Calendar"
+          :timeout "1s"
+    (label :text {formattime(EWW_TIME, "%a %b %d %H:%M:%S")})))
+
+(defwidget system-tray []
+  (systray :class "system-tray"
+           :orientation "horizontal"
+           :space-evenly false
+           :spacing 4
+           :icon-size 20))

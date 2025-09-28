@@ -4,34 +4,26 @@
 # Usage:
 #   audio.sh              -> continuous monitoring (for deflisten)
 #   audio.sh up           -> increase volume
-#   audio.sh down         -> decrease volume  
+#   audio.sh down         -> decrease volume
 #   audio.sh toggle_mute  -> toggle mute
 
 get_audio_info() {
-    local volume mute_status muted_bool
-    
-    # Get audio info using amixer
     volume=$(amixer get Master 2>/dev/null | grep -o '[0-9]*%' | head -1 | tr -d '%')
     mute_status=$(amixer get Master 2>/dev/null | grep -o '\[on\]\|\[off\]' | head -1)
-    
-    # Handle potential errors with defaults
+
     volume=${volume:-50}
     mute_status=${mute_status:-"[on]"}
-    
-    # Convert mute status to boolean
+
     if [ "$mute_status" = "[off]" ]; then
         muted_bool="true"
     else
         muted_bool="false"
     fi
-    
-    # Output JSON
+
     echo "{\"volume\": $volume, \"muted\": $muted_bool}"
 }
 
 update_eww_audio() {
-    # Update eww variable and output current state
-    local audio_data
     audio_data=$(get_audio_info)
     eww update audio-info="$audio_data" 2>/dev/null
     echo "$audio_data"
@@ -53,8 +45,7 @@ case "${1:-}" in
     "")
         # No arguments - continuous monitoring mode
         get_audio_info
-        
-        # Poll every 2 seconds
+
         while true; do
             sleep 2
             get_audio_info

@@ -70,6 +70,11 @@ in
     };
   };
 
+  services.displayManager.gdm = {
+    enable = true;
+    wayland = true;
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jt = {
     isNormalUser = true;

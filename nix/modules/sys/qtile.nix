@@ -13,9 +13,6 @@
   config = lib.mkIf config.qtile.enable {
     services.xserver = {
       enable = true;
-      displayManager = {
-        lightdm.enable = lib.mkForce true;
-      };
       windowManager.qtile = {
         enable = true;
         extraPackages =
@@ -27,10 +24,6 @@
           ];
       };
     };
-
-    # Disable other display managers when using qtile
-    services.displayManager.sddm.enable = lib.mkForce false;
-    services.displayManager.defaultSession = lib.mkForce "qtile";
 
     # X11/Qtile specific packages
     environment.systemPackages = with pkgs; [

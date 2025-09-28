@@ -20,6 +20,9 @@
   (box :class "module-2" :vexpand "false" :hexpand "false"
     (label :class "separator" :text "|")))
 
+
+
+;; Left side widgets
 (defwidget bar-left []
   (box :orientation "horizontal"
        :space-evenly false
@@ -35,77 +38,10 @@
 (defwidget workspaces [] (literal :content workspace-widgets))
 (defwidget layout [] (literal :content layout-widget))
 
-(defwidget clock []
-  (button :class "clock"
-          :onclick "scripts/calendar-toggle.sh"
-          :onrightclick "xdg-open https://calendar.google.com"
-          :tooltip "Click for calendar • Right-click for Google Calendar"
-          :timeout "1s"
-    (label :text {formattime(EWW_TIME, "%a %b %d %H:%M:%S")})))
-
-(defwidget cpu-widget []
-  (box :class "cpu-widget"
-       :orientation "horizontal"
-       :space-evenly false
-       :spacing 4
-    (label :class "cpu-icon" :text "󰍛")
-    (label :class "cpu-usage" :text "${round(EWW_CPU.avg, 1)}%")))
-
-(defwidget ram-widget []
-  (box :class "ram-widget"
-       :orientation "horizontal"
-       :space-evenly false
-       :spacing 4
-    (label :class "ram-icon" :text "󰉉")
-    (label :class "ram-usage" :text "${round(EWW_RAM.used_mem_perc, 1)}%")))
-
-(defwidget weather-widget []
-  (eventbox :class "weather-widget"
-            :onclick "scripts/weather.sh refresh"
-            :tooltip "${weather-data.error ? 'Weather error: ${weather-data.condition} • Click to retry' : '${weather-data.condition} • Click to refresh'}"
-    (box :orientation "horizontal"
-         :space-evenly false
-         :spacing 4
-      (label :class "weather-icon" 
-             :text "${weather-data.error ? '' : weather-data.icon}")
-      (label :class "weather-temp" 
-             :text "${weather-data.temp}°")
-      (label :class "weather-humidity" 
-             :text "󰖌${weather-data.humidity}%")
-      (label :class "weather-wind" 
-             :text " ${weather-data.wind}"))))
-
-(deflisten audio-info :initial "{\"volume\": 50, \"muted\": false}"
-  "scripts/audio.sh")
-
-(defpoll weather-data :interval "10m" :initial "{\"icon\": \"\", \"temp\": \"--\", \"humidity\": \"--\", \"wind\": \"--\", \"error\": true}"
-  "scripts/weather.sh")
-
-(defwidget audio-widget []
-  (eventbox :class "audio-widget"
-            :onclick "scripts/audio.sh toggle_mute"
-            :onrightclick "pavucontrol &"
-            :onscroll "scripts/audio.sh {}"
-            :timeout "500ms"
-            :tooltip "Left-click: toggle mute • Right-click: volume control • Scroll: volume"
-    (box :orientation "horizontal"
-         :space-evenly false
-         :spacing 4
-      (label :class "audio-icon"
-             :text "${audio-info.muted ? '󰖁' : '󰕾'}")
-      (label :class "audio-level"
-             :text "${audio-info.muted ? 'Muted' : '${audio-info.volume}%'}"))))
-
-(defwidget system-tray []
-  (systray :class "system-tray"
-           :orientation "horizontal"
-           :space-evenly false
-           :spacing 4
-           :icon-size 20))
 
 
 
-
+;; Right side widgets
 (defwidget bar-right []
   (box :orientation "horizontal"
        :space-evenly false
@@ -123,29 +59,72 @@
     (sep)
     (control-center-toggle)))
 
+(defpoll weather-data :interval "10m" :initial "{\"icon\": \"\", \"temp\": \"--\", \"humidity\": \"--\", \"wind\": \"--\", \"error\": true}"
+  "scripts/weather.sh")
 
-(defwidget control-center-toggle []
-  (button :class "control-center-toggle"
-          :onclick "scripts/control-center-toggle.sh"
-          :tooltip "Toggle Control Center"
-    ""))
-
-(defwidget control-center-layout []
-  (box :class "control-center"
-       :orientation "vertical"
-       :space-evenly false
-    (box :class "control-center-header"
-         :orientation "horizontal"
+(defwidget weather-widget []
+  (eventbox :class "weather-widget"
+            :onclick "scripts/weather.sh refresh"
+            :tooltip "${weather-data.error ? 'Weather error: ${weather-data.condition} • Click to retry' : '${weather-data.condition} • Click to refresh'}"
+    (box :orientation "horizontal"
          :space-evenly false
-      (label :class "control-center-title"
-             :text "Control Center"
-             :halign "start"
-             :hexpand true)
-      (button :class "control-center-close"
-              :onclick "eww close control-center"
-              :halign "end" "✕"))
-    (label :text "Control center content coming soon..."
-           :class "control-center-placeholder")))
+         :spacing 4
+      (label :class "weather-icon"
+             :text "${weather-data.error ? '' : weather-data.icon}")
+      (label :class "weather-temp"
+             :text "${weather-data.temp}°")
+      (label :class "weather-humidity"
+             :text "󰖌${weather-data.humidity}%")
+      (label :class "weather-wind"
+             :text " ${weather-data.wind}"))))
+
+
+(defwidget cpu-widget []
+  (box :class "cpu-widget"
+       :orientation "horizontal"
+       :space-evenly false
+       :spacing 4
+    (label :class "cpu-icon" :text "󰍛")
+    (label :class "cpu-usage" :text "${round(EWW_CPU.avg, 1)}%")))
+
+(defwidget ram-widget []
+  (box :class "ram-widget"
+       :orientation "horizontal"
+       :space-evenly false
+       :spacing 4
+    (label :class "ram-icon" :text "󰉉")
+    (label :class "ram-usage" :text "${round(EWW_RAM.used_mem_perc, 1)}%")))
+
+
+
+(deflisten audio-info :initial "{\"volume\": 50, \"muted\": false}"
+  "scripts/audio.sh")
+
+
+(defwidget audio-widget []
+  (eventbox :class "audio-widget"
+            :onclick "scripts/audio.sh toggle_mute"
+            :onrightclick "pavucontrol &"
+            :onscroll "scripts/audio.sh {}"
+            :timeout "500ms"
+            :tooltip "Left-click: toggle mute • Right-click: volume control • Scroll: volume"
+    (box :orientation "horizontal"
+         :space-evenly false
+         :spacing 4
+      (label :class "audio-icon"
+             :text "${audio-info.muted ? '󰖁' : '󰕾'}")
+      (label :class "audio-level"
+             :text "${audio-info.muted ? 'Muted' : '${audio-info.volume}%'}"))))
+
+
+(defwidget clock []
+  (button :class "clock"
+          :onclick "scripts/calendar-toggle.sh"
+          :onrightclick "xdg-open https://calendar.google.com"
+          :tooltip "Click for calendar • Right-click for Google Calendar"
+          :timeout "1s"
+    (label :text {formattime(EWW_TIME, "%a %b %d %H:%M:%S")})))
+
 
 (defwidget calendar-layout []
   (box :class "calendar"
@@ -174,6 +153,42 @@
   :wm-ignore true
   :geometry (geometry :x -20 :y 30 :width "300px" :height "250px" :anchor "top right")
   (calendar-layout))
+
+
+(defwidget system-tray []
+  (systray :class "system-tray"
+           :orientation "horizontal"
+           :space-evenly false
+           :spacing 4
+           :icon-size 20))
+
+
+
+
+
+(defwidget control-center-toggle []
+  (button :class "control-center-toggle"
+          :onclick "scripts/control-center-toggle.sh"
+          :tooltip "Toggle Control Center"
+    ""))
+
+(defwidget control-center-layout []
+  (box :class "control-center"
+       :orientation "vertical"
+       :space-evenly false
+    (box :class "control-center-header"
+         :orientation "horizontal"
+         :space-evenly false
+      (label :class "control-center-title"
+             :text "Control Center"
+             :halign "start"
+             :hexpand true)
+      (button :class "control-center-close"
+              :onclick "eww close control-center"
+              :halign "end" "✕"))
+    (label :text "Control center content coming soon..."
+           :class "control-center-placeholder")))
+
 
 (defwindow control-center
   :stacking "fg"

@@ -52,7 +52,7 @@
 
 (defwindow calendar
   :stacking "fg"
-  :windowtype "dock"
-  :wm-ignore true
+  :layer "overlay"
+  :namespace "eww-calendar"
   :geometry (geometry :x -20 :y 30 :width "300px" :height "250px" :anchor "top right")
   (calendar-layout))

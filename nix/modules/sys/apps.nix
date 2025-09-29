@@ -25,6 +25,7 @@
     nh
     tldr
     jq
+    socat
     tokei
     devenv
     sops

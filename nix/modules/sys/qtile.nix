@@ -35,6 +35,11 @@
       pavucontrol
       alsa-utils
 
+      xclip
+      xsel
+      peek
+      flameshot
+
       eww  # experimenting with widgets
     ];
 

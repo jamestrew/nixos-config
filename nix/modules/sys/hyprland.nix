@@ -24,6 +24,7 @@
       grim
       slurp
       swaynotificationcenter
+      eww
 
       # Hypr ecosystem
       hyprlock

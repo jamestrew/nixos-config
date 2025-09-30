@@ -1,4 +1,5 @@
 ;; Include modular widget files
+(include "widgets/common.yuck")
 (include "widgets/bar-left.yuck")
 (include "widgets/bar-right.yuck")
 (include "widgets/control-center.yuck")

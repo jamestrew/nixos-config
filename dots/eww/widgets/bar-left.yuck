@@ -13,6 +13,3 @@
 (defwidget workspaces [monitor]
   (literal :content {monitor == 0 ? workspace-widgets-0 : workspace-widgets-1}))
 
-(defwidget sep []
-  (box :class "module-2" :vexpand "false" :hexpand "false"
-    (label :class "separator" :text "|")))

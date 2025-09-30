@@ -4,7 +4,7 @@
   (button :class "control-center-toggle"
           :onclick "scripts/control-center-toggle.sh"
           :tooltip "Toggle Control Center"
-    ""))
+    ""))
 
 (defwidget control-center-layout []
   (box :class "control-center"
@@ -24,10 +24,11 @@
            :class "control-center-placeholder")))
 
 (defwindow control-center
+  :monitor 0
   :stacking "fg"
   :windowtype "dock"
   :wm-ignore true
-  :geometry (geometry :x -20 :y -30 :width "28%" :height "85%" :anchor "right center")
+  :geometry (geometry :x 10 :y 2 :width "28%" :height "85%" :anchor "top right")
   (control-center-layout))
 
 (defwidget calendar-layout []
@@ -51,8 +52,9 @@
               :show-week-numbers false)))
 
 (defwindow calendar
+  :monitor 0
   :stacking "fg"
   :layer "overlay"
   :namespace "eww-calendar"
-  :geometry (geometry :x -20 :y 30 :width "300px" :height "250px" :anchor "top right")
+  :geometry (geometry :x 35 :y 2 :width "300px" :height "250px" :anchor "top right")
   (calendar-layout))

@@ -182,6 +182,9 @@ in
       };
     };
 
+    hyprpanel = {
+      enable = true;
+    };
   };
 
 }

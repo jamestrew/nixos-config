@@ -50,15 +50,14 @@ $base0F: #be5046;
 * {
   all: unset;
   font-family: "JetBrains Mono", monospace;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .bar {
   background-color: $base00;
   color: $base05;
-  padding-bottom: 2px;
+  padding: 2px 15px 2px 15px;
 }
-
 
 .workspace {
   min-width: 30px;
@@ -198,7 +197,6 @@ $base0F: #be5046;
 .weather-icon {
   color: $base0A;
   margin-right: 4px;
-  font-size: 14px;
 }
 
 .weather-temp {
@@ -231,7 +229,6 @@ $base0F: #be5046;
 .music-icon {
   color: $base08;
   margin-right: 4px;
-  font-size: 14px;
 }
 
 .music-text {
@@ -243,9 +240,9 @@ $base0F: #be5046;
 .control-center-toggle {
   background-color: transparent;
   color: $base05;
-  padding: 0 8px;
   border: none;
-  font-size: 14px;
+  padding-left: 8px;
+  padding-right: 8px;
   transition: all 0.3s ease;
 }
 
@@ -277,7 +274,6 @@ $base0F: #be5046;
   background-color: transparent;
   color: $base08;
   border: none;
-  font-size: 14px;
   padding: 4px 8px;
   border-radius: 4px;
   transition: all 0.3s ease;
@@ -316,7 +312,6 @@ $base0F: #be5046;
   background-color: transparent;
   color: $base08;
   border: none;
-  font-size: 14px;
   padding: 4px 8px;
   border-radius: 4px;
   transition: all 0.3s ease;

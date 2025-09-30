@@ -2,7 +2,7 @@
 {
   imports = [
     ./obsidian.nix
-    ./sh.nix
+    ./home.nix
     ./sops.nix
     ./vscode.nix
   ];

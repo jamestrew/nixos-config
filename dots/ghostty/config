@@ -4,4 +4,9 @@ font-size = 11
 window-inherit-font-size = false
 window-decoration = false
 
-mouse-scroll-multiplier = 0.4
+
+mouse-scroll-multiplier = 1
+
+# ctrl + shift + , to reload config
+# https://ghostty.org/docs/config/reference
+# ghostty +show-config --default --docs | less

@@ -26,6 +26,7 @@
     tldr
     jq
     socat
+    libnotify
     tokei
     devenv
     sops

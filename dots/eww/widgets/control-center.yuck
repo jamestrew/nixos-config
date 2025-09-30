@@ -74,31 +74,14 @@
 
 
 (defwidget calendar-layout []
-  (box :class "calendar"
-       :orientation "vertical"
-       :space-evenly false
-    (box :class "calendar-header"
-         :orientation "horizontal"
-         :space-evenly false
-      (label :class "calendar-title"
-             :text {formattime(EWW_TIME, "%B %Y")}
-             :halign "start"
-             :hexpand true)
-      (button :class "calendar-close" ;; turn this into a button to open gcal
-              :onclick "eww close calendar"
-              :halign "end" "✕"))
-    (calendar :class "calendar-widget"
-              :show-heading true
-              :show-day-names true
-              :show-details true
-              :show-week-numbers false)))
+  (calendar :class "calendar-widget"
+            :onclick "xdg-open https://calendar.google.com"
+            :timeout "500ms"
+            :show-heading true
+            :show-day-names true
+            :show-details true
+            :show-week-numbers false))
 
-(defwindow calendar
-  :monitor 0
-  :stacking "fg"
-  :layer "overlay"
-  :namespace "eww-calendar"
-  :geometry (geometry :x 35 :y 2 :width "300px" :height "250px" :anchor "top right")
-  (calendar-layout))
+
 
 

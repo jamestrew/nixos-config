@@ -1,0 +1,100 @@
+/* General */
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 16px;
+}
+
+/* Window */
+.notification-center-window {
+    background: rgba(46, 52, 64, 0.95);
+    border: 2px solid #4c566a;
+    border-radius: 15px;
+}
+
+/* Notifications */
+.notification {
+    background: #3b4252;
+    border: 1px solid #4c566a;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.4);
+}
+
+.notification-content {
+    padding: 10px;
+}
+
+.summary {
+    font-weight: bold;
+    color: #d8dee9;
+}
+
+.body {
+    color: #eceff4;
+}
+
+.time {
+    color: #88c0d0;
+    font-size: 12px;
+}
+
+/* Close button */
+.close-button {
+    background-color: #bf616a;
+    color: #eceff4;
+    border-radius: 50%;
+    min-height: 20px;
+    min-width: 20px;
+    margin: 5px;
+}
+
+.close-button:hover {
+    background-color: #d08770;
+}
+
+/* Control Center */
+.control-center {
+    background: rgba(46, 52, 64, 0.95);
+    border: 2px solid #4c566a;
+    border-radius: 15px;
+}
+
+.control-center .widget-title {
+    color: #88c0d0;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.control-center .widget-dnd {
+    background: #3b4252;
+    border: 1px solid #4c566a;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.control-center .widget-dnd-label {
+    color: #d8dee9;
+}
+
+.control-center .widget-label {
+    color: #d8dee9;
+}
+
+/* MPRIS Widget */
+.widget-mpris {
+    background: #3b4252;
+    border: 1px solid #4c566a;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.widget-mpris .title {
+    color: #88c0d0;
+    font-weight: bold;
+}
+
+.widget-mpris .artist {
+    color: #d8dee9;
+}

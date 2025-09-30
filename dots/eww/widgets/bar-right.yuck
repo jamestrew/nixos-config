@@ -3,29 +3,30 @@
   (box :orientation "horizontal"
        :space-evenly false
        :halign "end"
-   (music-widget)
-   (sep)
-   (weather-widget)
-   (sep)
-   (cpu-widget)
-   (sep)
-   (ram-widget)
-   (sep)
-   (audio-widget)
-   (sep)
-   (clock)
-   (system-tray)
-   (sep)
-   (control-center-toggle)))
+    (music-widget)
+    (sep)
+    (weather-widget)
+    (sep)
+    (cpu-widget)
+    (sep)
+    (ram-widget)
+    (sep)
+    (audio-widget)
+    (sep)
+    (clock)
+    (sep)
+    (system-tray)
+    (sep)
+    (control-center-toggle)))
 
 ;; Simplified right side for secondary monitor - just audio and time
 (defwidget bar-right-slim []
   (box :orientation "horizontal"
        :space-evenly false
        :halign "end"
-   (audio-widget)
-   (sep)
-   (clock)))
+    (audio-widget)
+    (sep)
+    (clock)))
 
 (defpoll music-data :interval "3s" :initial "{\"icon\": \"󰝚\", \"text\": \"\", \"playing\": false, \"available\": false}"
   "scripts/music.sh")

@@ -23,6 +23,7 @@
       wl-clipboard
       grim
       slurp
+      swaynotificationcenter
 
       # Hypr ecosystem
       hyprlock
@@ -30,8 +31,6 @@
       hyprpaper
       hyprpicker
       hyprpolkitagent
-
-      dunst
 
       # Audio/media tools (shared with qtile, could be moved to common module)
       playerctl

@@ -1,45 +1,5 @@
 ;; Control Center widgets
 
-(defwidget power-options-section []
-  (box :class "power-options-section"
-       :orientation "vertical"
-       :space-evenly false
-    (label :class "section-header"
-           :text "Power Options"
-           :halign "start")
-    (box :class "power-options-grid"
-         :orientation "horizontal"
-         :space-evenly true
-         :spacing 8
-      (button :class "power-btn sleep-btn"
-              :onclick "scripts/power-options.sh sleep"
-              :tooltip "Sleep"
-        (box :orientation "vertical"
-             :spacing 4
-          (label :class "power-icon" :text "󰒲")
-          (label :class "power-label" :text "Sleep")))
-      (button :class "power-btn reboot-btn"
-              :onclick "scripts/power-options.sh reboot"
-              :tooltip "Reboot"
-        (box :orientation "vertical"
-             :spacing 4
-          (label :class "power-icon" :text "󰜉")
-          (label :class "power-label" :text "Reboot")))
-      (button :class "power-btn shutdown-btn"
-              :onclick "scripts/power-options.sh shutdown"
-              :tooltip "Shutdown"
-        (box :orientation "vertical"
-             :spacing 4
-          (label :class "power-icon" :text "󰐥")
-          (label :class "power-label" :text "Shutdown")))
-      (button :class "power-btn logout-btn"
-              :onclick "scripts/power-options.sh logout"
-              :tooltip "Logout"
-        (box :orientation "vertical"
-             :spacing 4
-          (label :class "power-icon" :text "󰍃")
-          (label :class "power-label" :text "Logout"))))))
-
 (defwidget control-center-toggle []
   (button :class "control-center-toggle"
           :onclick "eww open --toggle control-center-closer && eww open --toggle control-center"
@@ -77,6 +37,41 @@
   :stacking "fg"
   :focusable false
   (closer :window "control-center"))
+
+(defwidget power-options-section []
+  (box :class "power-options-section"
+       :orientation "vertical"
+       :space-evenly false
+    (box :class "power-options-grid"
+         :orientation "horizontal"
+         :space-evenly true
+         :spacing 8
+      (button :class "power-btn sleep-btn"
+              :onclick "scripts/power-options.sh sleep"
+              :tooltip "Sleep"
+        (box :orientation "vertical"
+             :spacing 4
+          (label :class "power-icon" :text "󰒲")))
+      (button :class "power-btn reboot-btn"
+              :onclick "scripts/power-options.sh reboot"
+              :tooltip "Reboot"
+        (box :orientation "vertical"
+             :spacing 4
+          (label :class "power-icon" :text "󰜉")))
+      (button :class "power-btn shutdown-btn"
+              :onclick "scripts/power-options.sh shutdown"
+              :tooltip "Shutdown"
+        (box :orientation "vertical"
+             :spacing 4
+          (label :class "power-icon" :text "󰐥")))
+      (button :class "power-btn logout-btn"
+              :onclick "scripts/power-options.sh logout"
+              :tooltip "Logout"
+        (box :orientation "vertical"
+             :spacing 4
+          (label :class "power-icon" :text "󰍃")
+          )))))
+
 
 
 (defwidget calendar-layout []

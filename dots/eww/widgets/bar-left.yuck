@@ -5,18 +5,13 @@
        :halign "start"
        :hexpand true
     (workspaces :monitor monitor)
-    (sep)
-    (layout)
     (sep)))
 
 (deflisten workspace-widgets-0 :initial "" "scripts/workspace-widget.sh 0")
 (deflisten workspace-widgets-1 :initial "" "scripts/workspace-widget.sh 1")
-(deflisten layout-widget :initial "" "scripts/layout-widget.sh")
 
-(defwidget workspaces [monitor] 
+(defwidget workspaces [monitor]
   (literal :content {monitor == 0 ? workspace-widgets-0 : workspace-widgets-1}))
-(defwidget layout [] 
-  (literal :content layout-widget))
 
 (defwidget sep []
   (box :class "module-2" :vexpand "false" :hexpand "false"

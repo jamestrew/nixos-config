@@ -2,7 +2,7 @@
 
 # Toggle the control center window
 if eww active-windows | rg -q "control-center"; then
-    eww close control-center
+  eww close control-center
 else
-    eww open control-center
+  eww open control-center
 fi

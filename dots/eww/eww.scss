@@ -257,6 +257,7 @@ $base0F: #be5046;
   border-radius: 8px;
   padding: 16px;
   color: $base05;
+  min-width: 350px;
 }
 
 .control-center-header {
@@ -288,6 +289,83 @@ $base0F: #be5046;
   color: $base04;
   padding: 20px;
 }
+
+.power-options-section {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid $base02;
+}
+
+.section-header {
+  font-weight: bold;
+  font-size: 14px;
+  color: $base05;
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+
+.power-options-grid {
+  padding: 8px 0;
+}
+
+.power-btn {
+  background-color: $base01;
+  border: 1px solid $base02;
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 60px;
+  transition: all 0.3s ease;
+}
+
+.power-btn:hover {
+  background-color: $base02;
+  border-color: $base03;
+}
+
+.power-icon {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.power-label {
+  font-size: 12px;
+  font-weight: normal;
+  color: $base04;
+}
+
+.sleep-btn .power-icon {
+  color: $base0C;
+}
+
+.sleep-btn:hover .power-icon {
+  color: $base0C;
+}
+
+.reboot-btn .power-icon {
+  color: $base0A;
+}
+
+.reboot-btn:hover .power-icon {
+  color: $base0A;
+}
+
+.shutdown-btn .power-icon {
+  color: $base08;
+}
+
+.shutdown-btn:hover .power-icon {
+  color: $base08;
+}
+
+.logout-btn .power-icon {
+  color: $base0E;
+}
+
+.logout-btn:hover .power-icon {
+  color: $base0E;
+}
+
+
 
 .calendar {
   background-color: $base00;

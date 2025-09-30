@@ -2,7 +2,7 @@
 
 (defwidget control-center-toggle []
   (button :class "control-center-toggle"
-          :onclick "eww open --toggle control-center-closer && eww open --toggle control-center"
+          :onclick "scripts/control-center-toggle.sh"
           :tooltip "Toggle Control Center"
     ""))
 
@@ -69,8 +69,7 @@
               :tooltip "Logout"
         (box :orientation "vertical"
              :spacing 4
-          (label :class "power-icon" :text "󰍃")
-          )))))
+          (label :class "power-icon" :text "󰍃"))))))
 
 
 

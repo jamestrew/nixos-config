@@ -21,6 +21,14 @@ in
     ".config/starship.toml".source = ../../../dots/starship.toml;
     ".config/yazi".source = ../../../dots/yazi;
     ".config/ghostty".source = ../../../dots/ghostty;
+    ".config/qtile".source = link "${dots}/qtile";
+    ".config/hypr".source = link "${dots}/hypr";
+    ".config/wofi".source = link "${dots}/hypr/wofi";
+    ".config/swaync".source = link "${dots}/swaync";
+    ".config/picom".source = ../../../dots/picom;
+    ".config/rofi".source = ../../../dots/rofi;
+    ".config/zathura".source = ../../../dots/zathura;
+    ".config/discord/settings.json".source = ../../../dots/discord/settings.json;
     ".vimrc".source = ../../../dots/.vimrc;
     ".local/bin/ta".source = ../../../dots/tmux/ta;
 

@@ -19,7 +19,6 @@
     # Wayland/Hyprland specific packages
     environment.systemPackages = with pkgs; [
       # Core Wayland tools
-      waybar
       wofi
       wl-clipboard
       grim
@@ -30,13 +29,15 @@
       hypridle
       hyprpaper
       hyprpicker
+      hyprpolkitagent
 
-      swaynotificationcenter
+      dunst
 
       # Audio/media tools (shared with qtile, could be moved to common module)
       playerctl
       pavucontrol
       alsa-utils
+      cliphist  # clipboard manager
     ];
 
     xdg.portal = {
@@ -56,8 +57,6 @@
 
     programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
 
-    # Services that work with both X11 and Wayland
-    services.clipmenu.enable = true;
     services.playerctld.enable = true;
   };
 }

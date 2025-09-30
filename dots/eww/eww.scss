@@ -367,37 +367,8 @@ $base0F: #be5046;
 
 
 
-.calendar {
-  background-color: $base00;
-  border: 1px solid $base02;
-  border-radius: 8px;
-  padding: 16px;
-  color: $base05;
-}
-
-.calendar-header {
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid $base02;
-}
-
-.calendar-title {
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.calendar-close {
-  background-color: transparent;
-  color: $base08;
-  border: none;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-.calendar-close:hover {
-  background-color: $base08;
-  color: $base00;
+.calendar-section {
+  margin-top: 8px;
 }
 
 .calendar-widget {

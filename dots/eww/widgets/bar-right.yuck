@@ -98,9 +98,8 @@
 
 (defwidget clock []
   (button :class "clock"
-          :onclick "scripts/calendar-toggle.sh"
-          :onrightclick "xdg-open https://calendar.google.com"
-          :tooltip "Click for calendar • Right-click for Google Calendar"
+          :onclick "xdg-open https://calendar.google.com"
+          :tooltip "Click for Google Calendar"
           :timeout "1s"
     (label :text {formattime(EWW_TIME, "%a %b %d %H:%M:%S")})))
 

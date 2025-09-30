@@ -42,7 +42,7 @@
 
 (defwidget control-center-toggle []
   (button :class "control-center-toggle"
-          :onclick "eww open --toggle control-center"
+          :onclick "eww open --toggle control-center-closer && eww open --toggle control-center"
           :tooltip "Toggle Control Center"
     ""))
 
@@ -70,6 +70,13 @@
   :namespace "eww-control-center"
   :geometry (geometry :x 10 :y 10 :width "350px" :height "80%" :anchor "top right")
   (control-center-layout))
+
+(defwindow control-center-closer
+  :monitor 0
+  :geometry (geometry :width "100%" :height "100%")
+  :stacking "fg"
+  :focusable false
+  (closer :window "control-center"))
 
 
 (defwidget calendar-layout []

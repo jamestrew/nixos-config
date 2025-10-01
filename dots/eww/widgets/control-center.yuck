@@ -28,7 +28,7 @@
   :stacking "overlay"
   :layer "overlay"
   :namespace "eww-control-center"
-  :geometry (geometry :x 10 :y 10 :width "350px" :height "80%" :anchor "top right")
+  :geometry (geometry :x 10 :y 10 :width "350px" :anchor "top right")
   (control-center-layout))
 
 (defwindow control-center-closer

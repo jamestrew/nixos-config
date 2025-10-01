@@ -17,7 +17,7 @@ generate_workspaces() {
     if [ "$active_ws" == "$i" ]; then
       class="$class active"
     fi
-    widget_content="$widget_content (button :class \"$class\" :onclick \"hyprctl dispatch workspace $i\" \"$i\")"
+    widget_content="$widget_content (button :class \"$class\" :onclick \"hyprctl dispatch focusworkspaceoncurrentmonitor $i\" \"$i\")"
   done
   widget_content="$widget_content)"
   echo "$widget_content"

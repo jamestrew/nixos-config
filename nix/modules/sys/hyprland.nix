@@ -31,6 +31,8 @@
       hypridle
       hyprpaper
       hyprpicker
+      hyprsunset
+      sunsetr
       hyprpolkitagent
 
       # Audio/media tools (shared with qtile, could be moved to common module)

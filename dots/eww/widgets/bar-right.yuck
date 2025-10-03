@@ -60,7 +60,7 @@
       (label :class "weather-humidity"
              :text "󰖌${weather-data.humidity}%")
       (label :class "weather-wind"
-             :text " ${weather-data.wind}"))))
+             :text " ${weather-data.wind}㎞/h"))))
 
 (defwidget cpu-widget []
   (box :class "cpu-widget"

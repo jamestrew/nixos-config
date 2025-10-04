@@ -71,10 +71,6 @@ get_track_info() {
     text="$combined"
   fi
 
-  # HTML escape the text (basic escaping)
-  text=$(echo "$text" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g; s/'"'"'/\&#39;/g')
-
-  # Output JSON
   cat <<EOF
 {
   "icon": "󰝚",

@@ -58,22 +58,10 @@ in
     "/home/${user}/.cargo/bin"
     "/home/${user}/go/bin"
     "/home/${user}/apps/neovim/bin"
+    "/home/${user}/.npm-global/bin"  # naughty npm global install path
   ];
 
   programs = {
-    zsh = {
-      enable = true;
-      autosuggestion = {
-        enable = true;
-        highlight = "fg=blue";
-      };
-      syntaxHighlighting.enable = true;
-
-      initContent = ''
-        ta
-      '';
-    };
-
     fish = {
       enable = true;
       interactiveShellInit = ''
@@ -91,7 +79,7 @@ in
                 return 1
             end
             set -l prefixed (printf "nixpkgs#%s " $argv)
-            eval nix shell $prefixed
+            eval nix shell --impure $prefixed
           '';
         };
         newproj = {
@@ -132,7 +120,7 @@ in
 
     git = {
       enable = true;
-      ignores = [ ".direnv" ];
+      ignores = [ ".direnv" ".claude"];
       userName = "James Trew";
       userEmail = "j.trew10@gmail.com";
       delta = {

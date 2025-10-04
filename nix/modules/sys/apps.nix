@@ -80,8 +80,10 @@
     delta
     starship
     docker
-    claude-code
-    gemini-cli
+
+    # I want more up to date versions of these so installing from npm
+    # claude-code
+    # gemini-cli
     opencode
     codex
 

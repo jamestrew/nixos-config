@@ -10,8 +10,6 @@ let
     size = 22;
   };
 
-  link = config.lib.file.mkOutOfStoreSymlink;
-  dots = "${config.home.homeDirectory}/nixos-config/dots";
 in
 {
   obsidian.enable = true;
@@ -67,16 +65,6 @@ in
     # '';
 
   };
-
-  services.redshift = {
-    enable = true;
-    temperature.night = 3000;
-    provider = "geoclue2";
-    settings.redshift.brightness-day = "1";
-    settings.redshift.brightness-night = "0.85";
-    tray = true;
-  };
-  # services.flameshot.enable = true;
 
   gtk = {
     enable = true;

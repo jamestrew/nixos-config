@@ -251,6 +251,15 @@ $base0F: #be5046;
   color: $base0D;
 }
 
+.control-center-toggle.has-notifications {
+  color: $base08;
+}
+
+.control-center-toggle.has-notifications:hover {
+  background-color: $base01;
+  color: $base08;
+}
+
 .control-center {
   background-color: $base00;
   border: 1px solid $base02;

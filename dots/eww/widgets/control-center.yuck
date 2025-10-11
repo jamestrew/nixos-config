@@ -1,10 +1,13 @@
 ;; Control Center widgets
 
+(deflisten notification-info :initial "{\"count\": 0, \"has_notifications\": false}"
+  "scripts/notifications.sh")
+
 (defwidget control-center-toggle []
-  (button :class "control-center-toggle"
+  (button :class "control-center-toggle ${notification-info.has_notifications ? 'has-notifications' : ''}"
           :onclick "scripts/control-center-toggle.sh"
-          :tooltip "Toggle Control Center"
-    ""))
+          :tooltip "${notification-info.has_notifications ? '${notification-info.count} notification${notification-info.count == 1 ? '' : 's'}' : 'No notifications'}"
+    "${notification-info.has_notifications ? '' : ''}"))
 
 (defwidget control-center-layout []
   (box :class "control-center"
@@ -81,7 +84,6 @@
             :show-day-names true
             :show-details true
             :show-week-numbers false))
-
 
 
 

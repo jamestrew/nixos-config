@@ -58,7 +58,7 @@ in
     "/home/${user}/.cargo/bin"
     "/home/${user}/go/bin"
     "/home/${user}/apps/neovim/bin"
-    "/home/${user}/.npm-global/bin"  # naughty npm global install path
+    "/home/${user}/.npm-global/bin" # naughty npm global install path
   ];
 
   programs = {
@@ -120,7 +120,10 @@ in
 
     git = {
       enable = true;
-      ignores = [ ".direnv" ".claude"];
+      ignores = [
+        ".direnv"
+        ".claude"
+      ];
       userName = "James Trew";
       userEmail = "j.trew10@gmail.com";
       delta = {
@@ -167,6 +170,21 @@ in
         tag.sort = "version:refname";
         init.defaultBranch = "master";
         help.autocorrect = "prompt";
+      };
+    };
+
+    jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          name = "James Trew";
+          email = "j.trew10@gmail.com";
+        };
+        ui = {
+          pager = ":builtin";
+          streampager.interface = "quit-if-one-page";
+          default-command = "st";
+        };
       };
     };
 

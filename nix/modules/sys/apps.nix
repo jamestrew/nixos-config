@@ -26,6 +26,7 @@
     tldr
     jq
     socat
+    lsof
     libnotify
     tokei
     devenv
@@ -84,7 +85,7 @@
     # I want more up to date versions of these so installing from npm
     # claude-code
     # gemini-cli
-    opencode
+    opencode  # dynamically linked
     codex
 
     lua-language-server

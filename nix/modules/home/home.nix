@@ -123,6 +123,7 @@ in
       ignores = [
         ".direnv"
         ".claude"
+        "CLAUDE.md"
       ];
       userName = "James Trew";
       userEmail = "j.trew10@gmail.com";

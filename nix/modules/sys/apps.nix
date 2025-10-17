@@ -20,6 +20,7 @@
     bat
     ripgrep
     fd
+    sd
     tree
     sqlite
     nh
@@ -76,6 +77,7 @@
 
     gimp
     go
+    python314
     ruff
     uv
     delta

@@ -1,13 +1,13 @@
 ;; Control Center widgets
 
-(deflisten notification-info :initial "{\"count\": 0, \"has_notifications\": false}"
-  "scripts/notifications.sh")
+(deflisten notification-info :initial "{\"count\": 0, \"visible\": false, \"inhibited\": false}"
+  "scripts/swaync-bridge.sh")
 
 (defwidget control-center-toggle []
-  (button :class "control-center-toggle ${notification-info.has_notifications ? 'has-notifications' : ''}"
-          :onclick "scripts/control-center-toggle.sh"
-          :tooltip "${notification-info.has_notifications ? '${notification-info.count} notification${notification-info.count == 1 ? '' : 's'}' : 'No notifications'}"
-    "${notification-info.has_notifications ? '' : ''}"))
+  (button :class "control-center-toggle ${notification-info.count > 0 ? 'has-notifications' : ''}"
+          :onclick "swaync-client --toggle-panel"
+          :tooltip "${notification-info.count > 0 ? '${notification-info.count} notification${notification-info.count == 1 ? '' : 's'}' : 'No notifications'}"
+    "${notification-info.count > 0 ? '' : ''}"))
 
 (defwidget control-center-layout []
   (box :class "control-center"
@@ -33,13 +33,6 @@
   :namespace "eww-control-center"
   :geometry (geometry :x 10 :y 10 :width "350px" :anchor "top right")
   (control-center-layout))
-
-(defwindow control-center-closer
-  :monitor 0
-  :geometry (geometry :width "100%" :height "100%")
-  :stacking "fg"
-  :focusable false
-  (closer :window "control-center"))
 
 (defwidget power-options-section []
   (box :class "power-options-section"
@@ -84,6 +77,4 @@
             :show-day-names true
             :show-details true
             :show-week-numbers false))
-
-
 

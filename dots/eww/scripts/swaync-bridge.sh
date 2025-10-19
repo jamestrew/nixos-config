@@ -15,6 +15,8 @@ close_control_center() {
   "$eww_bin" close control-center >/dev/null 2>&1 || true
 }
 
+prev_visible=""
+
 while IFS= read -r line; do
   [ -z "$line" ] && continue
 
@@ -22,12 +24,17 @@ while IFS= read -r line; do
 
   visible_flag=$(jq -r 'try .visible catch empty' <<<"$line" 2>/dev/null || echo "")
 
-  case "$visible_flag" in
-    true)
-      open_control_center
-      ;;
-    false)
-      close_control_center
-      ;;
-  esac
+  if [[ "$visible_flag" == "true" || "$visible_flag" == "false" ]]; then
+    if [[ "$visible_flag" != "$prev_visible" ]]; then
+      case "$visible_flag" in
+        true)
+          open_control_center
+          ;;
+        false)
+          close_control_center
+          ;;
+      esac
+      prev_visible="$visible_flag"
+    fi
+  fi
 done < <(swaync-client --subscribe 2>/dev/null)

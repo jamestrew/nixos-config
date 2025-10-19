@@ -66,16 +66,14 @@
           "command": "qalculate-gtk"
         },
         {
-          "label": "󰐱",
-          "command": ""
+          "label": "󰑋",
+          "command": "peek"
         },
         {
           "label": "󰐱",
           "command": ""
         }
       ]
-    },
-    "mpris": {
     }
   },
   "keyboard-shortcuts": true

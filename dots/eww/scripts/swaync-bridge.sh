@@ -5,14 +5,13 @@ set -euo pipefail
 # swaync event stream -> eww bridge. Forwards JSON to stdout (for deflisten)
 # while also syncing the control-center window visibility with swaync.
 
-eww_bin=${EWW_BINARY:-eww}
 
 open_control_center() {
-  "$eww_bin" open control-center >/dev/null 2>&1 || true
+  eww open control-center >/dev/null 2>&1 || true
 }
 
 close_control_center() {
-  "$eww_bin" close control-center >/dev/null 2>&1 || true
+  eww close control-center >/dev/null 2>&1 || true
 }
 
 prev_visible=""

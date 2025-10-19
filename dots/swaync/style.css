@@ -98,3 +98,31 @@
 .widget-mpris .artist {
     color: #d8dee9;
 }
+
+/* Power Buttons Grid */
+.widget-buttons.power {
+    background: #3b4252;
+    border: 1px solid #4c566a;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.widget-buttons.power > flowbox > flowboxchild > button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: #eceff4;
+    font-size: 18px;
+    min-height: 48px;
+    min-width: 48px;
+    margin: 4px;
+    padding: 0 14px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.widget-buttons.power > flowbox > flowboxchild > button:hover {
+    background-color: #4c566a;
+    border-color: #88c0d0;
+    color: #88c0d0;
+}

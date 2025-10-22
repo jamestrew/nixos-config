@@ -131,18 +131,11 @@ in
         ".claude"
         "CLAUDE.md"
       ];
-      userName = "James Trew";
-      userEmail = "j.trew10@gmail.com";
-      delta = {
-        enable = true;
-        options = {
-          navigate = true;
-          light = false;
-          lineNumbers = true;
-          side-by-side = true;
+      settings = {
+        user = {
+          name = "James Trew";
+          email = "j.trew10@gmail.com";
         };
-      };
-      extraConfig = {
         core.editor = "nvim";
         merge.conflictStyle = "zdiff3";
         diff = {
@@ -177,6 +170,17 @@ in
         tag.sort = "version:refname";
         init.defaultBranch = "master";
         help.autocorrect = "prompt";
+      };
+    };
+
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        navigate = true;
+        light = false;
+        lineNumbers = true;
+        side-by-side = true;
       };
     };
 

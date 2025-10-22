@@ -7,6 +7,8 @@ let
   link = config.lib.file.mkOutOfStoreSymlink;
   dots = "${config.home.homeDirectory}/nixos-config/dots";
   user = config.home.username;
+
+  npmglobal = "${config.home.homeDirectory}/.npm-global";
 in
 {
 
@@ -42,6 +44,10 @@ in
       autoupdate = false;
       share = "manual";
     };
+
+    ".npmrc".text = ''
+      prefix=${npmglobal}
+    '';
   };
 
   home.sessionVariables = {
@@ -58,7 +64,7 @@ in
     "/home/${user}/.cargo/bin"
     "/home/${user}/go/bin"
     "/home/${user}/apps/neovim/bin"
-    "/home/${user}/.npm-global/bin" # naughty npm global install path
+    "${npmglobal}/bin" # naughty npm global install path
   ];
 
   programs = {

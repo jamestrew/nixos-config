@@ -89,6 +89,7 @@
     # gemini-cli
     opencode  # dynamically linked
     codex
+    handy
 
     lua-language-server
     stylua

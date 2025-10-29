@@ -20,5 +20,23 @@
       };
       patches = [ ./patches/screenkey.patch ];
     });
+    handy =
+      let
+        pname = "handy";
+        version = "0.5.4";
+        src = prev.fetchurl {
+          url = "https://github.com/cjpais/Handy/releases/download/v0.5.4/Handy_0.5.4_amd64.AppImage";
+          sha256 = "sha256-Hnb9HBbPtgDd0oFWgg4bWjIdJOHVIXay2GOzhUjmdaU=";
+        };
+      in
+      prev.appimageTools.wrapType2 {
+        inherit pname version src;
+        meta = with prev.lib; {
+          description = "A free, open source, and extensible speech-to-text application that works completely offline.";
+          homepage = "https://github.com/cjpais/Handy";
+          license = licenses.mit;
+          platforms = platforms.linux;
+        };
+      };
   })
 ]

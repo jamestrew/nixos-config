@@ -92,12 +92,38 @@ in
           description = "Create a new project with a default structure";
           body = ''
             if test (count $argv) -ne 1
-                echo "Usage: newproj <project-name>"
+                echo "Usage: newproj <project-name | git@github.com:owner/repo.git>"
                 return 1
             end
+
             set -l proj_name $argv[1]
-            mkdir -p ~/projects/$proj_name
-            echo "Project ~/projects/$proj_name created..."
+            set -l proj_root ~/projects
+            mkdir -p $proj_root
+
+            if string match -qr '^(git@|https://).+\.git$' $proj_name
+                set -l repo_path (string replace -r '\.git$' "" $proj_name)
+                set -l repo_name (basename $repo_path)
+                if not git clone $proj_name $proj_root/$repo_name
+                    echo "Failed to clone $proj_name"
+                    return $status
+                end
+                echo "Cloned $proj_name into $proj_root/$repo_name"
+                return 0
+            end
+
+            mkdir -p $proj_root/$proj_name
+            echo "Project $proj_root/$proj_name created..."
+          '';
+        };
+        mkcd = {
+          description = "Make and change into a new directory";
+          body = ''
+            if test (count $argv) -ne 1
+                echo "Usage: mkcd <directory-name>"
+                return 1
+            end
+            mkdir -p $argv[1]
+            cd $argv[1]
           '';
         };
       };

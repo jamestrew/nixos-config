@@ -87,8 +87,8 @@
     # I want more up to date versions of these so installing from npm
     # claude-code
     # gemini-cli
+    # codex
     opencode  # dynamically linked
-    codex
     handy
 
     lua-language-server

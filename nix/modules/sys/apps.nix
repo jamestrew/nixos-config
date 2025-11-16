@@ -84,6 +84,14 @@
     starship
     docker
 
+    luajit
+    lua51Packages.lua
+    lua-language-server
+    stylua
+    luajitPackages.luacheck
+    emmylua-ls
+
+
     # I want more up to date versions of these so installing from npm
     # claude-code
     # gemini-cli
@@ -91,9 +99,6 @@
     opencode  # dynamically linked
     handy
 
-    lua-language-server
-    stylua
-    luajitPackages.luacheck
     bash-language-server
     nil # nix language server
     nixfmt-rfc-style

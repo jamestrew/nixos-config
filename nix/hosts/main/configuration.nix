@@ -27,7 +27,7 @@ in
   defaultShell = defaultShell;
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = lib.mkForce false;  # replaced by lanzaboote
+  boot.loader.systemd-boot.enable = lib.mkForce false; # replaced by lanzaboote
   boot.loader.efi.canTouchEfiVariables = true;
   boot.tmp.cleanOnBoot = true;
   boot.lanzaboote = {
@@ -90,16 +90,6 @@ in
     shell = defaultShell;
   };
 
-  environment.variables =
-    let
-      FLAKE = "$HOME/nixos-config/nix";
-    in
-    {
-      inherit FLAKE;
-      NH_FLAKE = FLAKE;
-    };
-
-  environment.localBinInPath = true;
 
   fonts = {
     enableDefaultPackages = true;

@@ -99,7 +99,13 @@ in
   #
   home.sessionVariables = {
     EDITOR = "nvim";
+    FLAKE = "$HOME/nixos-config/nix";
+    NH_FLAKE = "$HOME/nixos-config/nix";
   };
+
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

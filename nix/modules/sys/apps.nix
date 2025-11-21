@@ -91,13 +91,11 @@
     luajitPackages.luacheck
     emmylua-ls
 
-
-    # I want more up to date versions of these so installing from npm
-    # claude-code
-    # gemini-cli
-    # codex
-    opencode  # dynamically linked
-    handy
+    inputs.nix-ai-tools.packages.${system}.claude-code
+    inputs.nix-ai-tools.packages.${system}.copilot-cli
+    inputs.nix-ai-tools.packages.${system}.gemini-cli
+    inputs.nix-ai-tools.packages.${system}.codex
+    inputs.nix-ai-tools.packages.${system}.opencode
 
     bash-language-server
     nil # nix language server

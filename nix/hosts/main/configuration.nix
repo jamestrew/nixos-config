@@ -122,12 +122,9 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    screenkey
     peek
     htop
     zathura
-    xclip
-    xsel
     sbctl # Secure Boot key management
   ];
 

@@ -40,6 +40,7 @@
       pavucontrol
       alsa-utils
       cliphist  # clipboard manager
+      showmethekey  # on-screen keypress visualizer
     ];
 
     xdg.portal = {

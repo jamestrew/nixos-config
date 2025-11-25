@@ -225,6 +225,8 @@ in
       };
     };
 
+    jjui.enable = true;
+
   };
 
 }

@@ -13,7 +13,6 @@
     curl
     brave
     git
-    github-cli
     tmux
     bacon
     hyperfine

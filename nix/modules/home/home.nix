@@ -58,6 +58,7 @@ in
     ll = "eza -lah --git --group-directories-first";
     ls = "eza";
     cat = "bat";
+    dash = "gh dash";
   };
 
   home.sessionPath = [
@@ -100,7 +101,7 @@ in
             set -l proj_root ~/projects
             mkdir -p $proj_root
 
-            if string match -qr '^(git@|https://).+\.git$' $proj_name
+            if string match -qr '^(git@|https://).+(\.git)?$' $proj_name
                 set -l repo_path (string replace -r '\.git$' "" $proj_name)
                 set -l repo_name (basename $repo_path)
                 if not git clone $proj_name $proj_root/$repo_name
@@ -226,6 +227,17 @@ in
     };
 
     jjui.enable = true;
+
+    gh = {
+      enable = true;
+      settings = {
+        browser = "xdg-open";
+      };
+      extensions = [
+        pkgs.gh-dash
+        pkgs.gh-copilot
+      ];
+    };
 
   };
 

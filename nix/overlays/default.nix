@@ -23,10 +23,10 @@
     handy =
       let
         pname = "handy";
-        version = "0.5.4";
+        version = "0.6.2";
         src = prev.fetchurl {
-          url = "https://github.com/cjpais/Handy/releases/download/v0.5.4/Handy_0.5.4_amd64.AppImage";
-          sha256 = "sha256-Hnb9HBbPtgDd0oFWgg4bWjIdJOHVIXay2GOzhUjmdaU=";
+          url = "https://github.com/cjpais/Handy/releases/download/v0.6.2/Handy_0.6.2_amd64.AppImage";
+          sha256 = "sha256-rkkGVRsjb/rKZHfExonNn2RqHomYXPk1qZJ2bLhWmb8=";
         };
       in
       prev.appimageTools.wrapType2 {

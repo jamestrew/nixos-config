@@ -23,6 +23,11 @@
     };
 
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
+
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     {
@@ -30,6 +35,7 @@
       nixpkgs,
       home-manager,
       lanzaboote,
+      nur,
       ...
     }@inputs:
     {
@@ -43,6 +49,7 @@
             inherit inputs system;
           };
           modules = [
+            nur.modules.nixos.default
             lanzaboote.nixosModules.lanzaboote
             ./hosts/main/configuration.nix
             home-manager.nixosModules.home-manager

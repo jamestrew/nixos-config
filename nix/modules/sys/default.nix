@@ -9,6 +9,7 @@
     ./hyprland.nix
     ./sh.nix
     ./sops.nix
+    ./nordvpn.nix
   ];
 
   nixpkgs = {

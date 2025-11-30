@@ -24,6 +24,7 @@ in
   qtile.enable = false;
   hyprland.enable = true;
   gaming.enable = true;
+  nordvpn.enable = true;
   defaultShell = defaultShell;
 
   # Bootloader.
@@ -76,7 +77,7 @@ in
     wayland = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.jt = {
     isNormalUser = true;
     description = "James Trew";

@@ -114,5 +114,6 @@
     vscode-langservers-extracted
     copilot-language-server
     tailwindcss-language-server
+    zls
   ];
 }

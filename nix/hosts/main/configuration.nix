@@ -127,6 +127,8 @@ in
     htop
     zathura
     sbctl # Secure Boot key management
+    man-pages
+    man-pages-posix
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -186,7 +188,7 @@ in
     };
   };
 
-  # documentation.man.generateCaches = true; # for apropos
+  documentation.man.generateCaches = false; # fish forces true, override for speed
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

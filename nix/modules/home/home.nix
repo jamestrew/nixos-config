@@ -239,6 +239,11 @@ in
       ];
     };
 
+    fzf = {
+      enable = true;
+      defaultCommand = "fd -td";
+    };
+
   };
 
 }

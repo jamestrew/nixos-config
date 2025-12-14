@@ -12,6 +12,7 @@
     nix-prefetch
     curl
     brave
+    google-chrome
     git
     tmux
     bacon

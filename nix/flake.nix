@@ -22,7 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-ai-tools.url = "github:numtide/nix-ai-tools";
+    llm-agents.url = "github:numtide/llm-agents.nix";
 
     nur = {
       url = "github:nix-community/NUR";

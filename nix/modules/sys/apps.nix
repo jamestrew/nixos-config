@@ -91,12 +91,14 @@
     luajitPackages.luacheck
     emmylua-ls
 
-    inputs.nix-ai-tools.packages.${system}.claude-code
-    inputs.nix-ai-tools.packages.${system}.copilot-cli
-    inputs.nix-ai-tools.packages.${system}.gemini-cli
-    inputs.nix-ai-tools.packages.${system}.codex
-    inputs.nix-ai-tools.packages.${system}.opencode
-    handy
+    inputs.llm-agents.packages.${system}.claude-code
+    inputs.llm-agents.packages.${system}.claude-code-acp
+    inputs.llm-agents.packages.${system}.copilot-cli
+    inputs.llm-agents.packages.${system}.gemini-cli
+    inputs.llm-agents.packages.${system}.codex
+    inputs.llm-agents.packages.${system}.codex-acp
+    inputs.llm-agents.packages.${system}.opencode
+    inputs.llm-agents.packages.${system}.handy
 
     bash-language-server
     nil # nix language server

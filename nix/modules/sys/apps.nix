@@ -41,6 +41,7 @@
     gnome-disk-utility
     exfatprogs
     bottles
+    dotool
 
     (fenix.complete.withComponents [
       "cargo"

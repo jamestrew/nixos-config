@@ -24,8 +24,8 @@ in
     ".config/yazi".source = ../../../dots/yazi;
     ".config/ghostty".source = ../../../dots/ghostty;
     ".config/hypr".source = link "${dots}/hypr";
-    ".config/wofi".source = link "${dots}/wofi";
-    ".config/swaync".source = link "${dots}/swaync";
+    ".config/wofi".source = ../../../dots/wofi;
+    ".config/swaync".source = ../../../dots/swaync;
     # ".config/qtile".source = link "${dots}/qtile";
     # ".config/picom".source = ../../../dots/picom;
     # ".config/rofi".source = ../../../dots/rofi;
@@ -222,11 +222,10 @@ in
           pager = ":builtin";
           streampager.interface = "quit-if-one-page";
           default-command = "st";
+          conflict-marker-style = "git";
         };
       };
     };
-
-    jjui.enable = true;
 
     gh = {
       enable = true;

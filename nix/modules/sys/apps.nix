@@ -64,6 +64,7 @@
     legcord
     youtube-music
     fzf
+    television
     yazi
     vlc
     ghostty
@@ -99,7 +100,7 @@
     inputs.llm-agents.packages.${system}.codex
     inputs.llm-agents.packages.${system}.codex-acp
     inputs.llm-agents.packages.${system}.opencode
-    inputs.llm-agents.packages.${system}.handy
+    whisper-cpp
 
     bash-language-server
     nil # nix language server

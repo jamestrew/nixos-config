@@ -52,4 +52,5 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   hardware.keyboard.qmk.enable = true;
+  hardware.spacenavd.enable = true; # 3Dconnexion SpaceMouse
 }

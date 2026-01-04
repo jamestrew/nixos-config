@@ -10,6 +10,7 @@
     ./sh.nix
     ./sops.nix
     ./nordvpn.nix
+    ./spacemouse.nix
   ];
 
   nixpkgs = {

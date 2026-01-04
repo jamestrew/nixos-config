@@ -25,6 +25,12 @@ in
   hyprland.enable = true;
   gaming.enable = true;
   nordvpn.enable = true;
+  spacemouse = {
+    enable = true;
+    websocket = {
+      enable = true;
+    };
+  };
   defaultShell = defaultShell;
 
   # Bootloader.
@@ -90,7 +96,6 @@ in
     packages = [ ];
     shell = defaultShell;
   };
-
 
   fonts = {
     enableDefaultPackages = true;

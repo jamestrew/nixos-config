@@ -218,6 +218,32 @@ in
           name = "James Trew";
           email = "j.trew10@gmail.com";
         };
+        aliases = {
+          log-recent = [
+            "log"
+            "-r"
+            "default() & recent()"
+          ];
+          tug = [
+            "bookmark"
+            "move"
+            "--from"
+            "heads(::@ & bookmarks())"
+            "--to"
+            "closest_pushable(@)"
+          ];
+        };
+        revset-aliases = {
+          "closest_pushable(to)" = ''
+            heads(::to & mutable() & ~description(exact:"") & (~empty() | merges()))
+          '';
+          "default()" = ''
+            coalesce(trunk(),root())::present(@) | ancestors(visible_heads() & recent(), 5)
+          '';
+          "recent()" = ''
+            committer_date(after:"1 month ago")
+          '';
+        };
         ui = {
           pager = ":builtin";
           streampager.interface = "quit-if-one-page";

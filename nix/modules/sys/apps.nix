@@ -62,7 +62,7 @@
 
     flameshot
     legcord
-    youtube-music
+    pear-desktop
     fzf
     television
     yazi
@@ -104,7 +104,7 @@
 
     bash-language-server
     nil # nix language server
-    nixfmt-rfc-style
+    nixfmt
     basedpyright
     gopls
     libclang

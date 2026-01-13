@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
 
   imports = [
@@ -24,6 +24,7 @@
     "nix-command"
     "flakes"
   ];
+  nix.package = pkgs.nixVersions.stable;
 
   system.autoUpgrade.enable = true;
   system.autoUpgrade.dates = "weekly";

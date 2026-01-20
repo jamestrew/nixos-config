@@ -61,7 +61,7 @@
     ccache
 
     flameshot
-    legcord
+    discord
     pear-desktop
     fzf
     television

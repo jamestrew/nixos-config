@@ -92,6 +92,7 @@ in
       "wheel"
       "docker"
       "dialout"
+      "input"
     ];
     packages = [ ];
     shell = defaultShell;

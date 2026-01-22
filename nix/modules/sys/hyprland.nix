@@ -21,7 +21,6 @@
       # Core Wayland tools
       wofi
       wl-clipboard
-      wtype
       grim
       slurp
       swaynotificationcenter

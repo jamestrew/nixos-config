@@ -260,7 +260,6 @@ in
       };
       extensions = [
         pkgs.gh-dash
-        pkgs.gh-copilot
       ];
     };
 

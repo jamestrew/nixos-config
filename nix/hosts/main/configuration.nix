@@ -150,6 +150,7 @@ in
     fish.enable = true;
     dconf.enable = true;
     direnv.enable = true;
+    nix-ld.enable = true;
   };
 
   virtualisation.docker.enable = true;

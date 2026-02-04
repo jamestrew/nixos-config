@@ -42,6 +42,10 @@
     exfatprogs
     bottles
     dotool
+    htop
+    zathura
+    kooha
+
 
     (fenix.complete.withComponents [
       "cargo"

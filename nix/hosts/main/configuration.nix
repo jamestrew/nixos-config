@@ -129,9 +129,6 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    peek
-    htop
-    zathura
     sbctl # Secure Boot key management
     man-pages
     man-pages-posix

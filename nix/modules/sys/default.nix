@@ -24,6 +24,13 @@
     "nix-command"
     "flakes"
   ];
+  nix.settings.trusted-users = [
+    "jt"
+  ];
+  nix.settings.extra-substituters = [ "https://cache.numtide.com" ];
+  nix.settings.extra-trusted-public-keys = [
+    "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+  ];
   nix.package = pkgs.nixVersions.stable;
 
   system.autoUpgrade.enable = true;

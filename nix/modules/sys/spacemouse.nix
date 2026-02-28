@@ -7,6 +7,7 @@
 let
   cfg = config.spacemouse;
   wsCfg = config.spacemouse.websocket;
+  wsCertFile = "${wsCfg.package}/${pkgs.python3Packages.python.sitePackages}/spacenav_ws/certs/ip.crt";
 
   spacenavWsPackage = pkgs.python3Packages.buildPythonApplication rec {
     pname = "spacenav-ws";
@@ -86,6 +87,7 @@ in
     (lib.mkIf wsCfg.enable {
       hardware.spacenavd.enable = true;
       environment.systemPackages = [ wsCfg.package ];
+      security.pki.certificateFiles = [ wsCertFile ];
 
       systemd.services.spacenav-ws = {
         description = "spacenav-ws WebSocket bridge for 3Dconnexion SpaceMouse";

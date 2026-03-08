@@ -64,6 +64,7 @@
     ninja
     ccache
 
+    imagemagick
     flameshot
     discord
     pear-desktop

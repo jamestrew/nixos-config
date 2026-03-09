@@ -192,7 +192,7 @@ in
     };
   };
 
-  documentation.man.generateCaches = false; # fish forces true, override for speed
+  documentation.man.cache.enable = false; # fish forces true, override for speed
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

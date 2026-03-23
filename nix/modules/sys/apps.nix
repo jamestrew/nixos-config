@@ -22,6 +22,7 @@
     fd
     sd
     tree
+    file
     sqlite
     nh
     tldr

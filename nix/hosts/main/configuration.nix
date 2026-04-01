@@ -25,6 +25,7 @@ in
   hyprland.enable = true;
   gaming.enable = true;
   nordvpn.enable = true;
+  programs.handy.enable = true;
   spacemouse = {
     enable = true;
     websocket = {

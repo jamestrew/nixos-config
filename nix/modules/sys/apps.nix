@@ -47,7 +47,6 @@
     zathura
     kooha
 
-
     (fenix.complete.withComponents [
       "cargo"
       "clippy"
@@ -75,8 +74,7 @@
     vlc
     ghostty
     kitty
-    nodePackages.npm
-    nodePackages.nodejs
+    nodejs_24
     yarn
     openssh
     unzip

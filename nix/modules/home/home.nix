@@ -64,7 +64,6 @@ in
   home.sessionPath = [
     "/home/${user}/.cargo/bin"
     "/home/${user}/go/bin"
-    "/home/${user}/apps/neovim/bin"
     "${npmglobal}/bin" # naughty npm global install path
   ];
 

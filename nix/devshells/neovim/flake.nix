@@ -1,16 +1,8 @@
 # Neovim dev flake — build deps from the nightly overlay, manual build from source.
 #
-# Dev shell (get build env, then cmake manually):
-#   nix develop ~/nixos-config/nix/devshells/neovim
+# Persistent via direnv from ~/projects/neovim:
+#   echo 'use flake ~/nixos-config/nix/devshells/neovim' > .envrc && direnv allow
 #
-# Or persistent via direnv from ~/projects/neovim:
-#   echo 'use flake ~/nixos-config/nix/devshells/neovim' > .envrc
-#   echo '.envrc' >> .git/info/exclude
-#   direnv allow
-#
-# Let Nix build neovim for you (uses overlay's pinned src):
-#   nix build ~/nixos-config/nix/devshells/neovim
-#   ./result/bin/nvim
 {
   description = "neovim dev shell";
 

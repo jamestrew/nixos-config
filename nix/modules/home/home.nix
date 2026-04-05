@@ -58,6 +58,7 @@ in
   home.sessionPath = [
     "${config.home.homeDirectory}/.cargo/bin"
     "${config.home.homeDirectory}/go/bin"
+    "${config.home.homeDirectory}/.local/bin"
     "${npmglobal}/bin" # naughty npm global install path
   ];
 

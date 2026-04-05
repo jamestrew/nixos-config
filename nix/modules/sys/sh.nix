@@ -8,7 +8,7 @@
 
   options = {
     defaultShell = lib.mkOption {
-      default = pkgs.zsh;
+      default = pkgs.fish;
       type = lib.types.package;
       description = "The shell to use";
     };
@@ -22,7 +22,7 @@
       bash.interactiveShellInit = (
         if config.defaultShell == pkgs.fish then
           ''
-            if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+            if [[ $(ps -p "$PPID" -o comm= 2>/dev/null || true) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
             then
               shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
               exec ${pkgs.fish}/bin/fish $LOGIN_OPTION

@@ -1,13 +1,14 @@
 {
   config,
+  isDarwin,
+  lib,
   pkgs,
   ...
 }:
 let
   link = config.lib.file.mkOutOfStoreSymlink;
   dots = "${config.home.homeDirectory}/nixos-config/dots";
-  user = config.home.username;
-
+  browserCmd = if isDarwin then "open" else "xdg-open";
   npmglobal = "${config.home.homeDirectory}/.npm-global";
 in
 {
@@ -18,19 +19,9 @@ in
   home.file = {
     ".config/nvim".source = link "${dots}/nvim";
     ".config/tmux".source = link "${dots}/tmux";
-    ".config/eww".source = link "${dots}/eww";
     ".config/atuin".source = ../../../dots/atuin;
     ".config/starship.toml".source = ../../../dots/starship.toml;
     ".config/yazi".source = ../../../dots/yazi;
-    ".config/ghostty".source = ../../../dots/ghostty;
-    ".config/hypr".source = link "${dots}/hypr";
-    ".config/wofi".source = ../../../dots/wofi;
-    ".config/swaync".source = ../../../dots/swaync;
-    # ".config/qtile".source = link "${dots}/qtile";
-    # ".config/picom".source = ../../../dots/picom;
-    # ".config/rofi".source = ../../../dots/rofi;
-    ".config/zathura".source = ../../../dots/zathura;
-    ".config/discord/settings.json".source = ../../../dots/discord/settings.json;
     ".vimrc".source = ../../../dots/.vimrc;
     ".local/bin/ta".source = ../../../dots/tmux/ta;
 
@@ -51,6 +42,9 @@ in
   };
 
   home.sessionVariables = {
+    EDITOR = "nvim";
+    FLAKE = "$HOME/nixos-config/nix";
+    NH_FLAKE = "$HOME/nixos-config/nix";
     CDPATH = "${config.home.homeDirectory}/.local/share/nvim/:$CDPATH";
   };
 
@@ -62,17 +56,20 @@ in
   };
 
   home.sessionPath = [
-    "/home/${user}/.cargo/bin"
-    "/home/${user}/go/bin"
+    "${config.home.homeDirectory}/.cargo/bin"
+    "${config.home.homeDirectory}/go/bin"
     "${npmglobal}/bin" # naughty npm global install path
   ];
 
+  programs.home-manager.enable = true;
+
   programs = {
+    man.generateCaches = !isDarwin;
+
     fish = {
       enable = true;
       interactiveShellInit = ''
         set fish_greeting
-
         ta
       '';
       functions = {
@@ -142,7 +139,19 @@ in
     };
 
     starship.enable = true;
-    ghostty.enable = true;
+    ghostty = {
+      enable = true;
+      package = if isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+      settings = {
+        theme = "One Half Dark";
+        font-family = "JetBrains Mono";
+        font-size = 11;
+        window-inherit-font-size = false;
+        window-decoration = isDarwin;
+        mouse-scroll-multiplier = 1;
+        macos-option-as-alt = true;
+      };
+    };
     yazi.enable = true;
     htop.enable = true;
     eza = {
@@ -255,7 +264,7 @@ in
     gh = {
       enable = true;
       settings = {
-        browser = "xdg-open";
+        browser = browserCmd;
       };
       extensions = [
         pkgs.gh-dash

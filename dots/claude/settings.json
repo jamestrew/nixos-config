@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/notify.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "pr-review-toolkit@claude-code-plugins": false,
+    "commit-commands@claude-code-plugins": false,
+    "feature-dev@claude-code-plugins": false,
+    "code-review@claude-code-plugins": true,
+    "explanatory-output-style@claude-code-plugins": true,
+    "learning-output-style@claude-code-plugins": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "voiceEnabled": true,
+  "feedbackSurveyState": {
+    "lastShownTime": 1754663437734
+  }
+}

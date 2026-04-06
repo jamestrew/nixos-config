@@ -3,6 +3,11 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-25.11";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,29 +35,39 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  nixConfig = {
-    extra-substituters = [ "https://cache.numtide.com" ];
-    extra-trusted-public-keys = [ "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=" ];
-  };
   outputs =
     {
       self,
       nixpkgs,
+      nix-darwin,
+      nix-homebrew,
       home-manager,
       lanzaboote,
       nur,
       ...
     }@inputs:
+    let
+      mkPlatformArgs =
+        system:
+        let
+          isDarwin = builtins.match ".*-darwin" system != null;
+        in
+        {
+          inherit system isDarwin;
+          isLinux = !isDarwin;
+        };
+    in
     {
       nixosConfigurations.nixos =
         let
-          system = "x86_64-linux";
+          platform = mkPlatformArgs "x86_64-linux";
         in
         nixpkgs.lib.nixosSystem {
-          inherit system;
+          inherit (platform) system;
           specialArgs = {
-            inherit inputs system;
-          };
+            inherit inputs;
+          }
+          // platform;
           modules = [
             nur.modules.nixos.default
             lanzaboote.nixosModules.lanzaboote
@@ -63,6 +78,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                extraSpecialArgs = platform;
                 users.jt = {
                   imports = [
                     ./hosts/main/home.nix
@@ -78,5 +94,40 @@
             }
           ];
         };
+
+      darwinConfigurations."Jamess-MacBook-Air" =
+        let
+          platform = mkPlatformArgs "aarch64-darwin";
+        in
+        nix-darwin.lib.darwinSystem {
+          inherit (platform) system;
+          specialArgs = {
+            inherit inputs self;
+          }
+          // platform;
+          modules = [
+            nix-homebrew.darwinModules.nix-homebrew
+            ./hosts/mac/configuration.nix
+            home-manager.darwinModules.home-manager
+            {
+              networking.hostName = "Jamess-MacBook-Air";
+
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = platform;
+                users.jt = {
+                  imports = [
+                    ./hosts/mac/home.nix
+                    ./modules/home
+                  ];
+                };
+                sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
+                backupFileExtension = "backup";
+              };
+            }
+          ];
+        };
+
     };
 }

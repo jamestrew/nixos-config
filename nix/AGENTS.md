@@ -8,7 +8,7 @@ Personal NixOS configuration using flakes and home-manager.
 
 - `flake.nix` - Main flake defining nixosConfiguration for host "nixos"
 - `hosts/main/` - Host-specific system config and home-manager entry point
-- `modules/sys/` - System-level NixOS modules (apps, env, gaming, hyprland, qtile, nordvpn, etc)
+- `modules/sys/` - System-level modules split between portable/common bundles and NixOS-specific modules
 - `modules/home/` - Home-manager modules
 - `overlays/` - Nixpkgs overlays
 - `secrets/` - sops-nix encrypted secrets
@@ -26,7 +26,7 @@ Personal NixOS configuration using flakes and home-manager.
 ## System Architecture
 
 Main configuration loads `hosts/main/configuration.nix`, which:
-1. Imports `modules/sys` (system modules)
+1. Imports the specific `modules/sys/*.nix` modules needed for that host
 2. Enables custom modules via boolean flags (qtile.enable, hyprland.enable, gaming.enable, nordvpn.enable)
 3. Configures home-manager for user "jt" with `hosts/main/home.nix` + `modules/home`
 
@@ -52,7 +52,7 @@ home-manager switch --flake .#jt@nixos
 
 Custom modules in `modules/sys/` use `mkIf config.<name>.enable` pattern. To add functionality:
 1. Create module file in `modules/sys/`
-2. Import in `modules/sys/default.nix`
+2. Import it in the host config that needs it
 3. Enable in `hosts/main/configuration.nix` via `<name>.enable = true;`
 
 ## Environment Variables

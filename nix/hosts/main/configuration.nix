@@ -17,7 +17,14 @@ in
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
 
-    ../../modules/sys
+    ../../modules/sys/default.nix
+    ../../modules/sys/nixos-common.nix
+    ../../modules/sys/gaming.nix
+    ../../modules/sys/qtile.nix
+    ../../modules/sys/hyprland.nix
+    ../../modules/sys/sops.nix
+    ../../modules/sys/nordvpn.nix
+    ../../modules/sys/spacemouse.nix
   ];
 
   # my modules
@@ -99,6 +106,8 @@ in
     shell = defaultShell;
   };
 
+  environment.localBinInPath = true;
+
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
@@ -147,7 +156,6 @@ in
     zsh.enable = true;
     fish.enable = true;
     dconf.enable = true;
-    direnv.enable = true;
     nix-ld.enable = true;
   };
 

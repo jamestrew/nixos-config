@@ -1,129 +1,128 @@
 {
+  isLinux,
+  lib,
   pkgs,
   inputs,
-  system,
   ...
 }:
+let
+  system = pkgs.stdenv.hostPlatform.system;
+in
 {
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    nix-index
-    nix-prefetch
-    curl
-    brave
-    google-chrome
-    git
-    tmux
-    bacon
-    hyperfine
-    bat
-    ripgrep
-    fd
-    sd
-    tree
-    file
-    sqlite
-    nh
-    tldr
-    jq
-    socat
-    lsof
-    libnotify
-    tokei
-    devenv
-    sops
-    qalculate-gtk
-    qbittorrent
-    udiskie
-    dust # A more intuitive du replacement
-    gparted
-    inetutils # telnet, etc
-    gnome-disk-utility
-    exfatprogs
-    bottles
-    dotool
-    htop
-    zathura
-    kooha
-
-    (fenix.complete.withComponents [
-      "cargo"
-      "clippy"
-      "rust-src"
-      "rustc"
-      "rustfmt"
-    ])
-    rust-analyzer-nightly
-
-    gcc
-    clang
-    gnumake
-    cmake
-    gettext
-    ninja
-    ccache
-
-    imagemagick
-    flameshot
-    discord
-    pear-desktop
-    fzf
-    television
-    yazi
-    vlc
-    ghostty
-    kitty
-    nodejs_24
-    yarn
-    openssh
-    unzip
-    zip
-    tree-sitter
-
-    gimp
-    go
-    python314
-    ruff
-    uv
-    delta
-    starship
-    docker
-
-    luajit
-    lua51Packages.lua
-    lua-language-server
-    stylua
-    luajitPackages.luacheck
-    emmylua-ls
-
-    inputs.llm-agents.packages.${system}.claude-code
-    inputs.llm-agents.packages.${system}.claude-code-acp
-    inputs.llm-agents.packages.${system}.copilot-cli
-    inputs.llm-agents.packages.${system}.gemini-cli
-    inputs.llm-agents.packages.${system}.codex
-    inputs.llm-agents.packages.${system}.codex-acp
-    inputs.llm-agents.packages.${system}.opencode
-    whisper-cpp
-
-    bash-language-server
-    nil # nix language server
-    nixfmt
-    basedpyright
-    gopls
-    libclang
-    typescript
-    bun
-    pnpm
-    typescript-language-server
-    typescript-go
-    emmet-language-server
-    markdownlint-cli
-    taplo
-    biome
-    vscode-langservers-extracted
-    copilot-language-server
-    tailwindcss-language-server
-    zls
-  ];
+  environment.systemPackages =
+    with pkgs;
+    [
+      vim
+      wget
+      nix-index
+      nix-prefetch
+      curl
+      brave
+      google-chrome
+      git
+      tmux
+      bacon
+      hyperfine
+      bat
+      ripgrep
+      fd
+      sd
+      tree
+      file
+      sqlite
+      nh
+      tldr
+      jq
+      socat
+      lsof
+      tokei
+      devenv
+      sops
+      dust
+      inetutils
+      htop
+      (fenix.complete.withComponents [
+        "cargo"
+        "clippy"
+        "rust-src"
+        "rustc"
+        "rustfmt"
+      ])
+      rust-analyzer-nightly
+      gcc
+      clang
+      gnumake
+      cmake
+      gettext
+      ninja
+      ccache
+      imagemagick
+      discord
+      fzf
+      television
+      yazi
+      nodejs_24
+      yarn
+      openssh
+      unzip
+      zip
+      tree-sitter
+      go
+      python314
+      ruff
+      uv
+      delta
+      starship
+      docker
+      luajit
+      lua51Packages.lua
+      lua-language-server
+      stylua
+      luajitPackages.luacheck
+      emmylua-ls
+      inputs.llm-agents.packages.${system}.claude-code
+      inputs.llm-agents.packages.${system}.claude-code-acp
+      inputs.llm-agents.packages.${system}.copilot-cli
+      inputs.llm-agents.packages.${system}.gemini-cli
+      inputs.llm-agents.packages.${system}.codex
+      inputs.llm-agents.packages.${system}.codex-acp
+      inputs.llm-agents.packages.${system}.opencode
+      whisper-cpp
+      bash-language-server
+      nil
+      nixfmt
+      basedpyright
+      gopls
+      libclang
+      typescript
+      bun
+      pnpm
+      typescript-language-server
+      typescript-go
+      emmet-language-server
+      markdownlint-cli
+      taplo
+      biome
+      vscode-langservers-extracted
+      copilot-language-server
+      tailwindcss-language-server
+      zls
+      (if isLinux then vlc else vlc-bin)
+    ]
+    ++ lib.optionals isLinux [
+      gimp
+      libnotify
+      qalculate-gtk
+      qbittorrent
+      udiskie
+      gparted
+      gnome-disk-utility
+      exfatprogs
+      bottles
+      dotool
+      zathura
+      kooha
+      flameshot
+      pear-desktop
+    ];
 }

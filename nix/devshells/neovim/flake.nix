@@ -15,7 +15,11 @@
   };
 
   outputs =
-    { self, nixpkgs, neovim-nightly-overlay }:
+    {
+      self,
+      nixpkgs,
+      neovim-nightly-overlay,
+    }:
     let
       systems = [
         "x86_64-linux"

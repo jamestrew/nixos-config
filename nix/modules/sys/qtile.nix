@@ -41,7 +41,7 @@
       peek
       flameshot
 
-      eww  # experimenting with widgets
+      eww # experimenting with widgets
     ];
 
     environment.variables = {

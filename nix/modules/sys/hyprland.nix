@@ -39,8 +39,8 @@
       playerctl
       pavucontrol
       alsa-utils
-      cliphist  # clipboard manager
-      showmethekey  # on-screen keypress visualizer
+      cliphist # clipboard manager
+      showmethekey # on-screen keypress visualizer
     ];
 
     xdg.portal = {
@@ -63,4 +63,3 @@
     services.playerctld.enable = true;
   };
 }
-

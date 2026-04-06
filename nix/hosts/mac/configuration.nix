@@ -47,6 +47,13 @@ in
 
   system.configurationRevision = self.rev or self.dirtyRev or null;
 
+  karabiner.enable = true;
+
+  system.keyboard = {
+    enableKeyMapping = true;
+    remapCapsLockToEscape = true;
+  };
+
   system.defaults = {
     dock.autohide = true;
     finder.AppleShowAllExtensions = true;

@@ -9,6 +9,6 @@
 - [ ] fish: valid commands aren't highlighting the same as on nixos
 - [x] `env.nix` switch to "global" `isDarwin`
 - [ ] other system installs (discord, brave, etc), move under nix
-- [ ] move nixos machine claude settings under nix
+- [x] move nixos machine claude settings under nix
 - [ ] some mac settings under nix?
   - [ ] is there some way to configure command vs ctrl usages? driving me nuts switching between mac and linux/window5

@@ -1,4 +1,10 @@
-{ inputs, pkgs, isDarwin, lib, ... }:
+{
+  inputs,
+  pkgs,
+  isDarwin,
+  lib,
+  ...
+}:
 {
   nixpkgs = {
     overlays = import ../../overlays {
@@ -29,7 +35,8 @@
     ./apps.nix
     ./env.nix
     ./sh.nix
-  ] ++ lib.optionals isDarwin [
+  ]
+  ++ lib.optionals isDarwin [
     ./karabiner.nix
   ];
 }

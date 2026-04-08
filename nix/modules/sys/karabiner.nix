@@ -25,7 +25,12 @@ let
         optional = [ "any" ];
       };
     };
-    to = [ { key_code = key; modifiers = [ "command" ]; } ];
+    to = [
+      {
+        key_code = key;
+        modifiers = [ "command" ];
+      }
+    ];
     conditions = [ nonTerminal ];
   };
 
@@ -41,7 +46,18 @@ let
         complex_modifications.rules = [
           {
             description = "PC-style shortcuts in non-terminal apps";
-            manipulators = map pcKey [ "c" "v" "z" "x" "a" "w" "t" "n" "f" "s" ];
+            manipulators = map pcKey [
+              "c"
+              "v"
+              "z"
+              "x"
+              "a"
+              "w"
+              "t"
+              "n"
+              "f"
+              "s"
+            ];
           }
           {
             description = "Terminal copy/paste (ctrl+shift+c/v) in ghostty";
@@ -50,18 +66,40 @@ let
                 type = "basic";
                 from = {
                   key_code = "c";
-                  modifiers = { mandatory = [ "control" "shift" ]; optional = [ "caps_lock" ]; };
+                  modifiers = {
+                    mandatory = [
+                      "control"
+                      "shift"
+                    ];
+                    optional = [ "caps_lock" ];
+                  };
                 };
-                to = [ { key_code = "c"; modifiers = [ "command" ]; } ];
+                to = [
+                  {
+                    key_code = "c";
+                    modifiers = [ "command" ];
+                  }
+                ];
                 conditions = [ inTerminal ];
               }
               {
                 type = "basic";
                 from = {
                   key_code = "v";
-                  modifiers = { mandatory = [ "control" "shift" ]; optional = [ "caps_lock" ]; };
+                  modifiers = {
+                    mandatory = [
+                      "control"
+                      "shift"
+                    ];
+                    optional = [ "caps_lock" ];
+                  };
                 };
-                to = [ { key_code = "v"; modifiers = [ "command" ]; } ];
+                to = [
+                  {
+                    key_code = "v";
+                    modifiers = [ "command" ];
+                  }
+                ];
                 conditions = [ inTerminal ];
               }
             ];

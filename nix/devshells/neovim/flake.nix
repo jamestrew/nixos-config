@@ -62,9 +62,11 @@
               ninja
               llvmPackages_latest.llvm
               (python3.withPackages (ps: [ ps.msgpack ]))
-              (writeShellScriptBin "nvim-install" "nix profile add path:${self}#packages.${system}.default")
+              (writeShellScriptBin "nvim-install" "cmake --install build --prefix $HOME/apps/neovim")
             ];
             shellHook = ''
+              export CMAKE_BUILD_TYPE=RelWithDebInfo
+              export CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/apps/neovim"
               export VIMRUNTIME=$PWD/runtime
               export ASAN_SYMBOLIZER_PATH=${pkgs.llvmPackages_latest.llvm}/bin/llvm-symbolizer
               export ASAN_OPTIONS="log_path=./asan.log:abort_on_error=1"

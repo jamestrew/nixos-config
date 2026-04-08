@@ -1,7 +1,6 @@
 {
   config,
   isDarwin,
-  lib,
   pkgs,
   ...
 }:
@@ -62,6 +61,7 @@ in
     "${config.home.homeDirectory}/.cargo/bin"
     "${config.home.homeDirectory}/go/bin"
     "${config.home.homeDirectory}/.local/bin"
+    "${config.home.homeDirectory}/apps/neovim/bin"
     "${npmglobal}/bin" # naughty npm global install path
   ];
 

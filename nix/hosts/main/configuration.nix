@@ -20,6 +20,7 @@ in
     ../../modules/sys/gaming.nix
     ../../modules/sys/qtile.nix
     ../../modules/sys/hyprland.nix
+    ../../modules/sys/office.nix
     ../../modules/sys/sops.nix
     ../../modules/sys/nordvpn.nix
     ../../modules/sys/spacemouse.nix
@@ -28,6 +29,7 @@ in
   # my modules
   qtile.enable = false;
   hyprland.enable = true;
+  office.enable = true;
   gaming.enable = true;
   nordvpn.enable = true;
   programs.handy.enable = true;

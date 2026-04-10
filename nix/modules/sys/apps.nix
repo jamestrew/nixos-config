@@ -75,6 +75,7 @@ in
       starship
       docker
       luajit
+      luajitPackages.luarocks
       lua51Packages.lua
       lua-language-server
       stylua

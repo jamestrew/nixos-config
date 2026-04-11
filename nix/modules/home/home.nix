@@ -167,8 +167,7 @@ in
       enable = true;
       ignores = [
         ".direnv"
-        ".claude"
-        "CLAUDE.md"
+        ".claude/settings.local.json"
       ];
       settings = {
         user = {

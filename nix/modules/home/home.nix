@@ -235,6 +235,7 @@ in
             "-r"
             "default() & recent()"
           ];
+          log-m = ["log" "-r" "trunk() | trunk()..@"];
           tug = [
             "bookmark"
             "move"

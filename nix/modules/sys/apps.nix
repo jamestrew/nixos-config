@@ -57,6 +57,7 @@ in
       ninja
       ccache
       imagemagick
+      ffmpeg
       discord
       fzf
       television

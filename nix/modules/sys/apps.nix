@@ -115,6 +115,7 @@ in
     ++ lib.optionals isLinux [
       gimp
       libnotify
+      thunar
       qalculate-gtk
       qbittorrent
       udiskie

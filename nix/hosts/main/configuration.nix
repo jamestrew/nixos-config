@@ -21,6 +21,7 @@ in
     ../../modules/sys/qtile.nix
     ../../modules/sys/hyprland.nix
     ../../modules/sys/office.nix
+    ../../modules/sys/video.nix
     ../../modules/sys/sops.nix
     ../../modules/sys/nordvpn.nix
     ../../modules/sys/spacemouse.nix
@@ -30,6 +31,7 @@ in
   qtile.enable = false;
   hyprland.enable = true;
   office.enable = true;
+  video.enable = true;
   gaming.enable = true;
   nordvpn.enable = true;
   programs.handy.enable = true;

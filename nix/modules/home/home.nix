@@ -157,7 +157,13 @@ in
       };
     };
     yazi.enable = true;
-    htop.enable = true;
+    htop = {
+      enable = true;
+      settings = {
+        show_program_path = false;
+        highlight_base_name = true;
+      };
+    };
     eza = {
       enable = true;
       icons = "auto";

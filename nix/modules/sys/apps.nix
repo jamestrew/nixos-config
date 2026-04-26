@@ -83,7 +83,7 @@ in
       luajitPackages.luacheck
       emmylua-ls
       inputs.llm-agents.packages.${system}.claude-code
-      inputs.llm-agents.packages.${system}.claude-code-acp
+      inputs.llm-agents.packages.${system}.claude-agent-acp
       inputs.llm-agents.packages.${system}.copilot-cli
       inputs.llm-agents.packages.${system}.gemini-cli
       inputs.llm-agents.packages.${system}.codex

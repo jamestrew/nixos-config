@@ -10,6 +10,14 @@
     };
   })
 
+  # Work around nixpkgs#513245: openldap 2.6.13 fails tests on i686 and
+  # breaks FHS env packages such as bottles during evaluation/build.
+  (_: prev: {
+    openldap = prev.openldap.overrideAttrs {
+      doCheck = !prev.stdenv.hostPlatform.isi686;
+    };
+  })
+
   (final: prev: {
     screenkey = prev.screenkey.overrideAttrs (oldAttrs: {
       src = prev.fetchFromGitLab {

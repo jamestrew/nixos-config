@@ -32,5 +32,7 @@
   "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754663437734
-  }
+  },
+  "preferredNotifChannel": "ghostty",
+  "agentPushNotifEnabled": true
 }

@@ -29,10 +29,10 @@
     "gopls-lsp@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
+  "preferredNotifChannel": "ghostty",
+  "agentPushNotifEnabled": true,
   "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754663437734
-  },
-  "preferredNotifChannel": "ghostty",
-  "agentPushNotifEnabled": true
+  }
 }

@@ -23,9 +23,11 @@ in
     ".config/yazi".source = ../../../dots/yazi;
     ".vimrc".source = ../../../dots/.vimrc;
     ".local/bin/ta".source = ../../../dots/tmux/ta;
+    ".agents/skills".source = link "${dots}/agents/skills";
     ".claude/settings.json".source = link "${dots}/claude/settings.json";
     ".claude/statusline.sh".source = link "${dots}/claude/statusline.sh";
     ".claude/notify.sh".source = link "${dots}/claude/notify.sh";
+    ".claude/skills".source = link "${dots}/agents/skills";
 
     ".config/opencode/opencode.json".text = builtins.toJSON {
       "$schema" = "https://opencode.ai/config.json";

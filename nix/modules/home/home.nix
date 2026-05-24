@@ -24,6 +24,7 @@ in
     ".vimrc".source = ../../../dots/.vimrc;
     ".local/bin/ta".source = ../../../dots/tmux/ta;
     ".agents/skills".source = link "${dots}/agents/skills";
+    ".claude/CLAUDE.md".source = link "${dots}/claude/CLAUDE.md";
     ".claude/settings.json".source = link "${dots}/claude/settings.json";
     ".claude/statusline.sh".source = link "${dots}/claude/statusline.sh";
     ".claude/notify.sh".source = link "${dots}/claude/notify.sh";
@@ -50,6 +51,7 @@ in
     FLAKE = "$HOME/nixos-config/nix";
     NH_FLAKE = "$HOME/nixos-config/nix";
     CDPATH = "${config.home.homeDirectory}/.local/share/nvim/:$CDPATH";
+    PI_SKIP_VERSION_CHECK = "1";
   };
 
   home.shellAliases = {
@@ -243,7 +245,11 @@ in
             "-r"
             "default() & recent()"
           ];
-          log-m = ["log" "-r" "trunk() | trunk()..@"];
+          log-m = [
+            "log"
+            "-r"
+            "trunk() | trunk()..@"
+          ];
           tug = [
             "bookmark"
             "move"

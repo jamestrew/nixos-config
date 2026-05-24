@@ -57,7 +57,7 @@ in
   networking = {
     hostName = "nixos"; # Define your hostname.
     hosts = {
-      "127.69.69.69" = ["gitlab.local"];
+      "127.69.69.69" = [ "gitlab.local" ];
     };
   };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

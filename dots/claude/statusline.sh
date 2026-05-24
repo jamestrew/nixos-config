@@ -2,12 +2,24 @@
 input=$(cat)
 
 CONTEXT_WINDOW_USED_PERCENTAGE=$(echo "$input" | jq -r '.context_window.used_percentage // 0 | floor')
+CONTEXT_WINDOW_USED_TOKENS=$(echo "$input" | jq -r '.context_window.total_input_tokens // 0')
 COST_TOTAL_COST_USD=$(echo "$input" | jq -r '.cost.total_cost_usd // 0 | . * 100 | floor / 100 | tostring | if . | contains(".") then . else . + ".00" end | if (. | split(".")[1] | length) == 1 then . + "0" else . end')
 MODEL_DISPLAY_NAME=$(echo "$input" | jq -r '.model.display_name')
 FIVE_H=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
 FIVE_H_RESET=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
 WEEK=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
 WEEK_RESET=$(echo "$input" | jq -r '.rate_limits.seven_day.resets_at // empty')
+
+abbrev() {
+  local n=$1
+  if [ "$n" -ge 1000000 ]; then
+    awk "BEGIN {printf \"%.1fM\", $n/1000000}"
+  elif [ "$n" -ge 1000 ]; then
+    awk "BEGIN {printf \"%.0fk\", $n/1000}"
+  else
+    echo "$n"
+  fi
+}
 
 rel_time() {
   local diff=$(( $1 - $(date +%s) ))
@@ -21,4 +33,4 @@ LIMITS=""
 [ -n "$FIVE_H" ] && LIMITS=" | 5h: $(printf '%.0f' "$FIVE_H")%${FIVE_H_RESET:+ ($(rel_time "$FIVE_H_RESET"))}"
 [ -n "$WEEK" ] && LIMITS="${LIMITS} 7d: $(printf '%.0f' "$WEEK")%${WEEK_RESET:+ ($(rel_time "$WEEK_RESET"))}"
 
-echo "Context used: ${CONTEXT_WINDOW_USED_PERCENTAGE}% | Cost: \$${COST_TOTAL_COST_USD} | Model: $MODEL_DISPLAY_NAME${LIMITS}"
+echo "Context used: ${CONTEXT_WINDOW_USED_PERCENTAGE}% [$(abbrev "$CONTEXT_WINDOW_USED_TOKENS")] | Cost: \$${COST_TOTAL_COST_USD} | Model: $MODEL_DISPLAY_NAME${LIMITS}"

@@ -43,6 +43,22 @@ in
 
     ".npmrc".text = ''
       prefix=${npmglobal}
+      ignore-scripts=true
+      allow-git=none
+      audit=true
+      fund=false
+    '';
+
+    ".config/pnpm/rc".text = ''
+      ignore-scripts=true
+
+      minimum-release-age=20160
+    '';
+
+    ".bunfig.toml".text = ''
+      [install]
+      # Bun blocks lifecycle scripts by default. Prefer per-project
+      # trustedDependencies when a package genuinely needs install scripts.
     '';
   };
 

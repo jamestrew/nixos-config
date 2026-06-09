@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   nix.settings = {
     trusted-users = [ "jt" ];
@@ -14,5 +14,11 @@
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 30d";
+  };
+
+  systemd.timers.fstrim.timerConfig = {
+    OnCalendar = lib.mkForce "Mon 04:00";
+    RandomizedDelaySec = "1h";
+    Persistent = false;
   };
 }

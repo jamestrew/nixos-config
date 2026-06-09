@@ -90,7 +90,9 @@ in
       inputs.llm-agents.packages.${system}.codex-acp
       inputs.llm-agents.packages.${system}.opencode
       inputs.llm-agents.packages.${system}.pi
-      rtk
+      inputs.llm-agents.packages.${system}.rtk
+      inputs.llm-agents.packages.${system}.copilot-language-server
+      inputs.llm-agents.packages.${system}.handy
       whisper-cpp
       bash-language-server
       nil
@@ -108,7 +110,6 @@ in
       taplo
       biome
       vscode-langservers-extracted
-      copilot-language-server
       tailwindcss-language-server
       zls
       (if isLinux then vlc else vlc-bin)

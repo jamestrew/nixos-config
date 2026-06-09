@@ -28,7 +28,6 @@
     };
 
     llm-agents.url = "github:numtide/llm-agents.nix";
-    handy.url = "github:cjpais/Handy";
 
     nur = {
       url = "github:nix-community/NUR";
@@ -71,7 +70,6 @@
           modules = [
             nur.modules.nixos.default
             lanzaboote.nixosModules.lanzaboote
-            inputs.handy.nixosModules.default
             ./hosts/main/configuration.nix
             home-manager.nixosModules.home-manager
             {
@@ -87,7 +85,6 @@
                 };
                 sharedModules = [
                   inputs.sops-nix.homeManagerModules.sops
-                  inputs.handy.homeManagerModules.default
                 ];
                 backupFileExtension = "backup";
               };

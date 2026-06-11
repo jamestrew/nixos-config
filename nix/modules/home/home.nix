@@ -147,6 +147,12 @@ in
             cd $argv[1]
           '';
         };
+        cpwd = {
+          description = "Copy the current working directory to the clipboard";
+          body = ''
+            pwd | wl-copy -n
+          '';
+        };
       };
     };
 

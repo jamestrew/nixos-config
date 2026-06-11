@@ -23,7 +23,7 @@ in
     ".config/yazi".source = ../../../dots/yazi;
     ".vimrc".source = ../../../dots/.vimrc;
     ".local/bin/ta".source = ../../../dots/tmux/ta;
-    ".agents/skills".source = link "${dots}/agents/skills";
+    ".agents".source = link "${dots}/agents";
     ".claude/CLAUDE.md".source = link "${dots}/claude/CLAUDE.md";
     ".claude/settings.json".source = link "${dots}/claude/settings.json";
     ".claude/statusline.sh".source = link "${dots}/claude/statusline.sh";

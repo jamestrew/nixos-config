@@ -82,6 +82,7 @@ in
       stylua
       luajitPackages.luacheck
       emmylua-ls
+      emmylua-check
       inputs.llm-agents.packages.${system}.claude-code
       inputs.llm-agents.packages.${system}.claude-agent-acp
       inputs.llm-agents.packages.${system}.copilot-cli

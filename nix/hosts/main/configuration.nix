@@ -56,7 +56,10 @@ in
   networking = {
     hostName = "nixos"; # Define your hostname.
     hosts = {
-      "127.69.69.69" = [ "gitlab.local" "forgejo.local"];
+      "127.69.69.69" = [
+        "gitlab.local"
+        "forgejo.local"
+      ];
     };
   };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -92,9 +95,9 @@ in
     };
   };
 
-  services.displayManager.gdm = {
-    enable = true;
-    wayland = true;
+  services.displayManager = {
+    defaultSession = "hyprland";
+    gdm.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with 'passwd'.

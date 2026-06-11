@@ -174,6 +174,7 @@ in
         window-decoration = isDarwin;
         mouse-scroll-multiplier = 1;
         macos-option-as-alt = true;
+        async-backend = "epoll";
       };
     };
     yazi.enable = true;

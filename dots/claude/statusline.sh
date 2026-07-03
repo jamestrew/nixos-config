@@ -1,14 +1,23 @@
 #!/usr/bin/env bash
 input=$(cat)
 
-CONTEXT_WINDOW_USED_PERCENTAGE=$(echo "$input" | jq -r '.context_window.used_percentage // 0 | floor')
-CONTEXT_WINDOW_USED_TOKENS=$(echo "$input" | jq -r '.context_window.total_input_tokens // 0')
-COST_TOTAL_COST_USD=$(echo "$input" | jq -r '.cost.total_cost_usd // 0 | . * 100 | floor / 100 | tostring | if . | contains(".") then . else . + ".00" end | if (. | split(".")[1] | length) == 1 then . + "0" else . end')
-MODEL_DISPLAY_NAME=$(echo "$input" | jq -r '.model.display_name')
-FIVE_H=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
-FIVE_H_RESET=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
-WEEK=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
-WEEK_RESET=$(echo "$input" | jq -r '.rate_limits.seven_day.resets_at // empty')
+# Pull everything in one jq pass (tab-separated). `read` treats tab as
+# whitespace and collapses adjacent tabs, so an empty effort field would shift
+# every later column left; emit "-" as a sentinel and strip it below.
+IFS=$'\t' read -r MODEL EFFORT CTX_SIZE CTX_USED CTX_PCT IN OUT CACHE_READ COST < <(
+  echo "$input" | jq -r '[
+    .model.display_name,
+    (.effort.level // "-"),
+    (.context_window.context_window_size // 0),
+    (.context_window.total_input_tokens // 0),
+    (.context_window.used_percentage // 0),
+    (.context_window.current_usage.input_tokens // 0),
+    (.context_window.current_usage.output_tokens // 0),
+    (.context_window.current_usage.cache_read_input_tokens // 0),
+    (.cost.total_cost_usd // 0)
+  ] | @tsv'
+)
+[ "$EFFORT" = "-" ] && EFFORT=""
 
 abbrev() {
   local n=$1
@@ -21,16 +30,9 @@ abbrev() {
   fi
 }
 
-rel_time() {
-  local diff=$(( $1 - $(date +%s) ))
-  [ "$diff" -le 0 ] && echo "now" && return
-  local d=$(( diff / 86400 )) h=$(( (diff % 86400) / 3600 )) m=$(( (diff % 3600) / 60 ))
-  local dh=$(awk "BEGIN {printf \"%.1f\", $h + $m/60}")
-  [ "$d" -gt 0 ] && echo "${d}d${dh}h" || echo "${dh}h"
-}
+# Cache-hit rate is derived: cached reads over the input-only context total.
+CH=$(awk "BEGIN {t=$CTX_USED; printf \"%.1f\", (t>0 ? $CACHE_READ/t*100 : 0)}")
+PCT=$(awk "BEGIN {printf \"%.1f\", $CTX_PCT}")
+COST_FMT=$(awk "BEGIN {printf \"%.3f\", $COST}")
 
-LIMITS=""
-[ -n "$FIVE_H" ] && LIMITS=" | 5h: $(printf '%.0f' "$FIVE_H")%${FIVE_H_RESET:+ ($(rel_time "$FIVE_H_RESET"))}"
-[ -n "$WEEK" ] && LIMITS="${LIMITS} 7d: $(printf '%.0f' "$WEEK")%${WEEK_RESET:+ ($(rel_time "$WEEK_RESET"))}"
-
-echo "Context used: ${CONTEXT_WINDOW_USED_PERCENTAGE}% [$(abbrev "$CONTEXT_WINDOW_USED_TOKENS")] | Cost: \$${COST_TOTAL_COST_USD} | Model: $MODEL_DISPLAY_NAME${LIMITS}"
+echo "${MODEL}${EFFORT:+ $EFFORT} · $(abbrev "$CTX_USED")/$(abbrev "$CTX_SIZE") ${PCT}% · ↑$(abbrev "$IN") ↓$(abbrev "$OUT") R$(abbrev "$CACHE_READ") CH${CH}% \$${COST_FMT}"

@@ -33,7 +33,7 @@ in
   office.enable = true;
   video.enable = true;
   gaming.enable = true;
-  nordvpn.enable = true;
+  services.nordvpn.enable = true;
   spacemouse = {
     enable = true;
     websocket = {
@@ -110,6 +110,7 @@ in
       "docker"
       "dialout"
       "input"
+      "nordvpn"
     ];
     packages = [ ];
     shell = defaultShell;
@@ -220,6 +221,10 @@ in
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  # NordVPN's kill-switch drops non-VPN packets; loose reverse-path filtering
+  # is required for connections to work with the firewall enabled.
+  networking.firewall.checkReversePath = "loose";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

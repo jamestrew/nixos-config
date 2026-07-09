@@ -14,6 +14,8 @@ Brutally strict review of implementation quality, maintainability, and abstracti
 
 ## Standards
 
+Start with anything in the repo that documents how code should be written (`CODING_STANDARDS.md`, `CONTRIBUTING.md`, local agent instructions, etc.). Repo standards override the baseline below: if documented project guidance endorses something a smell would normally flag, suppress the smell. Treat smells as labelled heuristics, not hard violations (`possible Feature Envy`), and skip anything tooling already enforces.
+
 Treat each as a presumptive blocker unless the author justifies it clearly:
 
 1. **Code judo first.** For every meaningful change, ask if a reframing makes whole branches / helpers / modes / layers disappear. Don't settle for "a bit cleaner," or for a cleaner version of the same messy idea when a simpler idea is plausible.
@@ -24,6 +26,23 @@ Treat each as a presumptive blocker unless the author justifies it clearly:
 6. **Type & boundary cleanliness.** Question needless optionality, `any`, `unknown`, cast-heavy code, and silent fallbacks papering over unclear invariants. Prefer explicit typed models and shared contracts.
 7. **Canonical layer.** Keep feature logic out of shared paths and implementation details out of APIs. Reuse existing canonical helpers; put logic in the package/module that owns the concept instead of normalizing drift.
 8. **Atomic & parallel.** Flag work serialized for no reason (parallelize when it also simplifies) and updates that can leave state half-applied (push toward atomic). Don't chase micro-optimizations.
+
+### Smell Baseline
+
+When repo guidance is silent, keep Fowler's core smells in the review vocabulary. Match them against the diff as `what it is → how to fix`:
+
+- **Mysterious Name** — a function, variable, or type whose name doesn't reveal what it does or holds. → Rename it; if no honest name comes, the design is murky.
+- **Duplicated Code** — the same logic shape appears in more than one hunk or file. → Extract the shared shape and call it from both sites.
+- **Feature Envy** — a method reaches into another object's data more than its own. → Move the method onto the data it envies.
+- **Data Clumps** — the same fields or params keep travelling together. → Bundle them into one type and pass that.
+- **Primitive Obsession** — a primitive or string stands in for a domain concept. → Give the concept its own small type.
+- **Repeated Switches** — the same switch / if-cascade on the same type recurs. → Replace it with polymorphism, or one shared map / dispatcher.
+- **Shotgun Surgery** — one logical change forces scattered edits across many files. → Gather what changes together into one module.
+- **Divergent Change** — one file or module is edited for unrelated reasons. → Split so each module changes for one reason.
+- **Speculative Generality** — abstractions, parameters, or hooks serve needs the spec doesn't have. → Delete them; inline back until a real need shows up.
+- **Message Chains** — long `a.b().c().d()` navigation exposes structure the caller shouldn't know. → Hide the walk behind one method on the first object.
+- **Middle Man** — a class or function mostly delegates onward. → Cut it and call the real target directly.
+- **Refused Bequest** — a subclass or implementer ignores or overrides most inherited behavior. → Drop inheritance and use composition.
 
 ## Preferred Remedies
 

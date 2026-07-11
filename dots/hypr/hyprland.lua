@@ -176,6 +176,9 @@ hl.on("hyprland.start", function ()
 
   hl.exec_cmd("fcitx5")
   hl.exec_cmd("udiskie --tray")
+  -- NordVPN tray icon. The unit is wantedBy graphical-session.target, which this
+  -- session never activates, so start it by hand.
+  hl.exec_cmd("systemctl --user start norduserd")
   hl.exec_cmd("brave --disable-features=WaylandWpColorManagerV1", { workspace = "1 silent" })
   hl.exec_cmd("discord", { workspace = "3 silent" })
   -- hl.exec_cmd("pear-desktop", { workspace = "3 silent" })

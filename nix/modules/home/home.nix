@@ -1,6 +1,7 @@
 {
   config,
   isDarwin,
+  lib,
   pkgs,
   ...
 }:
@@ -9,6 +10,16 @@ let
   dots = "${config.home.homeDirectory}/nixos-config/dots";
   browserCmd = if isDarwin then "open" else "xdg-open";
   npmglobal = "${config.home.homeDirectory}/.npm-global";
+
+  # Files the app rewrites atomically (write tmp alongside, then rename over).
+  # home.file always links via the generation dir, so an out-of-store symlink is
+  # two hops: ~/f -> $gen/home-files/f -> $store/hm_f -> dots/f. Claude Code
+  # resolves only the first hop before placing its tmp file, landing it in the
+  # read-only store (EROFS). Link straight at the dotfile so that one hop is
+  # already somewhere writable.
+  directLinks = {
+    ".claude/settings.json" = "${dots}/claude/settings.json";
+  };
 in
 {
 
@@ -25,7 +36,6 @@ in
     ".local/bin/ta".source = ../../../dots/tmux/ta;
     ".agents".source = link "${dots}/agents";
     ".claude/CLAUDE.md".source = link "${dots}/claude/CLAUDE.md";
-    ".claude/settings.json".source = link "${dots}/claude/settings.json";
     ".claude/statusline.sh".source = link "${dots}/claude/statusline.sh";
     ".claude/notify.sh".source = link "${dots}/claude/notify.sh";
     ".claude/skills".source = link "${dots}/agents/skills";
@@ -61,6 +71,15 @@ in
       # trustedDependencies when a package genuinely needs install scripts.
     '';
   };
+
+  home.activation.directLinks = lib.hm.dag.entryAfter [ "linkGeneration" ] (
+    lib.concatStrings (
+      lib.mapAttrsToList (target: src: ''
+        run mkdir -p "$(dirname "$HOME/${target}")"
+        run ln -sfn "${src}" "$HOME/${target}"
+      '') directLinks
+    )
+  );
 
   home.sessionVariables = {
     EDITOR = "nvim";

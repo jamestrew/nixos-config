@@ -1,5 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "model": "opus",
   "hooks": {
     "Notification": [
       {
@@ -21,14 +25,15 @@
     "pr-review-toolkit@claude-code-plugins": false,
     "commit-commands@claude-code-plugins": false,
     "feature-dev@claude-code-plugins": false,
-    "code-review@claude-code-plugins": true,
+    "code-review@claude-code-plugins": false,
     "explanatory-output-style@claude-code-plugins": true,
-    "learning-output-style@claude-code-plugins": true,
+    "learning-output-style@claude-code-plugins": false,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true
+    "gopls-lsp@claude-plugins-official": false
   },
   "alwaysThinkingEnabled": true,
+  "tui": "fullscreen",
   "preferredNotifChannel": "ghostty",
   "agentPushNotifEnabled": true,
   "voiceEnabled": true,

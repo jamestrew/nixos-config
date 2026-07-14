@@ -140,7 +140,9 @@ bind(main_mod .. " + SHIFT", "Q", hl.dsp.exit())
 bind_exec(main_mod, "O", "swaync-client --toggle-panel")
 bind_exec(main_mod, "S", "swaync-client --close-all")
 
-bind_exec(main_mod, "R", "handy --toggle-transcription")
+-- SIGUSR2 = toggle transcribe in the running handy (no second Tauri process
+-- spawn like --toggle-transcription; SIGUSR1 = transcribe with post-process)
+bind_exec(main_mod, "R", "pkill -USR2 -x handy")
 
 -- Workspace navigation - dynamic per monitor
 for workspace = 1, 9 do

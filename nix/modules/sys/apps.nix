@@ -157,7 +157,11 @@ in
       gparted
       gnome-disk-utility
       exfatprogs
-      bottles
+      # Temporarily disabled pending:
+      # https://github.com/NixOS/nixpkgs/pull/540742
+      # Test with:
+      # nix build --no-link github:NixOS/nixpkgs/nixos-unstable#python314Packages.patool
+      # bottles
       dotool
       wtype
       zathura

@@ -23,7 +23,6 @@ in
     ../../modules/sys/office.nix
     ../../modules/sys/video.nix
     ../../modules/sys/sops.nix
-    ../../modules/sys/nordvpn.nix
     ../../modules/sys/spacemouse.nix
   ];
 

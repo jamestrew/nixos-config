@@ -59,6 +59,7 @@ in
       "127.69.69.69" = [
         "gitlab.local"
         "forgejo.local"
+        "keycloak.local"
       ];
     };
   };

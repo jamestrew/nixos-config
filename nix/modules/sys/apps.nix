@@ -7,6 +7,25 @@
 }:
 let
   system = pkgs.stdenv.hostPlatform.system;
+  handy = inputs.llm-agents.packages.${system}.handy;
+  # wtype shim for Handy: wait for physically-held modifiers (e.g. the SUPER
+  # of the stop-dictation keybind) to be released before typing, otherwise
+  # Hyprland reads the typed letters as SUPER+<letter> keybinds.
+  handyWtypeShim = pkgs.writeShellScriptBin "wtype" ''
+    exec ${pkgs.python3}/bin/python3 ${./wtype-wait-mods.py} ${pkgs.wtype}/bin/wtype "$@"
+  '';
+  # exec the original store binary (not a renamed copy) so the process comm
+  # stays "handy" and the pkill -x handy toggle keybind keeps working
+  handyWrapped = pkgs.symlinkJoin {
+    name = "handy-wrapped";
+    paths = [ handy ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      rm $out/bin/handy
+      makeWrapper ${handy}/bin/handy $out/bin/handy \
+        --prefix PATH : ${handyWtypeShim}/bin
+    '';
+  };
 in
 {
   environment.systemPackages =
@@ -93,7 +112,7 @@ in
       inputs.llm-agents.packages.${system}.pi
       inputs.llm-agents.packages.${system}.rtk
       inputs.llm-agents.packages.${system}.copilot-language-server
-      inputs.llm-agents.packages.${system}.handy
+      handyWrapped
       whisper-cpp
       bash-language-server
       nil
@@ -127,6 +146,7 @@ in
       exfatprogs
       bottles
       dotool
+      wtype
       zathura
       kooha
       flameshot

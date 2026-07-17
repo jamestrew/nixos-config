@@ -39,6 +39,9 @@ in
     websocket = {
       enable = true;
     };
+    browse = {
+      enable = true;
+    };
   };
   defaultShell = defaultShell;
 

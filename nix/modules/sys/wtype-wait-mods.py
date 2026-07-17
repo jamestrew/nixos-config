@@ -1,12 +1,23 @@
-"""Wait (max 2s) until no physical modifier key is held, then exec argv[1:].
+"""Wait (max 2s) until no physical key is held at all, then exec argv[1:].
 
 Handy invokes wtype the instant a transcription finalizes — typically while
-the SUPER of the SUPER+R stop-toggle is still physically held. Hyprland
-merges modifier state across all keyboards on the seat, so the virtually
-typed letters land as SUPER+<letter> and fire compositor keybinds. Gating
-wtype on all-modifiers-released fixes that; dotool never showed the problem
-only because its ~0.7s uinput settle delay acted as an accidental grace
-period.
+the SUPER+R stop-toggle is still physically held. Two distinct failure modes,
+both fixed by waiting for full key release:
+
+1. Modifiers (the original bug): Hyprland merges modifier state across all
+   keyboards on the seat, so the virtually typed letters land as
+   SUPER+<letter> and fire compositor keybinds.
+
+2. Any other key, e.g. the R of SUPER+R (gh issue #4): wtype types on its
+   own virtual keyboard with a custom keymap (unique-char N -> keycode N).
+   A physical key event interleaving with wtype's stream makes Hyprland
+   switch the client's active keymap to the physical one mid-stream, and
+   wtype's keycodes get read under the wrong keymap — keycode 28 is Return
+   on a us keymap, and rare chars (capitals) sit right in that range, so a
+   capital letter comes out as a newline.
+
+dotool never showed either problem only because its ~0.7s uinput settle
+delay acted as an accidental grace period.
 
 Perf notes (this machine, ~31 input devices): closing an evdev fd costs
 10-25ms (synchronize_rcu in evdev_release), so a naive open/scan/close of
@@ -22,9 +33,13 @@ import os
 import sys
 import time
 
-# evdev KEY_* codes: L/R ctrl, shift, alt, meta
+# evdev KEY_* codes: L/R ctrl, shift, alt, meta — used only to preselect
+# keyboard-like devices from sysfs; the hold check below covers all keys
 MODIFIERS = (29, 97, 42, 54, 56, 100, 125, 126)
 KEY_STATE_BYTES = 96  # (KEY_MAX 0x2ff + 1) / 8
+# only the keyboard range: codes 0-255. BTN_* (mouse, 0x100+) deliberately
+# excluded so a held mouse button (drag) can't stall typing for the full 2s
+KEYBOARD_STATE_BYTES = 32
 EVIOCGKEY = (2 << 30) | (KEY_STATE_BYTES << 16) | (ord("E") << 8) | 0x18
 
 
@@ -53,21 +68,21 @@ for path in glob.glob("/dev/input/event*"):
     fds.append(fd)
 
 
-def any_modifier_held():
+def any_key_held():
     state = bytearray(KEY_STATE_BYTES)
     for fd in fds:
         try:
             fcntl.ioctl(fd, EVIOCGKEY, state)
         except OSError:
             continue
-        if any(state[k >> 3] & 1 << (k & 7) for k in MODIFIERS):
+        if any(state[:KEYBOARD_STATE_BYTES]):
             return True
     return False
 
 
 deadline = time.monotonic() + 2.0
 waited = False
-while time.monotonic() < deadline and any_modifier_held():
+while time.monotonic() < deadline and any_key_held():
     waited = True
     time.sleep(0.01)
 if waited:

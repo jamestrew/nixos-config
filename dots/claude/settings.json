@@ -23,7 +23,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "sonnet",
+  "model": "opus",
   "disableClaudeAiConnectors": true,
   "disableBundledSkills": true,
   "hooks": {
@@ -59,11 +59,11 @@
   },
   "alwaysThinkingEnabled": true,
   "tui": "fullscreen",
+  "autoMemoryEnabled": false,
   "preferredNotifChannel": "ghostty",
   "agentPushNotifEnabled": true,
   "voiceEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754663437734
-  },
-  "autoMemoryEnabled": false
+  }
 }

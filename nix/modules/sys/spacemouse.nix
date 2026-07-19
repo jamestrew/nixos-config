@@ -9,6 +9,12 @@ let
   wsCfg = config.spacemouse.websocket;
   browseCfg = config.spacemouse.browse;
 
+  # Passed as a file rather than an ExecStart argument: systemd does its own
+  # shell-like quote parsing, and inline JSON does not survive it.
+  browseProfiles = pkgs.writeText "spacemouse-profiles.json" (
+    builtins.toJSON (lib.mapAttrsToList (name: app: app // { inherit name; }) browseCfg.apps)
+  );
+
   browsePython = pkgs.python3.withPackages (ps: [ ps.evdev ]);
   browsePackage = pkgs.writeScriptBin "spacemouse-browse" ''
     #!${browsePython}/bin/python3
@@ -83,26 +89,64 @@ in
         };
       };
       browse = {
-        enable = lib.mkEnableOption "SpaceMouse browser scrolling (virtual scroll wheel + back/forward buttons)";
-        browsers = lib.mkOption {
-          type = lib.types.listOf lib.types.str;
-          default = [
-            "brave-browser"
-            "firefox"
-            "chromium-browser"
-            "zen"
-          ];
-          description = "Hyprland window classes treated as browsers (case-insensitive).";
-        };
-        excludeTitle = lib.mkOption {
-          type = lib.types.str;
-          default = "onshape";
-          description = "Case-insensitive regex; scrolling is disabled while the focused window title matches (keeps Onshape on spacenav-ws).";
+        enable = lib.mkEnableOption "SpaceMouse scrolling (virtual scroll wheel + buttons) in matching apps";
+        apps = lib.mkOption {
+          type = lib.types.attrsOf (
+            lib.types.submodule {
+              options = {
+                classes = lib.mkOption {
+                  type = lib.types.listOf lib.types.str;
+                  default = [ ];
+                  description = "Hyprland window classes this profile applies to (case-insensitive).";
+                };
+                excludeTitle = lib.mkOption {
+                  type = lib.types.str;
+                  default = "";
+                  description = "Case-insensitive regex; scrolling is disabled while the focused window title matches.";
+                };
+                speed = lib.mkOption {
+                  type = lib.types.float;
+                  default = 1.0;
+                  description = "Per-profile scroll speed multiplier. A wheel notch is ~100px in a browser but ~3 lines in a terminal, so terminals want a much lower value.";
+                };
+                buttons = lib.mkOption {
+                  type = lib.types.attrsOf lib.types.str;
+                  default = { };
+                  example = {
+                    "0" = "BTN_SIDE";
+                    "1" = "BTN_EXTRA";
+                  };
+                  description = "Map of spacenav button index to evdev code name. BTN_* and KEY_* both work; the virtual device advertises whatever is used here.";
+                };
+              };
+            }
+          );
+          default = {
+            browser = {
+              classes = [
+                "brave-browser"
+                "firefox"
+                "chromium-browser"
+                "zen"
+              ];
+              # keeps Onshape on spacenav-ws
+              excludeTitle = "onshape";
+              buttons = {
+                "0" = "BTN_SIDE"; # back
+                "1" = "BTN_EXTRA"; # forward
+              };
+            };
+            terminal = {
+              classes = [ "com.mitchellh.ghostty" ];
+              speed = 0.25;
+            };
+          };
+          description = "Per-app scroll profiles, keyed by a descriptive name.";
         };
         speed = lib.mkOption {
           type = lib.types.float;
           default = 1.0;
-          description = "Scroll speed multiplier (1.0 = ~25 wheel notches/s at full deflection).";
+          description = "Global scroll speed multiplier, applied on top of each profile's speed (1.0 = ~25 wheel notches/s at full deflection).";
         };
         deadzone = lib.mkOption {
           type = lib.types.int;
@@ -157,14 +201,13 @@ in
       # starts under this Hyprland setup. The daemon itself waits/retries for
       # the spacenavd and Hyprland sockets.
       systemd.user.services.spacemouse-browse = {
-        description = "SpaceMouse browser scrolling daemon";
+        description = "SpaceMouse scrolling daemon";
         wantedBy = [ "default.target" ];
         serviceConfig = {
           ExecStart = lib.concatStringsSep " " (
             [
               "${browsePackage}/bin/spacemouse-browse"
-              "--browsers ${lib.concatStringsSep "," browseCfg.browsers}"
-              "--exclude-title '${browseCfg.excludeTitle}'"
+              "--apps ${browseProfiles}"
               "--speed ${toString browseCfg.speed}"
               "--deadzone ${toString browseCfg.deadzone}"
             ]

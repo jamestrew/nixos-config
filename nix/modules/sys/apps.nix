@@ -14,6 +14,17 @@ let
   handyWtypeShim = pkgs.writeShellScriptBin "wtype" ''
     exec ${pkgs.python3}/bin/python3 ${./wtype-wait-mods.py} ${pkgs.wtype}/bin/wtype "$@"
   '';
+  # ydotool's `type` defaults to 20ms key-delay + 20ms key-hold (~40ms/char),
+  # so a sentence takes several seconds. Handy calls `ydotool type -- <text>`
+  # with no flags, so shim the `type` subcommand to near-zero delays; pass all
+  # other invocations straight through. Bump these if characters start dropping.
+  handyYdotoolShim = pkgs.writeShellScriptBin "ydotool" ''
+    if [ "$1" = "type" ]; then
+      shift
+      exec ${pkgs.ydotool}/bin/ydotool type --key-delay 0 --key-hold 2 "$@"
+    fi
+    exec ${pkgs.ydotool}/bin/ydotool "$@"
+  '';
   # exec the original store binary (not a renamed copy) so the process comm
   # stays "handy" and the pkill -x handy toggle keybind keeps working
   handyWrapped = pkgs.symlinkJoin {
@@ -23,7 +34,9 @@ let
     postBuild = ''
       rm $out/bin/handy
       makeWrapper ${handy}/bin/handy $out/bin/handy \
-        --prefix PATH : ${handyWtypeShim}/bin
+        --prefix PATH : ${handyWtypeShim}/bin \
+        --prefix PATH : ${handyYdotoolShim}/bin \
+        --set-default YDOTOOL_SOCKET /run/ydotoold/socket
     '';
   };
 in
@@ -152,4 +165,16 @@ in
       flameshot
       pear-desktop
     ];
+}
+// lib.optionalAttrs isLinux {
+  # ydotoold: uinput-based virtual keyboard, used as Handy's direct-typing
+  # backend. Unlike wtype (Wayland virtual-keyboard protocol with a per-stream
+  # keymap Hyprland can swap out mid-stream -> gh #4), ydotool injects through
+  # the kernel under the system keymap via a persistent daemon: no per-call
+  # settle delay (dotool's slowness) and no mid-stream corruption. The module
+  # runs a hardened ydotoold service, sets YDOTOOL_SOCKET, adds the client to
+  # PATH, and gates it behind the "ydotool" group (jt is a member; see
+  # configuration.nix). Select "ydotool" in Handy's typing-tool setting to use
+  # it; Auto still prefers the (still-installed) wtype shim.
+  programs.ydotool.enable = true;
 }

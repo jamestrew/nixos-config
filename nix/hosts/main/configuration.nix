@@ -115,6 +115,7 @@ in
       "dialout"
       "input"
       "nordvpn"
+      "ydotool" # access ydotoold socket (Handy direct-typing backend)
     ];
     packages = [ ];
     shell = defaultShell;

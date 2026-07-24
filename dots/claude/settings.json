@@ -58,6 +58,7 @@
     "gopls-lsp@claude-plugins-official": false
   },
   "alwaysThinkingEnabled": true,
+  "awaySummaryEnabled": false,
   "tui": "fullscreen",
   "autoMemoryEnabled": false,
   "preferredNotifChannel": "ghostty",

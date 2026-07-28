@@ -1,0 +1,36 @@
+--- a/to-spec/SKILL.md
++++ b/to-spec/SKILL.md
+@@ -1,12 +1,12 @@
+ ---
+ name: to-spec
+-description: Turn the current conversation into a spec and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.
++description: Turn the current conversation into a spec and publish it as a GitHub issue — no interview, just synthesis of what you've already discussed.
+ disable-model-invocation: true
+ ---
+ 
+ This skill takes the current conversation context and codebase understanding and produces a spec (you may know this document as a PRD). Do NOT interview the user — just synthesize what you already know.
+ 
+-The issue tracker and triage label vocabulary should have been provided to you — run `/setup-matt-pocock-skills` if not.
++Specs are published as **GitHub issues** via the `gh` CLI.
+ 
+ ## Process
+ 
+@@ -16,7 +16,7 @@
+ 
+ Check with the user that these seams match their expectations.
+ 
+-3. Write the spec using the template below, then publish it to the project issue tracker. Apply the `ready-for-agent` triage label - no need for additional triage.
++3. Write the spec using the template below, then publish it as a GitHub issue following [Publishing](#publishing) — labelled `ready-for-agent`, no additional triage.
+ 
+ <spec-template>
+ 
+@@ -73,3 +73,9 @@
+ Any further notes about the feature.
+ 
+ </spec-template>
++
++## Publishing
++
++Publish the spec as a GitHub issue with the `gh` CLI, labelled `ready-for-agent`. Create that label first if the repo doesn't already have it — `gh` fails the whole create when a label doesn't exist. Pass the body as a file, not inline; spec bodies contain fenced code the shell will mangle.
++
++Title the issue with the feature name, not "Spec: …". Report the issue URL — `/to-tickets` takes the number to break the spec into tickets.

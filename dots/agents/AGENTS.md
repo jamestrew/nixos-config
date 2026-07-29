@@ -1,0 +1,1 @@
+- Commits: git conventional format with a body. Reference tickets as "Ref #<n>", or "Closes #<n>" if it closes them.

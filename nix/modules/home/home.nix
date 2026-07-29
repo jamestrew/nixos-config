@@ -35,7 +35,7 @@ in
     ".vimrc".source = ../../../dots/.vimrc;
     ".local/bin/ta".source = ../../../dots/tmux/ta;
     ".agents".source = link "${dots}/agents";
-    ".claude/CLAUDE.md".source = link "${dots}/claude/CLAUDE.md";
+    ".claude/CLAUDE.md".source = link "${dots}/agents/AGENTS.md";
     ".claude/statusline.sh".source = link "${dots}/claude/statusline.sh";
     ".claude/notify.sh".source = link "${dots}/claude/notify.sh";
     ".claude/skills".source = link "${dots}/agents/skills";

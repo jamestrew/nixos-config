@@ -4,9 +4,9 @@ description: "Implement a piece of work based on a spec or set of tickets, then 
 disable-model-invocation: true
 ---
 
-Implement the work described by the user in the spec or tickets.
+Implement the work described by the user in the spec or tickets. Check if the ticket has a parent ticket and if present, view the parent ticket for context. Check if the ticket has comments.
 
-Use /tdd where possible, at pre-agreed seams.
+Use tdd skill where possible, at pre-agreed seams.
 
 Run typechecking regularly, single test files regularly, and the full test suite once at the end.
 

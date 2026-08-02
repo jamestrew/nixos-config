@@ -335,6 +335,7 @@ in
     fzf = {
       enable = true;
       defaultCommand = "fd -td";
+      historyWidget.command = "";
     };
 
   };

@@ -1,0 +1,415 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "medium"
+personality = "pragmatic"
+plan_mode_reasoning_effort = "high"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+approvals_reviewer = "auto_review"
+[projects."/home/jt/projects/crush"]
+trust_level = "trusted"
+
+[projects."/home/jt/nixos-config"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/patestv2"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/cv"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/CCOS-firmware"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/claude-code"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/docgen.nvim"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/leetcode"]
+trust_level = "trusted"
+
+[projects."/home/jt/.local/share/nvim/lazy/leetcode.nvim"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/lux"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/microscope.nvim/scratch/mini.pick"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/microscope.nvim"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/neovim"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/duckdb-python"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/aoc2025"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/mini-hmr"]
+trust_level = "untrusted"
+
+[projects."/home/jt/projects/vite"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/ruff"]
+trust_level = "trusted"
+
+[projects."/tmp/ty-vscode"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/wwhisper/scratch/whisper.nvim"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/wwhisper"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/wwhisper/scratch/dotool"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/spacenav-ws/scratch/spacenav-ws"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/nginx-demo"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/patest"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/crush/tmp/x"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/opencode"]
+trust_level = "trusted"
+
+[projects."/home/jt/.cache/opencode"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/telescope.nvim"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/building"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/rspack"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/building/tmp/django-vite-plugin"]
+trust_level = "trusted"
+
+[projects."/home/jt/.cache/hyprland"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/telescope.ts"]
+trust_level = "trusted"
+
+[projects."/home/jt/nixos-config/dots/nvim"]
+trust_level = "trusted"
+
+[projects."/home/jt/obsidian/personal"]
+trust_level = "trusted"
+
+[projects."/home/jt/Videos"]
+trust_level = "trusted"
+
+[projects."/tmp/vite-plugin-react"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/gitlab-hosting"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/forge-hosting"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/pi-bites"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/paratchet"]
+trust_level = "trusted"
+
+[projects."/home/jt/nixos-config/nix"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/snacks-file-browser.nvim"]
+trust_level = "trusted"
+
+[projects."/home/jt/.pi/agent"]
+trust_level = "trusted"
+
+[projects."/home/jt"]
+trust_level = "trusted"
+
+[projects."/home/jt/Documents/Codex/2026-07-28/new-chat"]
+trust_level = "trusted"
+
+[projects."/home/jt/Documents/Codex/2026-07-28/hi"]
+trust_level = "trusted"
+
+[projects."/home/jt/Documents/Codex/2026-07-31/realtime-voice-chat"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/orbit"]
+trust_level = "trusted"
+
+[notice]
+"hide_gpt-5.1-codex-max_migration_prompt" = true
+
+[notice.model_migrations]
+"gpt-5.2" = "gpt-5.2-codex"
+"gpt-5.1-codex-max" = "gpt-5.2-codex"
+"gpt-5.3-codex" = "gpt-5.4"
+
+[features]
+unified_exec = true
+shell_snapshot = true
+steer = true
+js_repl = false
+plugins = false
+apps = false
+
+[mcp_servers.chrome-devtools]
+enabled = false
+command = "npx"
+args = ["chrome-devtools-mcp@latest", "--executablePath=/run/current-system/sw/bin/google-chrome-stable", "--headless"]
+
+[mcp_servers.node_repl]
+enabled = false
+args = []
+command = "/nix/store/qz55cyhkrl3wfpjlklcarsklfaf1hj0i-codex-desktop-26.721.41059/opt/codex-desktop/resources/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = ""
+NODE_REPL_NODE_PATH = "/nix/store/qz55cyhkrl3wfpjlklcarsklfaf1hj0i-codex-desktop-26.721.41059/opt/codex-desktop/resources/node-runtime/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/home/jt/.codex"
+CODEX_HOME = "/home/jt/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,e13fd947e846d3d306e9249dd3c73d14931b6494803dbafb16cef85e6add9506,c3e900740ecb6294a07afd3fb5958dacc46ee1487fb2f4b1227d42475c659f7e,0b7480e2adf90e0099be29f73c6ed8c22e381db62f83f87e843c0a657fc063e0"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.721.41059"
+
+[mcp_servers.node_repl.tools]
+
+[mcp_servers.node_repl.tools.js]
+approval_mode = "approve"
+
+[tui]
+status_line = ["model-with-reasoning", "current-dir", "used-tokens", "context-used", "weekly-limit"]
+status_line_use_colors = true
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+"gpt-5.6-sol" = 4
+
+[plugins."gmail@openai-curated"]
+enabled = false
+
+[plugins."canva@openai-curated"]
+enabled = false
+
+[plugins."github@openai-curated"]
+enabled = false
+
+[plugins."canva@openai-curated-remote"]
+enabled = false
+
+[plugins."github@openai-curated-remote"]
+enabled = false
+
+[plugins."gmail@openai-curated-remote"]
+enabled = false
+
+[plugins."sites@openai-bundled"]
+enabled = false
+
+[plugins."browser@openai-bundled"]
+enabled = false
+
+[plugins."computer-use@openai-bundled"]
+enabled = false
+
+[plugins."visualize@openai-bundled"]
+enabled = false
+
+[plugins."documents@openai-primary-runtime"]
+enabled = false
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = false
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = false
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = false
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/canva/9.0.0/skills/canva-resize-for-all-social-media/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/canva/9.0.0/skills/canva-translate-design/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/github/0.1.8-2841cf9749ae/skills/gh-address-comments/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/github/0.1.8-2841cf9749ae/skills/gh-fix-ci/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/github/0.1.8-2841cf9749ae/skills/github/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/github/0.1.8-2841cf9749ae/skills/yeet/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/gmail/0.1.5/skills/gmail/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/gmail/0.1.5/skills/gmail-inbox-triage/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-analytics-dashboard/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-business-review/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-design-report/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-experiment-analysis/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-financial-budget/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-investment-committee-memo/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-legal-memorandum/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-market-trends-report/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-minimal-letterhead/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-operating-calendar/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-operating-review/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-project-kickoff/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-project-tracker/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-sales-pipeline/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-simple-dark-mode/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-simple-light-mode/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-strategy-memorandum/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-system-design/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-team-alignment/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.0/skills/artifact-template-three-statement-forecast/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/skills/.system/imagegen/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/skills/.system/openai-docs/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/skills/.system/plugin-creator/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/skills/.system/review-agent/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/skills/.system/skill-creator/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/skills/.system/skill-installer/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "/home/jt/.codex/plugins/cache/openai-curated-remote/canva/9.0.0/skills/canva-branded-presentation/SKILL.md"
+enabled = false
+
+[marketplaces.openai-bundled]
+last_updated = "2026-08-01T15:30:19Z"
+source_type = "local"
+source = "/home/jt/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-08-01T21:47:44Z"
+source_type = "local"
+source = "/home/jt/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[desktop]
+conversationDetailMode = "STEPS_COMMANDS"
+ambient-suggestions-enabled = true
+preventSleepWhileRunning = true
+show-context-window-usage = true
+appearanceTheme = "dark"
+followUpQueueMode = "queue"
+
+[apps.connector_20205bf7d4e99a89d7154bb849718324]
+enabled = false

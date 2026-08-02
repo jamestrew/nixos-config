@@ -11,14 +11,15 @@ let
   browserCmd = if isDarwin then "open" else "xdg-open";
   npmglobal = "${config.home.homeDirectory}/.npm-global";
 
-  # Files the app rewrites atomically (write tmp alongside, then rename over).
+  # Files these apps rewrite atomically (write tmp alongside, then rename over).
   # home.file always links via the generation dir, so an out-of-store symlink is
   # two hops: ~/f -> $gen/home-files/f -> $store/hm_f -> dots/f. Claude Code
   # resolves only the first hop before placing its tmp file, landing it in the
-  # read-only store (EROFS). Link straight at the dotfile so that one hop is
-  # already somewhere writable.
+  # read-only store (EROFS). Codex uses the same replacement pattern. Link
+  # straight at each dotfile so that one hop is already somewhere writable.
   directLinks = {
     ".claude/settings.json" = "${dots}/claude/settings.json";
+    ".codex/config.toml" = "${dots}/codex/config.toml";
   };
 in
 {

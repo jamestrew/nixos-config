@@ -4,7 +4,8 @@
     "question",
     "statusline",
     "spotme",
-    "cachePadding"
+    "cachePadding",
+    "checkpoints"
   ],
   "smallModel": {
     "model": "github-copilot/gpt-5.4-mini",

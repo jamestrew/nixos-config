@@ -1,0 +1,18 @@
+{
+  "disable": [
+    "todo",
+    "question",
+    "statusline",
+    "spotme",
+    "cachePadding"
+  ],
+  "smallModel": {
+    "model": "github-copilot/gpt-5.4-mini",
+    "thinking": "low"
+  },
+  "subagents": {
+    "explore": {
+      "model": "github-copilot/gpt-5.4-mini"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "lastChangelogVersion": "0.82.0",
+  "packages": [
+    "../../projects/pi-bites/packages/ext/index.ts"
+  ],
+  "defaultProvider": "github-copilot",
+  "defaultModel": "gpt-5-mini",
+  "collapseChangelog": true,
+  "defaultThinkingLevel": "medium",
+  "hideThinkingBlock": true,
+  "quietStartup": false,
+  "enableInstallTelemetry": false,
+  "theme": "dark",
+  "enabledModels": [
+    "openai-codex/gpt-5.6-sol",
+    "openai-codex/gpt-5.6-terra"
+  ]
+}

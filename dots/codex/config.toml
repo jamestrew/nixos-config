@@ -155,6 +155,9 @@ trust_level = "trusted"
 [projects."/home/jt/projects/orbit"]
 trust_level = "trusted"
 
+[projects."/home/jt/projects/learn-effect"]
+trust_level = "trusted"
+
 [notice]
 "hide_gpt-5.1-codex-max_migration_prompt" = true
 
@@ -177,7 +180,6 @@ command = "npx"
 args = ["chrome-devtools-mcp@latest", "--executablePath=/run/current-system/sw/bin/google-chrome-stable", "--headless"]
 
 [mcp_servers.node_repl]
-enabled = false
 args = []
 command = "/nix/store/qz55cyhkrl3wfpjlklcarsklfaf1hj0i-codex-desktop-26.721.41059/opt/codex-desktop/resources/node_repl"
 startup_timeout_sec = 120
@@ -227,31 +229,31 @@ enabled = false
 enabled = false
 
 [plugins."sites@openai-bundled"]
-enabled = false
+enabled = true
 
 [plugins."browser@openai-bundled"]
-enabled = false
+enabled = true
 
 [plugins."computer-use@openai-bundled"]
-enabled = false
+enabled = true
 
 [plugins."visualize@openai-bundled"]
-enabled = false
+enabled = true
 
 [plugins."documents@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [plugins."pdf@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [plugins."spreadsheets@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [plugins."presentations@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [plugins."template-creator@openai-primary-runtime"]
-enabled = false
+enabled = true
 
 [[skills.config]]
 path = "/home/jt/.codex/plugins/cache/openai-curated-remote/canva/9.0.0/skills/canva-resize-for-all-social-media/SKILL.md"
@@ -394,12 +396,12 @@ path = "/home/jt/.codex/plugins/cache/openai-curated-remote/canva/9.0.0/skills/c
 enabled = false
 
 [marketplaces.openai-bundled]
-last_updated = "2026-08-01T15:30:19Z"
+last_updated = "2026-08-03T15:42:47Z"
 source_type = "local"
 source = "/home/jt/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-08-01T21:47:44Z"
+last_updated = "2026-08-03T15:47:41Z"
 source_type = "local"
 source = "/home/jt/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 

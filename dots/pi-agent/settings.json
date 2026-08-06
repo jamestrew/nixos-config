@@ -4,7 +4,7 @@
     "../../projects/pi-bites/packages/ext/index.ts"
   ],
   "defaultProvider": "github-copilot",
-  "defaultModel": "gpt-5-mini",
+  "defaultModel": "gpt-5.6-luna",
   "collapseChangelog": true,
   "defaultThinkingLevel": "medium",
   "hideThinkingBlock": true,

@@ -68,6 +68,25 @@ Reuse is the default, not the exception. Before authoring a lesson, read `./asse
 
 A shared stylesheet is the first component every workspace earns: every lesson links it, so the lessons look like one consistent course rather than a pile of one-offs. As the workspace grows, so should the component library.
 
+Unless the learner has given different visual preferences, start HTML lessons and references with this dark, warm-charcoal palette. It is intentionally softer than a near-black theme, keeps code blocks visually distinct, and declares `color-scheme` so native controls match. Treat these as reusable design tokens in the shared stylesheet rather than scattering literal colors through lesson files:
+
+```css
+:root {
+  color-scheme: dark;
+  --paper: #20242b;
+  --ink: #e8e6df;
+  --muted: #aaa69d;
+  --line: #464c57;
+  --accent: #f09a7c;
+  --accent-soft: #342925;
+  --code: #181b20;
+  --success: #79c99e;
+  --error: #ff8e8e;
+}
+```
+
+Reference documents should still print cleanly. In `@media print`, switch `color-scheme` to `light` and redefine the same tokens to a white-paper palette. A learner's stated theme or accessibility preference always takes precedence over this default.
+
 ## The Mission
 
 Every lesson should be tied into the mission - the reason that the user is interested in learning about the topic.

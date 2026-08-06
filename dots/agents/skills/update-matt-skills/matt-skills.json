@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "upstream": {
+    "repository": "https://github.com/mattpocock/skills.git",
+    "github": "mattpocock/skills",
+    "baseline_tag": "v1.2.2",
+    "baseline_commit": "8b36d4fb2635b3c21998dcd8144439c9e5ba7302",
+    "inventory": ".claude-plugin/plugin.json"
+  },
+  "entries": [
+    {"source": "skills/engineering/ask-matt", "status": "excluded", "reason": "references/CHANGES.md#setup-matt-pocock-skills-and-ask-matt--removed", "tombstones": ["ask-matt"]},
+    {"source": "skills/engineering/code-review", "status": "replaced", "replacement": "thermonuclear-review", "reason": "references/CHANGES.md#code-reviewskillmd--removed", "tombstones": ["code-review"]},
+    {"source": "skills/engineering/codebase-design", "destination": "codebase-design", "status": "tracked"},
+    {"source": "skills/engineering/diagnosing-bugs", "destination": "diagnosing-bugs", "status": "tracked"},
+    {"source": "skills/engineering/domain-modeling", "destination": "domain-modeling", "status": "tracked"},
+    {"source": "skills/engineering/grill-with-docs", "destination": "grill-with-docs", "status": "tracked"},
+    {"source": "skills/engineering/implement", "destination": "implement", "status": "personalized", "reason": "references/CHANGES.md#implementskillmd"},
+    {"source": "skills/engineering/improve-codebase-architecture", "destination": "improve-codebase-architecture", "status": "tracked"},
+    {"source": "skills/engineering/prototype", "destination": "prototype", "status": "tracked"},
+    {"source": "skills/engineering/research", "destination": "research", "status": "tracked"},
+    {"source": "skills/engineering/resolving-merge-conflicts", "destination": "resolving-merge-conflicts", "status": "tracked"},
+    {"source": "skills/engineering/setup-matt-pocock-skills", "status": "excluded", "reason": "references/CHANGES.md#setup-matt-pocock-skills-and-ask-matt--removed", "tombstones": ["setup-matt-pocock-skills"]},
+    {"source": "skills/engineering/tdd", "destination": "tdd", "status": "personalized", "reason": "references/CHANGES.md#tddskillmd"},
+    {"source": "skills/engineering/to-spec", "destination": "to-spec", "status": "personalized", "reason": "references/CHANGES.md#to-specskillmd"},
+    {"source": "skills/engineering/to-tickets", "destination": "to-tickets", "status": "personalized", "reason": "references/CHANGES.md#to-ticketsskillmd"},
+    {"source": "skills/engineering/triage", "destination": "triage", "status": "personalized", "reason": "references/CHANGES.md#triageskillmd"},
+    {"source": "skills/engineering/wayfinder", "destination": "wayfinder", "status": "personalized", "reason": "references/CHANGES.md#wayfinderskillmd"},
+    {"source": "skills/engineering/wizard", "destination": "wizard", "status": "tracked"},
+    {"source": "skills/productivity/grill-me", "destination": "grill-me", "status": "tracked"},
+    {"source": "skills/productivity/grilling", "destination": "grilling", "status": "tracked"},
+    {"source": "skills/productivity/handoff", "destination": "handoff", "status": "tracked"},
+    {"source": "skills/productivity/teach", "destination": "teach", "status": "personalized", "reason": "references/CHANGES.md#teach-html-color-pallete"},
+    {"source": "skills/productivity/to-questionnaire", "destination": "to-questionnaire", "status": "tracked"},
+    {"source": "skills/productivity/wait-what", "destination": "wait-what", "status": "tracked"},
+    {"source": "skills/productivity/writing-for-agents", "destination": "writing-for-agents", "status": "tracked"},
+    {"source": "skills/productivity/writing-great-skills", "status": "replaced", "replacement": "writing-for-agents", "reason": "Upstream v1.2.0 replacement", "tombstones": ["writing-great-skills"]}
+  ]
+}

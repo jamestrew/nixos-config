@@ -1,0 +1,5 @@
+interface:
+  display_name: "Update Matt Skills"
+  short_description: "Stage reviewed upstream skill updates"
+policy:
+  allow_implicit_invocation: false

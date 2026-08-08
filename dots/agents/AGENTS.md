@@ -1,1 +1,2 @@
 - Commits: git conventional format with a body. Reference tickets as "Ref #<n>", or "Closes #<n>" if it closes them.
+- Detached HEAD for git indicate the project is using `jj` with a git backend. Prefer `jj` for committing.

@@ -158,6 +158,12 @@ trust_level = "trusted"
 [projects."/home/jt/projects/learn-effect"]
 trust_level = "trusted"
 
+[projects."/home/jt/projects/codex"]
+trust_level = "trusted"
+
+[projects."/home/jt/projects/forgejo-cli"]
+trust_level = "trusted"
+
 [notice]
 "hide_gpt-5.1-codex-max_migration_prompt" = true
 
@@ -396,12 +402,12 @@ path = "/home/jt/.codex/plugins/cache/openai-curated-remote/canva/9.0.0/skills/c
 enabled = false
 
 [marketplaces.openai-bundled]
-last_updated = "2026-08-03T15:42:47Z"
+last_updated = "2026-08-08T17:39:59Z"
 source_type = "local"
 source = "/home/jt/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-08-03T15:47:41Z"
+last_updated = "2026-08-08T00:47:31Z"
 source_type = "local"
 source = "/home/jt/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 

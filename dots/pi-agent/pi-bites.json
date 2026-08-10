@@ -8,12 +8,16 @@
     "checkpoints"
   ],
   "smallModel": {
-    "model": "github-copilot/gpt-5.4-mini",
+    "model": "github-copilot/gpt-5.6-luna",
     "thinking": "low"
   },
   "subagents": {
     "explore": {
-      "model": "github-copilot/gpt-5.4-mini"
+      "model": "github-copilot/gpt-5.6-luna"
     }
+  },
+  "autoMode": {
+    "enabled": true,
+    "model": "github-copilot/gpt-5.6-terra"
   }
 }

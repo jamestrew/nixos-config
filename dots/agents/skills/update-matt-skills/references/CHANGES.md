@@ -82,18 +82,20 @@ It had been tracker-personalized before removal (setup-skill dependency dropped,
 
 ## `implement/SKILL.md`
 
-Upstream was six lines ending in "Once done, use /code-review to review the work." Rewritten around a phased review loop.
+Upstream was six lines ending in "Once done, use /code-review to review the work." Rewritten around planning and a phased review loop.
 
-Kept deliberately terse — anything an agent would do anyway was cut. Four things earn their place:
+Kept deliberately terse — anything an agent would do anyway was cut. Five things earn their place:
 
-1. **Never read or invoke `thermonuclear-review` in the main agent**, with a one-line reason. The reason stays because this is the kind of instruction an agent otherwise "helpfully" violates; without it, the implementer reviews its own work against a rubric it just read.
+1. **A fresh planning subagent before editing.** It returns only a repo-backed change map, reuse opportunities, ordered steps, test seams, and unresolved decisions. Every item must map to a requirement; speculative work and implementation are excluded. The main agent verifies the plan rather than treating it as authority. This sequence boundary gets independent legwork without adding a standalone planning skill that no other workflow currently needs.
 
-2. **Termination via an explicit `VERDICT:` line**, judged against the review skill's own approval bar.
+2. **Never read or invoke `thermonuclear-review` in the main agent**, with a one-line reason. The reason stays because this is the kind of instruction an agent otherwise "helpfully" violates; without it, the implementer reviews its own work against a rubric it just read.
+
+3. **Termination via an explicit `VERDICT:` line**, judged against the review skill's own approval bar.
    *Why:* "loop until it raises no issues" needs a checkable stop condition. `thermonuclear-review` is deliberately extremely strict, so a literally zero-finding round would be rare and terminating on "no findings" risks spinning forever. Delegating the verdict to its own approval bar makes stopping *its* judgment.
 
-3. **Declined findings carry forward** into the next round's prompt. Fresh eyes each round is the point, but a reviewer with no memory re-raises settled points forever. The review skill already treats findings as presumptive blockers that a clear justification can answer, so declining is legitimate — dropping one silently is not.
+4. **Declined findings carry forward** into the next round's prompt. Fresh eyes each round is the point, but a reviewer with no memory re-raises settled points forever. The review skill already treats findings as presumptive blockers that a clear justification can answer, so declining is legitimate — dropping one silently is not.
 
-4. **Hard cap of three rounds**, then hand to the user. Three unconverged rounds indicates a disagreement or design problem another round won't settle.
+5. **Hard cap of three rounds**, then hand to the user. Three unconverged rounds indicates a disagreement or design problem another round won't settle.
 
 "Report findings only — do not edit" lives inside the subagent prompt rather than as its own rule, so the branch keeps one writer.
 

@@ -6,6 +6,18 @@ disable-model-invocation: true
 
 Implement the work described by the user in the spec or tickets. Check if the ticket has a parent ticket and if present, view the parent ticket for context. Check if the ticket has comments.
 
+## Plan
+
+Before editing, spawn a fresh `general-purpose` subagent to inspect the relevant code and produce a repo-backed implementation plan. Pass it the spec, ticket context, and acceptance criteria. Ask it to return only:
+
+- files and symbols to change
+- existing patterns to reuse
+- ordered implementation steps
+- test seams and commands
+- blockers or unresolved decisions
+
+Every item must map to an explicit requirement. Omit speculative improvements and empty sections. Do not implement. Review the plan against the source before proceeding; treat it as advice, not authority.
+
 Use tdd skill where possible, at pre-agreed seams.
 
 Run typechecking regularly, single test files regularly, and the full test suite once at the end.

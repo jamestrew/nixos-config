@@ -125,6 +125,7 @@ in
       inputs.llm-agents.packages.${system}.pi
       inputs.llm-agents.packages.${system}.rtk
       inputs.llm-agents.packages.${system}.copilot-language-server
+      inputs.llm-agents.packages.${system}.agent-browser
       handyWrapped
       whisper-cpp
       bash-language-server

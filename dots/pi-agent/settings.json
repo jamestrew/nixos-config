@@ -15,5 +15,9 @@
     "openai-codex/gpt-5.6-sol",
     "openai-codex/gpt-5.6-terra"
   ],
-  "tuiMode": "regular"
+  "tuiMode": "regular",
+  "outputPad": 0,
+  "markdown": {
+    "codeBlockIndent": ""
+  }
 }

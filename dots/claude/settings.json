@@ -42,6 +42,7 @@
   "disableRemoteControl": true,
   "disableWorkflows": true,
   "disableArtifact": true,
+  "workflowKeywordTriggerEnabled": false,
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
@@ -58,6 +59,7 @@
     "gopls-lsp@claude-plugins-official": false
   },
   "alwaysThinkingEnabled": true,
+  "promptSuggestionEnabled": false,
   "awaySummaryEnabled": false,
   "tui": "fullscreen",
   "autoMemoryEnabled": false,

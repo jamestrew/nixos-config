@@ -1,5 +1,7 @@
+cache/
 sessions/
 pi-bites/usage/
+pi-bites/diagnostics/
 trust.json
 auth.json
 models-store.json

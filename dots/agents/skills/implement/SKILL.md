@@ -20,6 +20,8 @@ Each round, spawn one `general-purpose` subagent:
 
 > Invoke the `thermonuclear-review` skill and apply it to `git diff <base>...HEAD`. Report findings only — do not edit. End with exactly `VERDICT: APPROVE` or `VERDICT: CHANGES REQUESTED`, using the skill's own approval bar to decide.
 
+The reviewer owns when its review is complete: only its terminal verdict completes a round. Count completed verdicts—not `WaitAgent` timeouts—toward the three-round limit.
+
 On `CHANGES REQUESTED`, fix each finding or decline it with a reason — never drop one silently — then open a new round with a new subagent.
 
 Carry declined findings into the next round's prompt: "declined for the stated reason; re-raise only if you disagree." Without this a fresh reviewer re-raises settled points and the rounds never converge.

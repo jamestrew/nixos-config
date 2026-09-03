@@ -23,7 +23,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus",
+  "model": "sonnet",
   "disableClaudeAiConnectors": true,
   "disableBundledSkills": true,
   "hooks": {
@@ -64,6 +64,7 @@
   "tui": "fullscreen",
   "autoMemoryEnabled": false,
   "preferredNotifChannel": "ghostty",
+  "todoFeatureEnabled": false,
   "agentPushNotifEnabled": true,
   "voiceEnabled": true,
   "feedbackSurveyState": {

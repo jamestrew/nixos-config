@@ -4,7 +4,15 @@ description: "Implement a piece of work based on a spec or set of tickets, then 
 disable-model-invocation: true
 ---
 
-Implement the work described by the user in the spec or tickets. Check if the ticket has a parent ticket and if present, view the parent ticket for context. Check if the ticket has comments.
+## Resolve the work
+
+Resolve `scripts/github_issue_context.py` relative to this file and run it with the target repository as the working directory.
+
+- `Implement <issue> in <owner/repo>`: run `python3 <script-path> <issue> --repo <owner/repo>`.
+- `<issue>`: run `python3 <script-path> <issue>`. The script resolves the repository from the `jj` remote, including workspaces without a `.git` directory.
+- `<path/to/plan.md>`: read the file as the implementation plan and continue directly to implementation.
+
+For a GitHub issue, input resolution is complete when you have read the issue, its comments, its parent issue when present, and every issue referenced in its body from the script's dump. Then implement the resolved issue or plan.
 
 Use tdd skill where possible, at pre-agreed seams.
 

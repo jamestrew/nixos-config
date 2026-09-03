@@ -1,4 +1,4 @@
-model = "gpt-5.6-sol"
+model = "gpt-6-astra"
 model_reasoning_effort = "medium"
 personality = "pragmatic"
 plan_mode_reasoning_effort = "high"
@@ -175,6 +175,7 @@ trust_level = "trusted"
 [features]
 unified_exec = true
 shell_snapshot = true
+context_management = true
 steer = true
 js_repl = false
 plugins = false
@@ -211,10 +212,12 @@ approval_mode = "approve"
 [tui]
 status_line = ["model-with-reasoning", "current-dir", "used-tokens", "context-used", "weekly-limit"]
 status_line_use_colors = true
+whimsy = false
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
+gpt-6-astra = 4
 
 [plugins."gmail@openai-curated"]
 enabled = false

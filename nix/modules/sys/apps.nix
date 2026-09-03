@@ -103,6 +103,7 @@ in
       go
       python314
       ruff
+      ty
       uv
       delta
       starship
@@ -126,6 +127,8 @@ in
       inputs.llm-agents.packages.${system}.rtk
       inputs.llm-agents.packages.${system}.copilot-language-server
       inputs.llm-agents.packages.${system}.agent-browser
+      inputs.llm-agents.packages.${system}.hunk
+      inputs.llm-agents.packages.${system}.codegraph
       handyWrapped
       whisper-cpp
       bash-language-server

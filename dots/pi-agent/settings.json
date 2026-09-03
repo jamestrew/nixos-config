@@ -1,19 +1,22 @@
 {
-  "lastChangelogVersion": "0.84.4",
+  "lastChangelogVersion": "0.85.1",
   "packages": [
-    "../../projects/pi-bites/packages/ext/index.ts"
+    "../../projects/pi-bites/packages/ext/index.ts",
+    "npm:pi-claude-bridge"
   ],
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.6-sol",
+  "defaultModel": "gpt-6-astra",
   "collapseChangelog": true,
-  "defaultThinkingLevel": "high",
-  "hideThinkingBlock": true,
+  "defaultThinkingLevel": "medium",
+  "hideThinkingBlock": false,
   "quietStartup": false,
   "enableInstallTelemetry": false,
   "theme": "dark",
   "enabledModels": [
     "openai-codex/gpt-5.6-sol",
-    "openai-codex/gpt-5.6-terra"
+    "openai-codex/gpt-5.6-terra",
+    "openai-codex/gpt-5.6-luna",
+    "openai-codex/gpt-6-astra"
   ],
   "tuiMode": "regular",
   "outputPad": 0,

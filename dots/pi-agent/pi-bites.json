@@ -2,7 +2,8 @@
   "disable": [
     "statusline",
     "spotme",
-    "goal"
+    "goal",
+    "codegraph"
   ],
   "smallModel": {
     "model": "openai-codex/gpt-5.6-luna",
@@ -13,8 +14,10 @@
       "model": "openai-codex/gpt-5.6-luna"
     }
   },
+  "bashGate": {
+    "mode": "yolo"
+  },
   "autoMode": {
-    "enabled": true,
     "model": "openai-codex/gpt-5.6-terra"
   }
 }

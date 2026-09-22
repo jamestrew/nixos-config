@@ -1,8 +1,7 @@
 {
   "lastChangelogVersion": "0.85.1",
   "packages": [
-    "../../projects/pi-bites/packages/ext/index.ts",
-    "npm:pi-claude-bridge"
+    "../../projects/pi-bites/packages/ext/index.ts"
   ],
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-6-astra",

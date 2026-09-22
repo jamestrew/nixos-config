@@ -141,7 +141,7 @@ in
       bun
       pnpm
       typescript-language-server
-      typescript-go
+      typescript
       emmet-language-server
       markdownlint-cli
       taplo

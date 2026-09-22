@@ -2,8 +2,7 @@
   "disable": [
     "statusline",
     "spotme",
-    "goal",
-    "codegraph"
+    "goal"
   ],
   "smallModel": {
     "model": "openai-codex/gpt-5.6-luna",

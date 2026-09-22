@@ -21,7 +21,7 @@ in
 
   config = lib.mkIf config.office.enable {
     environment.systemPackages = with pkgs; [
-      libreoffice-fresh
+      libreoffice
       onlyoffice-desktopeditors
       poppler-utils
       gcc

@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.85.1",
+  "lastChangelogVersion": "0.87.1",
   "packages": [
     "../../projects/pi-bites/packages/ext/index.ts"
   ],
@@ -12,10 +12,9 @@
   "enableInstallTelemetry": false,
   "theme": "dark",
   "enabledModels": [
-    "openai-codex/gpt-5.6-sol",
-    "openai-codex/gpt-5.6-terra",
-    "openai-codex/gpt-5.6-luna",
-    "openai-codex/gpt-6-astra"
+    "openai-codex/gpt-6-astra",
+    "openai-codex/gpt-6-luna",
+    "openai-codex/gpt-6-sol"
   ],
   "tuiMode": "regular",
   "outputPad": 0,

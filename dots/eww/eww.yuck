@@ -4,11 +4,10 @@
 (include "widgets/bar-right.yuck")
 (include "widgets/control-center.yuck")
 
-;; Multi-monitor support - use with arguments
-;; eww open bar0 (for monitor 0)
-;; eww open bar1 (for monitor 1)
+;; Use connector names so monitor discovery order cannot swap the bars.
+;; bar0: ultrawide; bar1: 1080p
 (defwindow bar0
-  :monitor 0 :geometry (geometry :x "0%"
+  :monitor "DP-2" :geometry (geometry :x "0%"
                         :y "0%"
                         :width "100%"
                         :height "24px"
@@ -20,11 +19,11 @@
   (box :class "bar"
        :orientation "horizontal"
        :space-evenly false
-    (bar-left :monitor 0)
+    (bar-left :monitor "DP-2")
     (bar-right)))
 
 (defwindow bar1
-  :monitor 1
+  :monitor "HDMI-A-1"
   :geometry (geometry :x "0%"
              :y "0%"
              :width "100%"
@@ -38,7 +37,7 @@
   (box :class "bar"
        :orientation "horizontal"
        :space-evenly false
-    (bar-left :monitor 1)
+    (bar-left :monitor "HDMI-A-1")
     (bar-right-slim)))
 
 

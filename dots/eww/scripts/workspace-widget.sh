@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 generate_workspaces() {
-  local monitor_id=$1
+  local monitor_name=$1
   monitors_json=$(hyprctl monitors -j)
   workspaces_json=$(hyprctl workspaces -j)
-  local active_ws; active_ws=$(echo "$monitors_json" | jq ".[] | select(.id == $monitor_id) | .activeWorkspace.id")
+  local active_ws; active_ws=$(echo "$monitors_json" | jq --arg monitor "$monitor_name" '.[] | select(.name == $monitor) | .activeWorkspace.id')
   local widget_content="(box :orientation \"horizontal\" :spacing 2"
   for i in {1..10}; do
     local ws_info; ws_info=$(echo "$workspaces_json" | jq ".[] | select(.id == $i)")
@@ -24,10 +24,10 @@ generate_workspaces() {
 }
 
 
-monitor_id="${1:-0}"
+monitor_name="${1:-DP-2}"
 
-generate_workspaces "$monitor_id"
+generate_workspaces "$monitor_name"
 
 socat -u UNIX-CONNECT:"$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" - | while read -r _line; do
-generate_workspaces "$monitor_id"
+generate_workspaces "$monitor_name"
 done

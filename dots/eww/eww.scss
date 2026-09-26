@@ -123,6 +123,19 @@ $base0F: #be5046;
   color: $base05;
 }
 
+.idle-suspend {
+  padding: 0 8px;
+  color: $base0D;
+}
+
+.idle-suspend.disabled {
+  color: $base0A;
+}
+
+.idle-suspend:hover {
+  background-color: $base01;
+}
+
 .cpu-widget {
   background-color: transparent;
   color: $base05;

@@ -59,5 +59,34 @@ class RepositoryInferenceTest(unittest.TestCase):
         )
 
 
+class IssueOutputTest(unittest.TestCase):
+    def test_keeps_only_implementation_context(self):
+        issue = {
+            "number": 2,
+            "title": "Implement CLI",
+            "url": "https://github.com/acme/widgets/issues/2",
+            "body": "Acceptance criteria",
+            "comments": [
+                {
+                    "body": "Clarified requirement",
+                    "author": {"login": "someone"},
+                    "reactionGroups": [],
+                }
+            ],
+            "parent": {"url": "https://github.com/acme/widgets/issues/1", "id": "opaque"},
+        }
+
+        self.assertEqual(
+            MODULE.implementation_context(issue),
+            {
+                "number": 2,
+                "title": "Implement CLI",
+                "url": "https://github.com/acme/widgets/issues/2",
+                "body": "Acceptance criteria",
+                "comments": ["Clarified requirement"],
+            },
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

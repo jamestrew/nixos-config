@@ -103,6 +103,16 @@ def view_issue(issue: str | None, repository: str | None = None) -> dict:
     return json.loads(result.stdout)
 
 
+def implementation_context(issue: dict) -> dict:
+    return {
+        "number": issue["number"],
+        "title": issue["title"],
+        "url": issue["url"],
+        "body": issue["body"],
+        "comments": [comment["body"] for comment in issue["comments"]],
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("issue", help="issue number or URL")
@@ -126,7 +136,11 @@ def main() -> None:
 
     print(
         json.dumps(
-            {"issue": root, "parentIssue": parent, "referencedIssues": references},
+            {
+                "issue": implementation_context(root),
+                "parentIssue": implementation_context(parent) if parent else None,
+                "referencedIssues": [implementation_context(issue) for issue in references],
+            },
             indent=2,
         )
     )

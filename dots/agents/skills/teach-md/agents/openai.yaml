@@ -1,0 +1,5 @@
+interface:
+  display_name: "Teach (Markdown-first)"
+  short_description: "Guided lessons in Markdown or HTML"
+policy:
+  allow_implicit_invocation: false

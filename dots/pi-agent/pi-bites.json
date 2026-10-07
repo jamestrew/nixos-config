@@ -1,22 +1,17 @@
 {
+  "$schema": "/home/jt/projects/pi-bites/pi-bites.schema.json",
   "disable": [
     "statusline",
-    "spotme",
-    "goal"
+    "spotme"
   ],
   "smallModel": {
     "model": "openai-codex/gpt-5.6-luna",
     "thinking": "low"
   },
-  "subagents": {
-    "explore": {
-      "model": "openai-codex/gpt-5.6-luna"
-    }
-  },
   "bashGate": {
     "mode": "yolo"
   },
   "autoMode": {
-    "model": "openai-codex/gpt-5.6-terra"
+    "model": "openai-codex/gpt-5.6-luna"
   }
 }

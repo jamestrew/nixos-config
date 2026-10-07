@@ -1,24 +1,31 @@
 {
-  "lastChangelogVersion": "0.87.1",
+  "$schema": "https://pi.dev/schemas/settings.schema.json",
+  "lastChangelogVersion": "1.0.4",
   "packages": [
     "../../projects/pi-bites/packages/ext/index.ts"
   ],
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-6-astra",
+  "defaultModel": "gpt-6.1-sol",
   "collapseChangelog": true,
-  "defaultThinkingLevel": "medium",
-  "hideThinkingBlock": false,
+  "defaultThinkingLevel": "high",
+  "hideThinkingBlock": true,
+  "showCacheMissNotices": true,
   "quietStartup": false,
   "enableInstallTelemetry": false,
   "theme": "dark",
   "enabledModels": [
     "openai-codex/gpt-6-astra",
     "openai-codex/gpt-6-luna",
-    "openai-codex/gpt-6-sol"
+    "openai-codex/gpt-6.1-sol"
   ],
-  "tuiMode": "regular",
+  "tuiMode": "fullscreen",
+  "fullscreenScrollbar": "always",
   "outputPad": 0,
   "markdown": {
     "codeBlockIndent": ""
-  }
+  },
+  "deviceId": "43013776-f33e-42ce-9937-b592d54a00ff",
+  "extensions": [
+    "-builtin:codemode"
+  ]
 }

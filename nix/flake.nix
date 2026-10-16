@@ -29,11 +29,6 @@
 
     llm-agents.url = "github:numtide/llm-agents.nix";
 
-    codex-desktop-linux = {
-      url = "github:ilysenko/codex-desktop-linux";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -73,17 +68,10 @@
           }
           // platform;
           modules = [
-            inputs.codex-desktop-linux.nixosModules.default
             nur.modules.nixos.default
             lanzaboote.nixosModules.lanzaboote
             ./hosts/main/configuration.nix
             home-manager.nixosModules.home-manager
-            {
-              programs.codexDesktopLinux = {
-                enable = true;
-                cliPackage = inputs.llm-agents.packages.${platform.system}.codex;
-              };
-            }
             {
               home-manager = {
                 useGlobalPkgs = true;

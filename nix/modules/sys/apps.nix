@@ -122,7 +122,8 @@ in
       inputs.llm-agents.packages.${system}.gemini-cli
       inputs.llm-agents.packages.${system}.codex
       inputs.llm-agents.packages.${system}.codex-acp
-      inputs.llm-agents.packages.${system}.opencode
+      inputs.llm-agents.packages.${system}.chatgpt
+      inputs.llm-agents.packages.${system}.opencode2
       inputs.llm-agents.packages.${system}.pi
       inputs.llm-agents.packages.${system}.rtk
       inputs.llm-agents.packages.${system}.copilot-language-server
@@ -140,7 +141,6 @@ in
       typescript
       bun
       pnpm
-      typescript-language-server
       typescript
       emmet-language-server
       markdownlint-cli

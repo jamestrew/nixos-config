@@ -1,0 +1,5 @@
+interface:
+  display_name: "Improve Codebase Architecture (Markdown)"
+  short_description: "Find and grill architecture improvements in Markdown"
+policy:
+  allow_implicit_invocation: false

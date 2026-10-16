@@ -24,6 +24,7 @@ in
     ../../modules/sys/video.nix
     ../../modules/sys/sops.nix
     ../../modules/sys/spacemouse.nix
+    ../../modules/sys/s1-mini.nix
   ];
 
   # my modules
@@ -33,6 +34,7 @@ in
   video.enable = true;
   gaming.enable = true;
   services.nordvpn.enable = true;
+  services.llama-cpp.enable = true;
   spacemouse = {
     enable = true;
     websocket = {

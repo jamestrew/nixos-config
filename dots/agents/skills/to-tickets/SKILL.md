@@ -26,6 +26,8 @@ Look for opportunities to prefactor the code to make the implementation easier. 
 
 Break the work into **tracer bullet** tickets.
 
+Read and follow [Handoff fidelity](../to-spec/IMPLEMENTATION-CONTEXT.md). Carry the relevant implementation context and rationale into each ticket so a fresh agent can implement its slice faithfully. A story-level paraphrase or a parent link alone is not enough. Include the Codebase context note in each ticket that contains codebase-specific context.
+
 <vertical-slice-rules>
 
 - Each slice cuts a narrow but COMPLETE path through every layer (schema, API, UI, tests): vertical, NOT a horizontal slice of one layer
@@ -82,6 +84,10 @@ Do NOT close or edit the parent issue, or rewrite its body. Linking tickets to i
 
 The end-to-end behaviour this ticket makes work, from the user's perspective, not layer-by-layer implementation.
 
+## Implementation context
+
+The relevant design context for this slice: decisions, existing structure, paths, snippets, examples, constraints, rationale, and unresolved questions. Omit this section when there is no useful implementation context to preserve.
+
 ## Acceptance criteria
 
 - [ ] Criterion 1
@@ -90,5 +96,3 @@ The end-to-end behaviour this ticket makes work, from the user's perspective, no
 </issue-template>
 
 The parent link and the blocking edges are deliberately absent from this template — they live as native GitHub relationships set at creation time, not as text.
-
-Avoid specific file paths or code snippets — they go stale fast. Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it and note briefly that it came from a prototype. Trim to the decision-rich parts — not a working demo, just the important bits.

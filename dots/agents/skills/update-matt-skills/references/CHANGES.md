@@ -42,6 +42,8 @@ A fourth decision covers review, and is independent of the three above:
 1. **Frontmatter description** — "publish it to the project issue tracker" → "publish it as a GitHub issue".
 2. **Dropped the setup-skill dependency** — replaced the "should have been provided to you" line with one sentence: specs are published as GitHub issues via `gh`.
 3. **Added a short `## Publishing` section** — step 3 previously said "publish to the project issue tracker" and relied on the config file to say how. With the config gone, that has to live somewhere. Kept to four sentences: label with `ready-for-agent`, create the label if missing, pass the body as a file (spec bodies contain fenced code the shell mangles), report the URL for `/to-tickets`.
+4. **Handoff fidelity over timeless abstraction** — replaced the ban on paths/snippets and its prototype-only exception with a reference to the bundled `to-spec/IMPLEMENTATION-CONTEXT.md`, shared with `to-tickets`. Preserve the concrete code structure, snippets, examples, constraints, and reasoning that informed the design, not just its user stories or final decisions. Condense repetition without losing meaning, and distinguish agreements, illustrations, and unresolved questions. Preserve this reference file and its callers during upstream merges.
+5. **Explicit handling of codebase drift** — check references while drafting, reconcile already-stale context or flag the discrepancy, and include a short Codebase context note in published specs/tickets with codebase-specific details. Implementers can adapt moved files or equivalent structures, but must surface material conflicts and confirm a revised approach. Avoid mandatory timestamps or commit hashes; enough rationale to recognize a conflict is more useful than metadata alone.
 
 ## `to-tickets/SKILL.md`
 
@@ -52,6 +54,7 @@ A fourth decision covers review, and is independent of the three above:
 5. **`--parent` to link tickets as sub-issues of the spec.** *Judgment call, easy to revert:* upstream carried a prose `## Parent` section in the issue template; since `gh` has `--parent`, that became a native sub-issue link and the prose section was deleted. To undo, drop the flag and restore the template section.
 6. **Deleted `<local-ticket-template>`** — it only served the local-markdown tracker.
 7. **Deleted `## Blocked by` from `<issue-template>`** — with native edges this is a duplicated source of truth that goes stale the moment an edge is rewired, and GitHub already renders the gate. A note under the template explains the deliberate absence so a reader doesn't "helpfully" restore it.
+8. **Carry the technical handoff into each slice** — replaced the paths/snippets prohibition and prototype-only exception with the shared `to-spec/IMPLEMENTATION-CONTEXT.md` guidance. Added an optional Implementation context section so each ticket retains the relevant design context, rationale, and code examples rather than relying on a story-level paraphrase or parent link. Include the shared drift note in each ticket with codebase-specific context. This intentional context repetition makes tickets actionable in fresh contexts; native parent/dependency relationships remain authoritative and are not repeated as prose.
 
 ## `triage/SKILL.md`
 

@@ -52,9 +52,7 @@ A list of implementation decisions that were made. This can include:
 - API contracts
 - Specific interactions
 
-Do NOT include specific file paths or code snippets. They may end up being outdated very quickly.
-
-Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it within the relevant decision and note briefly that it came from a prototype. Trim to the decision-rich parts, not a working demo, just the important bits.
+Read and follow [Handoff fidelity](IMPLEMENTATION-CONTEXT.md). Preserve the implementation context and rationale here, including relevant paths, code structure, and snippets from the discussion. Include its Codebase context note when applicable. Keep the user-facing stories above; this section carries the technical handoff alongside them.
 
 ## Testing Decisions
 

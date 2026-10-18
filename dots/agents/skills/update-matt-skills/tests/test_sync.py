@@ -161,6 +161,56 @@ class SyncTests(unittest.TestCase):
         self.assertEqual(result.returncode, 2)
         self.assertIn(new, json.loads((f.output / "report.json").read_text())["inventory_additions"])
 
+        f.configure(baseline, [
+            {"source": old, "destination": "old", "status": "tracked"},
+            {"source": new, "destination": "new", "status": "tracked"},
+        ])
+        result = f.prepare(target)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        state = json.loads((f.output / "report.json").read_text())
+        self.assertEqual(state["blocking_decisions"], [])
+        self.assertFalse((f.live / "new").exists(), "prepare mutated live tree")
+        self.assertEqual(
+            (f.output / "candidate" / "new" / "SKILL.md").read_text(),
+            f.skill("new", "new"),
+        )
+        applied = subprocess.run([
+            "python3", str(SCRIPT), "apply", "--skills", str(f.live),
+            "--manifest", str(f.manifest), str(f.output),
+        ], text=True, capture_output=True)
+        self.assertEqual(applied.returncode, 0, applied.stderr)
+        self.assertEqual((f.live / "new" / "SKILL.md").read_text(), f.skill("new", "new"))
+
+    def test_approved_addition_preserves_conflicting_local_files_for_review(self):
+        f = Fixture(self)
+        f.write_upstream({}, [])
+        baseline = f.commit("baseline")
+        source = "skills/engineering/new"
+        f.write_local("new", f.skill("new", "local"), {"LOCAL.md": "keep"})
+        f.write_upstream({source: f.skill("new", "upstream")}, [source])
+        target = f.commit("promote")
+        f.configure(baseline, [{"source": source, "destination": "new", "status": "tracked"}])
+        result = f.prepare(target)
+        self.assertEqual(result.returncode, 2, result.stderr)
+        state = json.loads((f.output / "report.json").read_text())
+        self.assertEqual(state["blocking_decisions"], [])
+        self.assertEqual(state["merge_conflicts"], [source])
+        self.assertEqual((f.output / "candidate/new/SKILL.md").read_text(), f.skill("new", "local"))
+        self.assertEqual((f.output / "candidate/new/LOCAL.md").read_text(), "keep")
+        self.assertEqual((f.live / "new/SKILL.md").read_text(), f.skill("new", "local"))
+
+    def test_missing_existing_promoted_destination_still_blocks(self):
+        f = Fixture(self)
+        source = "skills/engineering/old"
+        f.write_upstream({source: f.skill("old", "base")}, [source])
+        baseline = f.commit("baseline")
+        f.configure(baseline, [{"source": source, "destination": "old", "status": "tracked"}])
+        result = f.prepare(baseline)
+        self.assertEqual(result.returncode, 2, result.stderr)
+        state = json.loads((f.output / "report.json").read_text())
+        self.assertEqual(state["blocking_decisions"], ["old"])
+        self.assertFalse((f.live / "old").exists())
+
     def test_rename_or_replacement_is_reported_with_changelog(self):
         f = Fixture(self)
         old, new = "skills/productivity/old-name", "skills/productivity/new-name"

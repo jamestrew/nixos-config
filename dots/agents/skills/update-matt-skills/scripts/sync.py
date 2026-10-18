@@ -205,6 +205,10 @@ def prepare(args: argparse.Namespace) -> int:
             if target_files is None:
                 action = "upstream removal requires decision"
                 unresolved.append(source)
+            elif base_files is None and source not in baseline_inventory:
+                merged, conflicts = merge_trees(local_files or {}, {}, target_files)
+                write_tree(candidate / destination, merged)
+                action = "merge conflict" if conflicts else "merged" if local_files else "added from upstream"
             elif local_files is None:
                 action = "missing local destination"
                 unresolved.append(destination)
@@ -220,8 +224,8 @@ def prepare(args: argparse.Namespace) -> int:
                 merged, conflicts = merge_trees(local_files, base_files, target_files)
                 write_tree(candidate / destination, merged)
                 action = "merged" if not conflicts else "merge conflict"
-                if conflicts:
-                    merge_conflicts.append(source)
+            if conflicts:
+                merge_conflicts.append(source)
             results.append({
                 "source": source,
                 "destination": destination,

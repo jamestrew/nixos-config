@@ -149,3 +149,13 @@ Reference documents should still print cleanly. In `@media print`, switch `color
 - The migration fixture suite covers untouched updates, personalized merges/conflicts, promoted additions, semantic renames, exclusions, tracked removals, candidate isolation, and baseline advancement.
 
 **Not verified:** no issues were created, so no end-to-end run against a live repo. Flags and field paths are confirmed from `--help` and schema introspection; the workflows are not smoke-tested.
+
+## v1.3.1 inventory decisions
+
+- Track the promoted `pr` and `retro` skills unchanged, including their bundled metadata and credits. `retro` was already installed locally with identical skill text; normalize its identical `agents/openai.yml` metadata to upstream's `agents/openai.yaml`.
+- Exclude `implement-spec`: the maintainer does not expect to use whole-spec parallel orchestration. Keep the personalized per-ticket `implement` workflow.
+- Accept upstream's removal of `resolving-merge-conflicts` without a replacement; retain its tombstone so it stays absent.
+- Adopt the upstream `GLOSSARY.md` / `GLOSSARY-MAP.md` domain-doc convention and `GLOSSARY-FORMAT.md` reference rename. Existing project domain docs using the old names need a separate migration; this skill update does not rename project files.
+- Preserve the GitHub-only publishing, native dependencies, frontier query warning, review loop, and teaching palette while merging upstream wording and invocation changes.
+
+The updater now stages approved promoted additions even when their local destination is absent. Existing local files are merged against an empty baseline, retaining conflicting files for review. Missing destinations for skills already promoted at the baseline still block preparation. Fixtures check candidate isolation, applying a newly approved skill, preservation of conflicting local files, and the existing-destination guard.

@@ -48,7 +48,7 @@ Gather notes in this shape. The size gate measures them, so the shape has to hol
 - <path:line> — <why the behaviour isn't evident from one read>
 ```
 
-**Terms** come from `CONTEXT.md` where the repo has one — mark those **stated**. Otherwise derive them from type names, module names, and the vocabulary the tests use, and mark them **derived**. The distinction is load-bearing: a derived term is your reading of the model, and a reading you got wrong is exactly the misunderstanding the reader is here to catch. Read `CONTEXT.md`; leave it unmodified.
+**Terms** come from `GLOSSARY.md` where the repo has one — mark those **stated**. Otherwise derive them from type names, module names, and the vocabulary the tests use, and mark them **derived**. The distinction is load-bearing: a derived term is your reading of the model, and a reading you got wrong is exactly the misunderstanding the reader is here to catch. Read `GLOSSARY.md`; leave it unmodified.
 
 **Claims** are what commit messages, PR descriptions, and code comments assert about the change. Record them; source from the code instead. On an agent-authored branch the same process wrote the code and the message, so a walkthrough that repeats the message launders a claim into an explanation and the misunderstanding passes through invisibly. Where a claim and the code disagree, that becomes an open question — one of the most valuable things this document produces.
 
@@ -84,7 +84,7 @@ One paragraph: what this subject does and why it exists. Near-fixed length regar
 
 ### 2. Domain
 
-Define only the terms needed to follow the execution flow. Use terms from `CONTEXT.md` when available. Do not expose the survey labels `stated`, `derived`, or `shifted`. When a term changed meaning, use a direct “Before … Now …” statement.
+Define only the terms needed to follow the execution flow. Use terms from `GLOSSARY.md` when available. Do not expose the survey labels `stated`, `derived`, or `shifted`. When a term changed meaning, use a direct “Before … Now …” statement.
 
 ### 3. Execution flow
 
@@ -107,7 +107,7 @@ Group files that changed without needing prose — lockfiles, generated output, 
 At most five, plus contradictions. Two things are admitted:
 
 - Something you **could not determine** from the code.
-- A **contradiction** between the code and a stated claim — commit message, PR description, `CONTEXT.md`. These always go in and don't count against the five.
+- A **contradiction** between the code and a stated claim — commit message, PR description, `GLOSSARY.md`. These always go in and don't count against the five.
 
 Both are comprehension findings. An opinion about code quality phrased as a question is still a verdict; send those to `/thermonuclear-review`.
 

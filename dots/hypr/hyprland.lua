@@ -119,9 +119,9 @@ bind(main_mod, "F", hl.dsp.window.float())
 bind(main_mod, "Tab", hl.dsp.window.cycle_next())
 bind(main_mod, "C", hl.dsp.window.close())
 
--- Screen navigation
-bind(main_mod, "W", hl.dsp.focus({ monitor = 0 }))
-bind(main_mod, "E", hl.dsp.focus({ monitor = 1 }))
+-- Screen navigation - output names stay stable when monitors reconnect
+bind(main_mod, "W", hl.dsp.focus({ monitor = "DP-2" }))
+bind(main_mod, "E", hl.dsp.focus({ monitor = "HDMI-A-1" }))
 
 -- Program launchers
 bind_exec(main_mod, "P", "wofi --show run")

@@ -24,6 +24,18 @@
 - [x] tweak program binds
 - [ ] tweak layout settings
 
+## Screenshots
+
+Super+Shift+S opens Flameshot's editor with clipboard output. The Hyprland
+startup/shutdown hooks manage NixOS's graphical-session target, which the
+desktop portal requires for capture.
+
+Regression check (captures and discards the image, without changing the clipboard):
+
+```bash
+timeout 10s env QT_QPA_PLATFORM=wayland flameshot full --raw > /dev/null
+```
+
 ## Automatic suspend
 
 Click the sleep / coffee icon in either Eww bar to toggle the 30-minute

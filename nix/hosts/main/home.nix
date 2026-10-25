@@ -158,6 +158,20 @@ in
     inherit (cursor) name package size;
   };
 
+  services.flameshot = {
+    enable = true;
+    settings.General = {
+      autoCloseIdleDaemon = false;
+      contrastOpacity = 188;
+      disabledTrayIcon = false;
+      drawColor = "#800000";
+      savePath = "/home/jt/Downloads";
+      startupLaunch = true;
+      uiColor = "#1e5a7c";
+      useJpgForClipboard = true;
+    };
+  };
+
   # Drive the geo-scheduled blue-light filter. The exec-once in hyprland.lua
   # applies the correct state at login; this timer reconciles it every 5 min so
   # the dusk/dawn flip lands within ~5 min of true sunset/sunrise, with no

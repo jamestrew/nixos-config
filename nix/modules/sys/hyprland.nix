@@ -22,7 +22,6 @@
       wofi
       wl-clipboard
       grim
-      slurp
       swaynotificationcenter
       eww
 

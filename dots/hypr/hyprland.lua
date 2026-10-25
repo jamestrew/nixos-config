@@ -132,7 +132,7 @@ bind_exec(main_mod, "Return", "ghostty")
 bind_exec(main_mod, "B", "brave --disable-features=WaylandWpColorManagerV1")
 
 -- Screenshots
-bind_exec(main_mod .. " + SHIFT", "S", [[grim -g "$(slurp)" - | wl-copy -t image/png]])
+bind_exec(main_mod .. " + SHIFT", "S", "env QT_QPA_PLATFORM=wayland flameshot gui --clipboard")
 
 -- System controls
 bind_exec(main_mod .. " + SHIFT", "R", "hyprctl reload")
@@ -167,6 +167,8 @@ bind_exec("", "XF86AudioPlay", "playerctl play-pause", { locked = true })
 
 -- Startup applications
 hl.on("hyprland.start", function ()
+  -- Portals require graphical-session.target; this non-UWSM session must activate it.
+  hl.exec_cmd("systemctl --user start nixos-fake-graphical-session.target")
   hl.exec_cmd("hypridle")
   hl.exec_cmd("hyprpaper")
   hl.exec_cmd("hyprsunset")                 -- color-temp daemon (replaced sunsetr; see psi4j/sunsetr#21)
@@ -177,12 +179,13 @@ hl.on("hyprland.start", function ()
 
   hl.exec_cmd("fcitx5")
   hl.exec_cmd("udiskie --tray")
-  -- NordVPN tray icon. The unit is wantedBy graphical-session.target, which this
-  -- session never activates, so start it by hand.
-  hl.exec_cmd("systemctl --user start norduserd")
   hl.exec_cmd("brave --disable-features=WaylandWpColorManagerV1", { workspace = "1 silent" })
   hl.exec_cmd("discord", { workspace = "3 silent" })
   hl.exec_cmd("pear-desktop", { workspace = "3 silent" })
   hl.exec_cmd("obsidian", { workspace = "2 silent" })
   hl.exec_cmd("wl-paste --watch cliphist store")
+end)
+
+hl.on("hyprland.shutdown", function ()
+  hl.exec_cmd("systemctl --user stop nixos-fake-graphical-session.target")
 end)
